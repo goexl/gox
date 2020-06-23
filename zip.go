@@ -4,6 +4,7 @@ import (
 	"archive/zip"
 	"io"
 	"os"
+	`path/filepath`
 	"strings"
 )
 
@@ -55,11 +56,7 @@ func compressZip(zipFileName string, prefix string, zw *zip.Writer) (err error) 
 		}
 
 		for _, fi := range fileInfos {
-			var f *os.File
-			if f, err = os.Open(zipFile.Name() + "/" + fi.Name()); err != nil {
-				return
-			}
-			if err = compressZip(f, prefix, zw); err != nil {
+			if err = compressZip(filepath.Join(zipFile.Name(), fi.Name()), prefix, zw); err != nil {
 				return
 			}
 		}
