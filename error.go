@@ -32,8 +32,8 @@ type (
 )
 
 // NewCodeError 创建错误
-func NewCodeError(errorCode ErrorCode, msg string, data interface{}) CodeError {
-	return CodeError{
+func NewCodeError(errorCode ErrorCode, msg string, data interface{}) *CodeError {
+	return &CodeError{
 		ErrorCode: errorCode,
 		Msg:       msg,
 		Data:      data,
