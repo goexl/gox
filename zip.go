@@ -8,7 +8,7 @@ import (
 )
 
 // Zip 压缩文件
-func Zip(zipFileNames []string, destFileName string) (err error) {
+func Zip(destFileName string, zipFileNames ...string) (err error) {
 	var destFile *os.File
 
 	if destFile, err = os.Create(destFileName); nil != err {
