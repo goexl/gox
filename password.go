@@ -4,7 +4,7 @@ import `golang.org/x/crypto/bcrypt`
 
 // HashPassword 生成密码
 func HashPassword(password string) (string, error) {
-	return HashPasswordWithCost(password, 14)
+	return HashPasswordWithCost(password, bcrypt.DefaultCost)
 }
 
 // HashPasswordWithCost 生成密码
