@@ -2,10 +2,15 @@ package gox
 
 import (
 	"archive/zip"
+	`bytes`
 	"io"
+	`io/ioutil`
 	"os"
 	`path/filepath`
 	"strings"
+
+	`golang.org/x/text/encoding/simplifiedchinese`
+	`golang.org/x/text/transform`
 )
 
 // Zip 压缩文件
@@ -80,7 +85,8 @@ func compressZip(zipFileName string, prefix string, zw *zip.Writer) (err error) 
 // 解压
 func UnZip(zipFileName, destFileName string) (err error) {
 	var (
-		zipReader *zip.ReadCloser
+		zipReader       *zip.ReadCloser
+		realZipFileName string
 	)
 
 	if zipReader, err = zip.OpenReader(zipFileName); err != nil {
@@ -88,20 +94,43 @@ func UnZip(zipFileName, destFileName string) (err error) {
 	}
 	defer zipReader.Close()
 
+	// 如果解压后不是放在当前目录就按照保存目录去创建目录
+	if "" != destFileName {
+		if err = os.MkdirAll(destFileName, 0755); nil != err {
+			return
+		}
+	}
+
 	for _, zipFile := range zipReader.File {
+		if zipFile.Flags == 0 {
+			// 如果标致位是0，则是默认的本地编码，默认为gbk
+			i := bytes.NewReader([]byte(zipFile.Name))
+			decoder := transform.NewReader(i, simplifiedchinese.GB18030.NewDecoder())
+			content, _ := ioutil.ReadAll(decoder)
+			realZipFileName = string(content)
+		} else {
+			// 如果标志为是 1 << 11也就是2048，则是utf-8编码
+			realZipFileName = zipFile.Name
+		}
+
 		var reader io.ReadCloser
 		if reader, err = zipFile.Open(); err != nil {
 			return
 		}
 		defer reader.Close()
 
-		fileName := destFileName + zipFile.Name
-		if err = os.MkdirAll(getDir(fileName), 0755); err != nil {
-			return
+		path := filepath.Join(destFileName, realZipFileName)
+		// 如果是目录，就创建目录
+		if zipFile.FileInfo().IsDir() {
+			if err = os.MkdirAll(path, zipFile.Mode()); nil != err {
+				return
+			}
+			// 因为是目录，跳过当前循环，因为后面都是文件的处理
+			continue
 		}
 
 		var file *os.File
-		if file, err = os.Create(fileName); err != nil {
+		if file, err = os.OpenFile(path, os.O_CREATE|os.O_RDWR|os.O_TRUNC, zipFile.Mode()); err != nil {
 			return
 		}
 		defer file.Close()
@@ -117,7 +146,7 @@ func UnZip(zipFileName, destFileName string) (err error) {
 }
 
 func getDir(path string) string {
-	return subString(path, 0, strings.LastIndex(path, "/"))
+	return subString(path, 0, strings.LastIndex(path, string(filepath.Separator)))
 }
 
 func subString(str string, start, end int) string {
@@ -129,7 +158,7 @@ func subString(str string, start, end int) string {
 	}
 
 	if end < start || end > length {
-		panic("结束下载有错误")
+		panic("结束下标有错误")
 	}
 
 	return string(rs[start:end])
