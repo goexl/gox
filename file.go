@@ -2,6 +2,8 @@ package gox
 
 import (
 	`fmt`
+	`io`
+	`os`
 	`path/filepath`
 )
 
@@ -17,6 +19,33 @@ func GetFileNameWithExt(filePath string, ext string) (path string) {
 	} else {
 		path = fmt.Sprintf("%s.%s", GetFileName(filePath), ext)
 	}
+
+	return
+}
+
+// CopyFile 复制文件
+func CopyFile(src, dest string) (bytes int64, err error) {
+	var (
+		srcFile  *os.File
+		destFile *os.File
+	)
+
+	if _, err = os.Stat(src); err != nil {
+		return
+	}
+
+	if srcFile, err = os.Open(src); err != nil {
+		return
+	}
+	defer srcFile.Close()
+
+	if destFile, err = os.Create(dest); err != nil {
+		return
+	}
+	defer destFile.Close()
+
+	// 复制文件
+	bytes, err = io.Copy(destFile, srcFile)
 
 	return
 }
