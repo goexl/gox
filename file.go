@@ -49,3 +49,21 @@ func CopyFile(src, dest string) (bytes int64, err error) {
 
 	return
 }
+
+// IsDir 判断所给路径是否为文件夹
+func IsDir(path string) bool {
+	dir := false
+
+	stat, err := os.Stat(path)
+	if err != nil {
+		dir = false
+	}
+	dir = stat.IsDir()
+
+	return dir
+}
+
+// IsFile 判断所给路径是否为文件
+func IsFile(path string) bool {
+	return !IsDir(path)
+}
