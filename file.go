@@ -11,6 +11,14 @@ import (
 	`syscall`
 )
 
+type FileType int
+
+var (
+	FileTypeAny  FileType = 0
+	FileTypeDir  FileType = 1
+	FileTypeFile FileType = 2
+)
+
 // GetFileName 获得文件名
 func GetFileName(filePath string) string {
 	return filePath[0 : len(filePath)-len(filepath.Ext(filePath))]
@@ -275,8 +283,34 @@ func renameAny(src, dst string) error {
 	}
 }
 
+func GetAllFilesBy(pathName string, ty FileType) (allFiles []string, err error) {
+	fileInfos, err := ioutil.ReadDir(pathName)
+	if nil != err {
+		return
+	}
+	for _, fi := range fileInfos {
+		if fi.IsDir() {
 
+			fullDir := filepath.Join(pathName, fi.Name())
+			if ty == FileTypeDir || ty == FileTypeAny {
+				allFiles = append(allFiles, fullDir)
+			}
 
+			fs := []string{}
+			fs, err = GetAllFilesBy(fullDir, ty)
+			if nil != err {
+				return
+			}
+			allFiles = append(allFiles, fs...)
+		} else {
+			fullName := filepath.Join(pathName, fi.Name())
+			if ty == FileTypeFile || ty == FileTypeAny {
+				allFiles = append(allFiles, fullName)
+			}
+		}
+	}
+	return
+}
 
 
 
