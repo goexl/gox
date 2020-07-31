@@ -312,5 +312,18 @@ func GetAllFilesBy(pathName string, ty FileType) (allFiles []string, err error) 
 	return
 }
 
+// err为空存在,不会空则
+func DirNotExistCratae(path string) (err error) {
+	if _, err = os.Stat(path); nil != err {
+		if !os.IsNotExist(err) {
+			return
+		}
+		if err = os.MkdirAll(path, os.ModePerm); nil != err {
+			return
+		}
+	}
+	return
+}
+
 
 
