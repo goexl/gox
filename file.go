@@ -51,7 +51,7 @@ func MoveAny(src, dst string) (err error) {
 	if nil != err {
 		return
 	}
-	err = Delete(src)
+	_, err = Delete(src)
 	if nil != err {
 		Delete(dst)
 		return
@@ -63,19 +63,28 @@ func Rename(src, dst string) error {
 	return renameAny(src, dst)
 }
 
-func Delete(src string) error {
-	_, err := os.Stat(src)
-	if nil != err {
-		return err
+// 返回删除的文件
+func Delete(src string) (deleteFiles []string, err error) {
+	var isDir bool
+	if isDir, err = IsDir(src); nil != err {
+		return
+	}
+	if isDir {
+		if deleteFiles, err = GetAllFilesBy(src, FileTypeFile); nil != err {
+			return
+		}
+	} else {
+		deleteFiles = append(deleteFiles, src)
 	}
 
-	os.RemoveAll(src)
+	err = os.RemoveAll(src)
 
-	return nil
+	return
 }
 
 func ListDir(src string) (infos []string, err error) {
-	if err = IsDir(src); nil != err {
+	var isDir bool
+	if isDir, err = IsDir(src); !isDir {
 		return
 	}
 
@@ -112,17 +121,16 @@ func CreateFile(file string) error {
 }
 
 // IsDir 判断所给路径是否为文件夹
-func IsDir(path string) error {
-
+func IsDir(path string) (bool, error) {
 	stat, err := os.Stat(path)
 	if nil != err {
-		return err
+		return false, err
 	}
 	if !stat.IsDir() {
-		return errors.New("source is not a dir")
+		return false, errors.New("source is not a dir")
 	}
 
-	return nil
+	return true, nil
 }
 
 func renameExist(name string) string {
@@ -290,7 +298,6 @@ func GetAllFilesBy(pathName string, ty FileType) (allFiles []string, err error) 
 	}
 	for _, fi := range fileInfos {
 		if fi.IsDir() {
-
 			fullDir := filepath.Join(pathName, fi.Name())
 			if ty == FileTypeDir || ty == FileTypeAny {
 				allFiles = append(allFiles, fullDir)
