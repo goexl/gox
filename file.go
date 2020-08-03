@@ -1,7 +1,6 @@
 package gox
 
 import (
-	`errors`
 	`fmt`
 	`io`
 	`io/ioutil`
@@ -127,7 +126,7 @@ func IsDir(path string) (bool, error) {
 		return false, err
 	}
 	if !stat.IsDir() {
-		return false, errors.New("source is not a dir")
+		return false, nil
 	}
 
 	return true, nil
