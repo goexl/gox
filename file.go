@@ -6,6 +6,7 @@ import (
 	`io/ioutil`
 	`os`
 	`path/filepath`
+	`regexp`
 	`strconv`
 	`syscall`
 )
@@ -34,19 +35,12 @@ func GetFileNameWithExt(filePath string, ext string) (path string) {
 	return
 }
 
-// CopyFile 复制文件
-func CopyFile(src, dst string) (bytes int64, err error) {
-	cpFile(src, dst)
-
-	return
-}
-
-func CopyAny(src, dst string) error {
+func CopyAny(src, dst string) (copyFiles []string, err error) {
 	return cpAny(src, dst)
 }
 
 func MoveAny(src, dst string) (err error) {
-	err = cpAny(src, dst)
+	_, err = cpAny(src, dst)
 	if nil != err {
 		return
 	}
@@ -114,7 +108,12 @@ func CreateDir(dirName string) error {
 func CreateFile(file string) error {
 	_, err := os.Stat(file)
 	if os.IsNotExist(err) {
-		_, err = os.Create(file)
+		if fi, err := os.Create(file); nil != err {
+			return err
+		} else {
+			fi.Close()
+		}
+		return nil
 	}
 	return err
 }
@@ -148,106 +147,155 @@ func renameExist(name string) string {
 	return name
 }
 
-func cpFile(src, dst string) error {
-	in, err := os.Open(src)
-	if nil != err {
-		return err
+func cpFile(src, dst string) (copyFile string, err error) {
+	var (
+		in  = new(os.File)
+		out = new(os.File)
+		si  os.FileInfo
+	)
+
+	if in, err = os.Open(src); nil != err {
+		return
 	}
-	var out *os.File
 	defer in.Close()
+
 	dst = renameExist(dst)
-	out, err = os.Create(dst)
-	if nil != err {
-		return err
+	if out, err = os.Create(dst); nil != err {
+		return
 	}
 	defer func() {
-		if e := out.Close(); e != nil {
+		if e := out.Close(); nil != err {
 			err = e
 		}
 	}()
-	_, err = io.Copy(out, in)
-	if nil != err {
-		return err
-	}
-	err = out.Sync()
-	if nil != err {
-		return err
-	}
-	si, err := os.Stat(src)
-	if nil != err {
-		return err
+
+	if _, err = io.Copy(out, in); nil != err {
+		return
 	}
 
-	return os.Chmod(dst, si.Mode())
+	if err = out.Sync(); nil != err {
+		return
+	}
+
+	if si, err = os.Stat(src); nil != err {
+		return
+	}
+
+	if err = os.Chmod(dst, si.Mode()); nil != err {
+		return
+	}
+	copyFile = src
+
+	return
 }
 
-func cpDir(src, dst string) error {
+func cpDir(src, dst string) (copyFiles []string, err error) {
+	var (
+		si      os.FileInfo
+		entries []os.FileInfo
+	)
+
 	src = filepath.Clean(src)
 	dst = filepath.Clean(dst)
-	si, err := os.Stat(src)
-	if nil != err {
-		return err
+
+	if si, err = os.Stat(src); nil != err {
+		return
 	}
 	if !si.IsDir() {
-		return fmt.Errorf("source is not a directory")
+		err = fmt.Errorf("source is not a directory")
+		return
 	}
+
 	dst = renameExist(dst)
-	err = os.MkdirAll(dst, si.Mode())
-	if nil != err {
-		return err
+	if err = os.MkdirAll(dst, si.Mode()); nil != err {
+		return
 	}
-	entries, err := ioutil.ReadDir(src)
-	if nil != err {
-		return err
+
+	if entries, err = ioutil.ReadDir(src); nil != err {
+		return
 	}
+
 	for _, entry := range entries {
 		srcPath := filepath.Join(src, entry.Name())
 		dstPath := filepath.Join(dst, entry.Name())
 		if entry.IsDir() {
-			err = cpDir(srcPath, dstPath)
-			if nil != err {
-				return err
+			var tmpfiles []string
+			if tmpfiles, err = cpDir(srcPath, dstPath); nil != err {
+				return
 			}
+			copyFiles = append(copyFiles, tmpfiles...)
+
 		} else {
-			err = cpFile(srcPath, dstPath)
-			if nil != err {
-				return err
+			var tmpfile string
+			if tmpfile, err = cpFile(srcPath, dstPath); nil != err {
+				return
 			}
+			copyFiles = append(copyFiles, tmpfile)
 		}
 	}
-
-	return err
+	return
 }
 
-func cpAny(src, dst string) error {
-	srcinfo, err := os.Stat(src)
-	if nil != err {
-		return err
+func cpAny(src, dst string) (copyFiles []string, err error) {
+	var (
+		si os.FileInfo
+		di os.FileInfo
+	)
+
+	if si, err = os.Stat(src); nil != err {
+		return
 	}
-	if srcinfo.IsDir() {
-		dstinfo, err := os.Stat(dst)
-		if nil == err {
-			if os.SameFile(srcinfo, dstinfo) {
-				return fmt.Errorf("directory is itself: %s", dst)
+
+	if si.IsDir() {
+		if di, err = os.Stat(dst); nil == err {
+			if os.SameFile(si, di) {
+				err = fmt.Errorf("directory is itself: %s", dst)
+				return
 			}
 			dst += "/" + filepath.Base(src)
 			dst = renameExist(dst)
-			return cpDir(src, dst)
+
+			var tmpfiles []string
+			if tmpfiles, err = cpDir(src, dst); nil != err {
+				return
+			}
+			copyFiles = append(copyFiles, tmpfiles...)
+			return
 		}
-		return cpDir(src, dst)
+
+		var tmpfiles []string
+		if tmpfiles, err = cpDir(src, dst); nil != err {
+			return
+		}
+		copyFiles = append(copyFiles, tmpfiles...)
 	}
-	dstinfo, err := os.Stat(dst)
-	if nil == err {
-		if dstinfo.IsDir() {
-			return cpFile(src, dst+"/"+filepath.Base(src))
+	if di, err = os.Stat(dst); nil == err {
+		if di.IsDir() {
+			var tmpFile string
+			if tmpFile, err = cpFile(src, dst+"/"+filepath.Base(src)); nil != err {
+				return
+			}
+			copyFiles = append(copyFiles, tmpFile)
+			return
 		}
-		if os.SameFile(srcinfo, dstinfo) {
-			return nil
+		if os.SameFile(si, di) {
+			return
 		}
-		return cpFile(src, dst)
+		var tmpFile string
+		if tmpFile, err = cpFile(src, dst+"/"+filepath.Base(src)); nil != err {
+			return
+		}
+		copyFiles = append(copyFiles, tmpFile)
+		return
 	}
 
-	return cpFile(src, dst)
+	var tmpFile string
+	if tmpFile, err = cpFile(src, dst+"/"+filepath.Base(src)); nil != err {
+		return
+	}
+	copyFiles = append(copyFiles, tmpFile)
+
+	return
 }
 
 func renameFile(src, dst string) error {
@@ -329,6 +377,20 @@ func DirNotExistCratae(path string) (err error) {
 		}
 	}
 	return
+}
+
+// 有效文件名（Windows标准）
+func ValidFilename(filename string) bool {
+	fileRegexStr := `^[^\\\./:\*\?\"<>\|]{1}[^\\/:\*\?\"<>\|]{0,254}$`
+	filenamRegex := regexp.MustCompile(fileRegexStr)
+	return filenamRegex.MatchString(filename)
+}
+
+// 有效文件夹名
+func ValidFilepath(filepath string) bool {
+	pathRegexStr := `^[^\\\/\?\*\&quot;\'\&gt;\&lt;\:\|]*$`
+	pathRegex := regexp.MustCompile(pathRegexStr)
+	return pathRegex.MatchString(filepath)
 }
 
 
