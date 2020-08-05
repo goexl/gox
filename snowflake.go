@@ -151,9 +151,14 @@ func (s *Snowflake) Next() Id {
 	return r
 }
 
-// NextId 下一个长整形ID
+// NextId 下一个长整形Id
 func (s *Snowflake) NextId() int64 {
 	return s.Next().Int64()
+}
+
+// NextString 下一个字符串形式的Id
+func (s *Snowflake) NextString() string {
+	return s.Next().String()
 }
 
 // Int64 returns an int64 of the snowflake Id
