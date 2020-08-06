@@ -132,16 +132,39 @@ func IsDir(path string) (bool, error) {
 }
 
 func renameExist(name string) string {
-	if _, err := os.Stat(name); nil == err {
+
+	var (
+		path  string
+		fname string
+		ext   string
+		tmp   string
+	)
+	if si, err := os.Stat(name); nil == err {
 		i := 1
+		path, fname = filepath.Split(name)
+		ext = filepath.Ext(fname)
+		tmp = fname[:(len(fname) - len(ext))]
+
 		for {
-			if _, err := os.Stat(name + "(" + strconv.Itoa(i) + ")"); nil == err {
-				i++
+			if si.IsDir() {
+				if _, err := os.Stat(name + "(" + strconv.Itoa(i) + ")"); nil == err {
+					i++
+				} else {
+					break
+				}
 			} else {
-				break
+				if _, err := os.Stat(filepath.Join(path, tmp+"("+strconv.Itoa(i)+")"+ext)); nil == err {
+					i++
+				} else {
+					break
+				}
 			}
 		}
-		return name + "(" + strconv.Itoa(i) + ")"
+		if si.IsDir() {
+			return name + "(" + strconv.Itoa(i) + ")"
+		} else {
+			return filepath.Join(path, tmp+"("+strconv.Itoa(i)+")"+ext)
+		}
 	}
 
 	return name
