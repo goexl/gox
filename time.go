@@ -25,6 +25,10 @@ type Timestamp time.Time
 
 // MarshalJSON 序列化成JSON时调用
 func (t Timestamp) MarshalJSON() ([]byte, error) {
+	if t.IsZero() {
+		t = Timestamp(time.Now())
+	}
+
 	return []byte(`"` + time.Time(t).Format(DefaultTimeLayout) + `"`), nil
 }
 
