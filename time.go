@@ -8,6 +8,16 @@ import (
 
 const (
 	DefaultTimeLayout = "2006-01-02 15:04:05"
+
+	// 时间常量
+	// 一天
+	Day = 24 * time.Hour
+	// 一周
+	Week = 7 * Day
+	// 一个月
+	Month = 30 * Day
+	// 一年
+	Year = 365 * Day
 )
 
 // Timestamp 时间戳
