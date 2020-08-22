@@ -8,6 +8,7 @@ import (
 	`path/filepath`
 	`regexp`
 	`strconv`
+	`strings`
 	`syscall`
 )
 
@@ -414,6 +415,45 @@ func ValidFilepath(filepath string) bool {
 	pathRegexStr := `^[^\\\/\?\*\&quot;\'\&gt;\&lt;\:\|]*$`
 	pathRegex := regexp.MustCompile(pathRegexStr)
 	return pathRegex.MatchString(filepath)
+}
+
+// dir以/开头
+func GetDirFatherDeep(dir string) int {
+	return strings.Count(dir, "/")
+}
+
+func GetDirSonDeep(dir string) int {
+	isDir, err := IsDir(dir)
+	if !isDir || nil != err {
+		return 0
+	}
+
+	d := 1
+	getDirSonDeep(dir, &d)
+
+	return d
+}
+
+// 遍历的文件夹
+func getDirSonDeep(dir string, deep *int) {
+	fileInfo, err := ioutil.ReadDir(dir)
+	if nil != err {
+		return
+	}
+
+	// 是否加一标记 每次进入才加 不用每次加一
+	isAdd := false
+	// 遍历这个文件夹
+	for _, fi := range fileInfo {
+		// 判断是不是目录
+		if fi.IsDir() {
+			if !isAdd {
+				*deep = *deep + 1
+				isAdd = true
+			}
+			getDirSonDeep(dir+`/`+fi.Name(), deep)
+		}
+	}
 }
 
 
