@@ -7,6 +7,7 @@ import (
 	`os`
 	`path/filepath`
 	`strconv`
+	`strings`
 	`syscall`
 )
 
@@ -25,7 +26,7 @@ func GetFileName(filePath string) string {
 
 // GetFileNameWithExt 获得带扩展名的文件名
 func GetFileNameWithExt(filePath string, ext string) (path string) {
-	if "" == filepath.Ext(filePath) {
+	if "" == strings.TrimSpace(ext) {
 		path = filePath
 	} else {
 		path = fmt.Sprintf("%s.%s", GetFileName(filePath), ext)
