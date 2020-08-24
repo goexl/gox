@@ -17,8 +17,9 @@ func cpFile(src string, dst string) (copyFile string, err error) {
 	if srcFile, err = os.Open(src); nil != err {
 		return
 	}
-
-	defer srcFile.Close()
+	defer func() {
+		err = srcFile.Close()
+	}()
 
 	ext := filepath.Ext(dst)
 	if 0 == len(ext) {
@@ -34,18 +35,15 @@ func cpFile(src string, dst string) (copyFile string, err error) {
 	if dstFile, err = os.Create(dst); nil != err {
 		return
 	}
-
-	defer dstFile.Close()
+	defer func() {
+		err = dstFile.Close()
+	}()
 
 	if _, err = io.Copy(dstFile, srcFile); nil != err {
 		return
 	}
 
-	if err = srcFile.Sync(); nil != err {
-		return
-	}
-
-	if info, err = os.Stat(src); nil != err {
+	if info, err = os.Stat(src); nil == err {
 		if err = os.Chmod(dst, info.Mode()); nil != err {
 			return
 		}
@@ -116,9 +114,7 @@ func cpDir(src string, dst string) (copyFiles []string, err error) {
 }
 
 func cpAny(src, dst string) (copyFiles []string, err error) {
-	var (
-		si os.FileInfo
-	)
+	var si os.FileInfo
 
 	if si, err = os.Stat(src); nil != err {
 		return
