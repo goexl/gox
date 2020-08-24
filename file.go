@@ -155,18 +155,18 @@ func IsDir(path string) (bool, error) {
 }
 
 func renameExist(name string) string {
-
 	var (
-		path  string
-		fname string
-		ext   string
-		tmp   string
+		path     string
+		filename string
+		ext      string
+		tmp      string
 	)
+
 	if si, err := os.Stat(name); nil == err {
 		i := 1
-		path, fname = filepath.Split(name)
-		ext = filepath.Ext(fname)
-		tmp = fname[:(len(fname) - len(ext))]
+		path, filename = filepath.Split(name)
+		ext = filepath.Ext(filename)
+		tmp = filename[:(len(filename) - len(ext))]
 
 		for {
 			if si.IsDir() {
