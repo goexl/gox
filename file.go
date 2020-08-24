@@ -110,12 +110,14 @@ func ListDir(src string) (infos []string, err error) {
 				return err
 			}
 			if path == src {
-				//如果是自己则不显示
+				// 如果是自己则不显示
 				return nil
 			}
 			infos = append(infos, path)
 			return nil
-		})
+		},
+	)
+
 	return
 }
 
@@ -291,7 +293,6 @@ func cpAny(src, dst string) (copyFiles []string, err error) {
 	if si, err = os.Stat(src); nil != err {
 		return
 	}
-
 	if si.IsDir() {
 		if di, err = os.Stat(dst); nil == err {
 			if os.SameFile(si, di) {
@@ -301,19 +302,20 @@ func cpAny(src, dst string) (copyFiles []string, err error) {
 			dst += "/" + filepath.Base(src)
 			dst = renameExist(dst)
 
-			var tmpfiles []string
-			if tmpfiles, err = cpDir(src, dst); nil != err {
+			var tmpFiles []string
+			if tmpFiles, err = cpDir(src, dst); nil != err {
 				return
 			}
-			copyFiles = append(copyFiles, tmpfiles...)
+			copyFiles = append(copyFiles, tmpFiles...)
+
 			return
 		}
 
-		var tmpfiles []string
-		if tmpfiles, err = cpDir(src, dst); nil != err {
+		var tmpFiles []string
+		if tmpFiles, err = cpDir(src, dst); nil != err {
 			return
 		}
-		copyFiles = append(copyFiles, tmpfiles...)
+		copyFiles = append(copyFiles, tmpFiles...)
 	}
 	if di, err = os.Stat(dst); nil == err {
 		if di.IsDir() {
@@ -322,6 +324,7 @@ func cpAny(src, dst string) (copyFiles []string, err error) {
 				return
 			}
 			copyFiles = append(copyFiles, tmpFile)
+
 			return
 		}
 		if os.SameFile(si, di) {
@@ -332,6 +335,7 @@ func cpAny(src, dst string) (copyFiles []string, err error) {
 			return
 		}
 		copyFiles = append(copyFiles, tmpFile)
+
 		return
 	}
 
@@ -477,6 +481,3 @@ func getDirSonDeep(dir string, deep *int) {
 		}
 	}
 }
-
-
-
