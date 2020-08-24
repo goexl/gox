@@ -1,7 +1,7 @@
 package gox
 
 import (
-	`strconv`
+	"strconv"
 )
 
 type (
@@ -50,6 +50,11 @@ type (
 		DeletedAt Timestamp `xorm:"deleted default('2020-02-04 09:55:52')" json:"deletedAt"`
 	}
 )
+
+// IdString Id的字符串形式
+func (b IdStruct) IdString() string {
+	return strconv.FormatInt(b.Id, 10)
+}
 
 // Exists 对象是否存在
 func (b BaseStruct) Exists() bool {
