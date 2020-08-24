@@ -58,29 +58,29 @@ func GetFileNameWithExt(filePath string, ext string) (path string) {
 	return
 }
 
-func CopyAny(src, dst string) (copyFiles []string, err error) {
+func CopyFile(src, dst string) (copyFiles []string, err error) {
 	return cpAny(src, dst)
 }
 
-func MoveAny(src, dst string) (err error) {
+func MoveFile(src, dst string) (err error) {
 	_, err = cpAny(src, dst)
 	if nil != err {
 		return
 	}
-	_, err = Delete(src)
-	if nil != err {
-		Delete(dst)
+	if _, err = DeleteFile(src); nil != err {
+		_, err = DeleteFile(dst)
+
 		return
 	}
 	return
 }
 
-func Rename(src, dst string) error {
+func RenameFile(src, dst string) error {
 	return renameAny(src, dst)
 }
 
-// Delete 删除的文件
-func Delete(src string) (deleteFiles []string, err error) {
+// DeleteFile 删除的文件
+func DeleteFile(src string) (deleteFiles []string, err error) {
 	var isDir bool
 	if isDir, err = IsDir(src); nil != err {
 		return
@@ -154,6 +154,105 @@ func IsDir(path string) (bool, error) {
 	}
 
 	return true, nil
+}
+
+func GetAllFilesBy(pathName string, ty FileType) (allFiles []string, err error) {
+	var fileInfos []os.FileInfo
+
+	if fileInfos, err = ioutil.ReadDir(pathName); nil != err {
+		return
+	}
+
+	for _, fi := range fileInfos {
+		if fi.IsDir() {
+			fullDir := filepath.Join(pathName, fi.Name())
+			if ty == FileTypeDir || ty == FileTypeAny {
+				allFiles = append(allFiles, fullDir)
+			}
+
+			fs := []string{}
+			fs, err = GetAllFilesBy(fullDir, ty)
+			if nil != err {
+				return
+			}
+
+			allFiles = append(allFiles, fs...)
+		} else {
+			fullName := filepath.Join(pathName, fi.Name())
+			if ty == FileTypeFile || ty == FileTypeAny {
+				allFiles = append(allFiles, fullName)
+			}
+		}
+	}
+	return
+}
+
+// DirNotExistCreate err为空存在,不会空则
+func DirNotExistCreate(path string) (err error) {
+	if _, err = os.Stat(path); nil != err {
+		if !os.IsNotExist(err) {
+			return
+		}
+		if err = os.MkdirAll(path, os.ModePerm); nil != err {
+			return
+		}
+	}
+	return
+}
+
+// 有效文件名（Windows标准）
+func ValidFilename(filename string) bool {
+	fileRegexStr := `^[^\\\./:\*\?\"<>\|]{1}[^\\/:\*\?\"<>\|]{0,254}$`
+	filenameRegex := regexp.MustCompile(fileRegexStr)
+
+	return filenameRegex.MatchString(filename)
+}
+
+// 有效文件夹名
+func ValidFilepath(filepath string) bool {
+	pathRegexStr := `^[^\\\/\?\*\&quot;\'\&gt;\&lt;\:\|]*$`
+	pathRegex := regexp.MustCompile(pathRegexStr)
+
+	return pathRegex.MatchString(filepath)
+}
+
+// dir以/开头
+func GetDirFatherDeep(dir string) int {
+	return strings.Count(dir, "/")
+}
+
+func GetDirSonDeep(dir string) int {
+	isDir, err := IsDir(dir)
+	if !isDir || nil != err {
+		return 0
+	}
+
+	d := 1
+	getDirSonDeep(dir, &d)
+
+	return d
+}
+
+// 遍历的文件夹
+func getDirSonDeep(dir string, deep *int) {
+	fileInfo, err := ioutil.ReadDir(dir)
+	if nil != err {
+		return
+	}
+
+	// 是否加一标记 每次进入才加 不用每次加一
+	isAdd := false
+	// 遍历这个文件夹
+	for _, fi := range fileInfo {
+		// 判断是不是目录
+		if fi.IsDir() {
+			if !isAdd {
+				*deep = *deep + 1
+				isAdd = true
+			}
+			getDirSonDeep(dir+`/`+fi.Name(), deep)
+		}
+	}
 }
 
 func renameExist(name string) string {
@@ -267,18 +366,18 @@ func cpDir(src, dst string) (copyFiles []string, err error) {
 		srcPath := filepath.Join(src, entry.Name())
 		dstPath := filepath.Join(dst, entry.Name())
 		if entry.IsDir() {
-			var tmpfiles []string
-			if tmpfiles, err = cpDir(srcPath, dstPath); nil != err {
+			var tmpFiles []string
+			if tmpFiles, err = cpDir(srcPath, dstPath); nil != err {
 				return
 			}
-			copyFiles = append(copyFiles, tmpfiles...)
+			copyFiles = append(copyFiles, tmpFiles...)
 
 		} else {
-			var tmpfile string
-			if tmpfile, err = cpFile(srcPath, dstPath); nil != err {
+			var tmpFile string
+			if tmpFile, err = cpFile(srcPath, dstPath); nil != err {
 				return
 			}
-			copyFiles = append(copyFiles, tmpfile)
+			copyFiles = append(copyFiles, tmpFile)
 		}
 	}
 	return
@@ -296,7 +395,8 @@ func cpAny(src, dst string) (copyFiles []string, err error) {
 	if si.IsDir() {
 		if di, err = os.Stat(dst); nil == err {
 			if os.SameFile(si, di) {
-				err = fmt.Errorf("directory is itself: %s", dst)
+				err = ErrOnCopySelf
+
 				return
 			}
 			dst += "/" + filepath.Base(src)
@@ -317,6 +417,7 @@ func cpAny(src, dst string) (copyFiles []string, err error) {
 		}
 		copyFiles = append(copyFiles, tmpFiles...)
 	}
+
 	if di, err = os.Stat(dst); nil == err {
 		if di.IsDir() {
 			var tmpFile string
@@ -348,18 +449,19 @@ func cpAny(src, dst string) (copyFiles []string, err error) {
 	return
 }
 
-func renameFile(src, dst string) error {
-	si, err := os.Stat(src)
-	if nil != err {
-		return err
+func renameFile(src, dst string) (err error) {
+	var srcFileInfo os.FileInfo
+
+	if srcFileInfo, err = os.Stat(src); nil != err {
+		return
 	}
-	if si.IsDir() {
-		return fmt.Errorf("source is not a file")
+	if srcFileInfo.IsDir() {
+		return ErrSrcIsNotFile
 	}
 	dst = renameExist(dst)
-	os.Rename(src, dst)
+	err = os.Rename(src, dst)
 
-	return nil
+	return
 }
 
 func renameDir(src, dst string) error {
@@ -385,99 +487,5 @@ func renameAny(src, dst string) error {
 		return renameDir(src, dst)
 	} else {
 		return renameFile(src, dst)
-	}
-}
-
-func GetAllFilesBy(pathName string, ty FileType) (allFiles []string, err error) {
-	fileInfos, err := ioutil.ReadDir(pathName)
-	if nil != err {
-		return
-	}
-	for _, fi := range fileInfos {
-		if fi.IsDir() {
-			fullDir := filepath.Join(pathName, fi.Name())
-			if ty == FileTypeDir || ty == FileTypeAny {
-				allFiles = append(allFiles, fullDir)
-			}
-
-			fs := []string{}
-			fs, err = GetAllFilesBy(fullDir, ty)
-			if nil != err {
-				return
-			}
-			allFiles = append(allFiles, fs...)
-		} else {
-			fullName := filepath.Join(pathName, fi.Name())
-			if ty == FileTypeFile || ty == FileTypeAny {
-				allFiles = append(allFiles, fullName)
-			}
-		}
-	}
-	return
-}
-
-// err为空存在,不会空则
-func DirNotExistCratae(path string) (err error) {
-	if _, err = os.Stat(path); nil != err {
-		if !os.IsNotExist(err) {
-			return
-		}
-		if err = os.MkdirAll(path, os.ModePerm); nil != err {
-			return
-		}
-	}
-	return
-}
-
-// 有效文件名（Windows标准）
-func ValidFilename(filename string) bool {
-	fileRegexStr := `^[^\\\./:\*\?\"<>\|]{1}[^\\/:\*\?\"<>\|]{0,254}$`
-	filenamRegex := regexp.MustCompile(fileRegexStr)
-	return filenamRegex.MatchString(filename)
-}
-
-// 有效文件夹名
-func ValidFilepath(filepath string) bool {
-	pathRegexStr := `^[^\\\/\?\*\&quot;\'\&gt;\&lt;\:\|]*$`
-	pathRegex := regexp.MustCompile(pathRegexStr)
-	return pathRegex.MatchString(filepath)
-}
-
-// dir以/开头
-func GetDirFatherDeep(dir string) int {
-	return strings.Count(dir, "/")
-}
-
-func GetDirSonDeep(dir string) int {
-	isDir, err := IsDir(dir)
-	if !isDir || nil != err {
-		return 0
-	}
-
-	d := 1
-	getDirSonDeep(dir, &d)
-
-	return d
-}
-
-// 遍历的文件夹
-func getDirSonDeep(dir string, deep *int) {
-	fileInfo, err := ioutil.ReadDir(dir)
-	if nil != err {
-		return
-	}
-
-	// 是否加一标记 每次进入才加 不用每次加一
-	isAdd := false
-	// 遍历这个文件夹
-	for _, fi := range fileInfo {
-		// 判断是不是目录
-		if fi.IsDir() {
-			if !isAdd {
-				*deep = *deep + 1
-				isAdd = true
-			}
-			getDirSonDeep(dir+`/`+fi.Name(), deep)
-		}
 	}
 }
