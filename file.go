@@ -4,6 +4,7 @@ import (
 	`fmt`
 	`io`
 	`io/ioutil`
+	`net/http`
 	`os`
 	`path/filepath`
 	`regexp`
@@ -23,6 +24,27 @@ var (
 // GetFileName 获得文件名
 func GetFileName(filePath string) string {
 	return filePath[0 : len(filePath)-len(filepath.Ext(filePath))]
+}
+
+// GetContentType 获得文件的ContentType
+func GetContentType(filepath string) (contentType string, err error) {
+	var file *os.File
+	if file, err = os.Open(filepath); nil != err {
+		return
+	}
+
+	return GetFileContentType(file)
+}
+
+// GetFileContentType 获得文件的ContentType
+func GetFileContentType(file *os.File) (contentType string, err error) {
+	buffer := make([]byte, 512)
+	if _, err = file.Read(buffer); nil != err {
+		return
+	}
+	contentType = http.DetectContentType(buffer)
+
+	return
 }
 
 // GetFileNameWithExt 获得带扩展名的文件名
@@ -57,7 +79,7 @@ func Rename(src, dst string) error {
 	return renameAny(src, dst)
 }
 
-// 返回删除的文件
+// Delete 删除的文件
 func Delete(src string) (deleteFiles []string, err error) {
 	var isDir bool
 	if isDir, err = IsDir(src); nil != err {
