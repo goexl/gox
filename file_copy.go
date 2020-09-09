@@ -121,7 +121,8 @@ func cpAny(src, dst string) (copyFiles []string, err error) {
 	}
 
 	if si.IsDir() {
-		copyFiles, err = cpDir(src, dst)
+		tmpDst := renameExist(dst + "/" + si.Name())
+		copyFiles, err = cpDir(src, tmpDst)
 	} else {
 		var tmpFile string
 		if tmpFile, err = cpFile(src, dst); nil != err {

@@ -67,10 +67,9 @@ func MoveFile(src, dst string) (err error) {
 		return
 	}
 	if _, err = DeleteFile(src); nil != err {
-		_, err = DeleteFile(dst)
-
 		return
 	}
+
 	return
 }
 
@@ -145,12 +144,14 @@ func CreateFile(file string) error {
 // IsDir 判断所给路径是否为文件夹
 func IsDir(path string) (bool, error) {
 	stat, err := os.Stat(path)
+
 	if nil != err {
 		return false, err
 	}
 	if !stat.IsDir() {
 		return false, nil
 	}
+	stat = nil
 
 	return true, nil
 }
