@@ -66,7 +66,7 @@ func MoveFile(src, dst string) (err error) {
 	if nil != err {
 		return
 	}
-	if _, err = DeleteFile(src); nil != err {
+	if err = DeleteFile(src); nil != err {
 		return
 	}
 
@@ -78,7 +78,13 @@ func RenameFile(src, dst string) error {
 }
 
 // DeleteFile 删除的文件
-func DeleteFile(src string) (deleteFiles []string, err error) {
+func DeleteFile(src string) (err error) {
+	err = os.RemoveAll(src)
+
+	return
+}
+
+func GetNeedDeleteFiles(src string) (deleteFiles []string, err error) {
 	var isDir bool
 	if isDir, err = IsDir(src); nil != err {
 		return
@@ -90,8 +96,6 @@ func DeleteFile(src string) (deleteFiles []string, err error) {
 	} else {
 		deleteFiles = append(deleteFiles, src)
 	}
-
-	err = os.RemoveAll(src)
 
 	return
 }

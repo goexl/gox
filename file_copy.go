@@ -71,6 +71,9 @@ func cpDir(src string, dst string) (copyFiles []string, err error) {
 	if srcDir, err = os.Open(src); nil != err {
 		return
 	}
+	defer func() {
+		srcDir.Close()
+	}()
 
 	if obs, err = srcDir.Readdir(-1); nil != err {
 		return
