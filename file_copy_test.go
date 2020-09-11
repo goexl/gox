@@ -12,7 +12,7 @@ func TestCopyFile(t *testing.T) {
 		t.Errorf(" CopyFile err: %v", err)
 	}
 
-	//if _,err:= 	CopyFile("./","../test1");nil != err{
-	//	t.Errorf(" CopyFile err: %v", err)
-	//}
+	// if _,err:= 	CopyFile("./","../test1");nil != err{
+	// 	t.Errorf(" CopyFile err: %v", err)
+	// }
 }
