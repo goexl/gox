@@ -20,6 +20,19 @@ var (
 	FileTypeFile FileType = 2
 )
 
+// IsFileExist 判断文件是否存在
+func IsFileExist(filename string) bool {
+	exist := false
+
+	if _, err := os.Stat(filename); nil != err && os.IsNotExist(err) {
+		exist = false
+	} else {
+		exist = true
+	}
+
+	return exist
+}
+
 // GetFileName 获得文件名
 func GetFileName(filePath string) string {
 	return filePath[0 : len(filePath)-len(filepath.Ext(filePath))]
@@ -174,7 +187,7 @@ func GetAllFilesBy(pathName string, ty FileType) (allFiles []string, err error) 
 				allFiles = append(allFiles, fullDir)
 			}
 
-			fs := []string{}
+			var fs []string
 			fs, err = GetAllFilesBy(fullDir, ty)
 			if nil != err {
 				return
@@ -201,10 +214,11 @@ func DirNotExistCreate(path string) (err error) {
 			return
 		}
 	}
+
 	return
 }
 
-// 有效文件名（Windows标准）
+// ValidFilename 有效文件名（Windows标准）
 func ValidFilename(filename string) bool {
 	fileRegexStr := `^[^\\\./:\*\?\"<>\|]{1}[^\\/:\*\?\"<>\|]{0,254}$`
 	filenameRegex := regexp.MustCompile(fileRegexStr)
@@ -212,7 +226,7 @@ func ValidFilename(filename string) bool {
 	return filenameRegex.MatchString(filename)
 }
 
-// 有效文件夹名
+// ValidFilepath 有效文件夹名
 func ValidFilepath(filepath string) bool {
 	pathRegexStr := `^[^\\\/\?\*\&quot;\'\&gt;\&lt;\:\|]*$`
 	pathRegex := regexp.MustCompile(pathRegexStr)
@@ -220,7 +234,7 @@ func ValidFilepath(filepath string) bool {
 	return pathRegex.MatchString(filepath)
 }
 
-// dir以/开头
+// GetDirFatherDeep dir以/开头
 func GetDirFatherDeep(dir string) int {
 	return strings.Count(dir, "/")
 }
