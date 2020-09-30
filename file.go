@@ -38,6 +38,11 @@ func GetFileName(filePath string) string {
 	return filePath[0 : len(filePath)-len(filepath.Ext(filePath))]
 }
 
+// GetFileDir 获得文件的目录形式
+func GetFileDir(filePath string) string {
+	return filepath.Join(filepath.Dir(filePath), GetFileName(filepath.Base(filePath)))
+}
+
 // GetContentType 获得文件的ContentType
 func GetContentType(filepath string) (contentType string, err error) {
 	var file *os.File
