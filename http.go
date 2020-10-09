@@ -1,7 +1,11 @@
 package gox
 
 const (
+	// Http常用头
+	// 请求数据类型
 	HeaderContentType = "Content-Type"
+	// 授权
+	HeaderAuthorization = "Authorization"
 
 	// Http方法集合
 	// GET方法
