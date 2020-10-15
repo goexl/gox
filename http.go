@@ -7,6 +7,8 @@ import (
 
 const (
 	// Http常用头
+	// HeaderAcceptLanguage 可接受的语言
+	HeaderAcceptLanguage = "Accept-Language"
 	// HeaderContentType 请求数据类型
 	HeaderContentType = "Content-Type"
 	// HeaderAuthorization 授权
