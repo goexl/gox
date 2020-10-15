@@ -23,6 +23,16 @@ const (
 // Timestamp 时间戳
 type Timestamp time.Time
 
+// ParseTimestamp 从Time对象生成Timestamp
+func ParseTimestamp(time time.Time) Timestamp {
+	return Timestamp(time)
+}
+
+// ZeroTimestamp 0值
+func ZeroTimestamp() Timestamp {
+	return Timestamp(time.Time{})
+}
+
 // MarshalJSON 序列化成JSON时调用
 func (t Timestamp) MarshalJSON() ([]byte, error) {
 	if t.IsZero() {
@@ -56,11 +66,6 @@ func (t Timestamp) IsZero() bool {
 // Time 取得真实的Time对象
 func (t Timestamp) Time() time.Time {
 	return time.Time(t)
-}
-
-// ParseTimestamp 从Time对象生成Timestamp
-func ParseTimestamp(time time.Time) Timestamp {
-	return Timestamp(time)
 }
 
 // Duration 弥补标准库不能使用ParseDuration
