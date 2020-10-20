@@ -7,16 +7,17 @@ import (
 )
 
 const (
+	// DefaultTimeLayout 默认的时间布局
 	DefaultTimeLayout = "2006-01-02 15:04:05"
 
 	// 时间常量
-	// 一天
+	// Day 一天
 	Day = 24 * time.Hour
-	// 一周
+	// Week 一周
 	Week = 7 * Day
-	// 一个月
+	// Month 一个月
 	Month = 30 * Day
-	// 一年
+	// Year 一年
 	Year = 365 * Day
 )
 
@@ -31,6 +32,11 @@ func ParseTimestamp(time time.Time) Timestamp {
 // ZeroTimestamp 0值
 func ZeroTimestamp() Timestamp {
 	return Timestamp(time.Time{})
+}
+
+// Now 当前时间
+func Now() Timestamp {
+	return Timestamp(time.Now())
 }
 
 // MarshalJSON 序列化成JSON时调用
