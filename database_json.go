@@ -1,28 +1,37 @@
 package gox
 
 import (
+	`database/sql`
 	`errors`
 	`fmt`
 	`strings`
 )
 
-const (
-	// JSONInitialStatusUnInitial 未初始化
-	JSONInitialStatusUnInitial JSONInitialStatus = 0
-	// JSONInitialStatusJSONInitialized 已初始化
-	JSONInitialStatusJSONInitialized JSONInitialStatus = 1
-)
-
 type (
-	// JSONInitialStatus JSON初始化状态
-	JSONInitialStatus uint8
+	// JSONInitializer JSON初始化者
+	JSONInitializer interface {
+		// IsInitialized 是否已经初始化完成
+		IsInitialized() bool
+		// InitializeField 初始化字段
+		InitializeField() string
+		// InitSQL 初始化SQL
+		InitSQL(table string, field string) (string, error)
+	}
 
-	// JSONInitial JSON是否初始化
-	JSONInitial struct {
-		// Status 是否初始化
-		Status JSONInitialStatus `json:"status,omitempty"`
+	// JSONInitialized JSON是否初始化
+	JSONInitialized struct {
+		// Initialized 是否初始化
+		Initialized bool `json:"initialized,omitempty"`
 	}
 )
+
+func (ji JSONInitialized) IsInitialized() bool {
+	return ji.Initialized
+}
+
+func (ji JSONInitialized) InitializeField() string {
+	return "initialized"
+}
 
 // MySQLJsonUpdateWithConfig 生成MySQL JSON增量更新SQL语句
 func MySQLJsonUpdateWithConfig(
@@ -82,8 +91,37 @@ func MySQLJsonUpdate(
 	return MySQLJsonUpdateWithConfig(table, filed, conditionFiled, conditionValue, data, "", DotStyle)
 }
 
+// JSONInit JSON字段初始化
+func JSONInit(db *sql.DB, initializer JSONInitializer, table string, field string) (err error) {
+	if initializer.IsInitialized() {
+		return
+	}
+
+	var (
+		execSQL string
+		result  sql.Result
+	)
+
+	if execSQL, err = initializer.InitSQL(table, field); nil != err {
+		return
+	}
+
+	if result, err = db.Exec(execSQL); nil != err {
+		return
+	}
+	if _, err = result.RowsAffected(); nil != err {
+		return
+	}
+
+	return
+}
+
 // MySQLJsonInit JSON初始化
-func MySQLJsonInit(table string, filed string, paths ...string) (sql string, err error) {
+func MySQLJsonInit(
+	table string, filed string,
+	initField string, initFieldValue interface{},
+	paths ...string,
+) (sql string, err error) {
 	sqlBuilder := strings.Builder{}
 	if _, err = sqlBuilder.WriteString(fmt.Sprintf("UPDATE %s SET %s = JSON_SET(%s,", table, filed, filed)); nil != err {
 		return
@@ -91,9 +129,10 @@ func MySQLJsonInit(table string, filed string, paths ...string) (sql string, err
 
 	for _, path := range paths {
 		if _, err = sqlBuilder.WriteString(fmt.Sprintf(
-			"'$.%s', JSON_OBJECT('status', %d)",
+			"'$.%s', JSON_OBJECT('%s', %v)",
 			path,
-			JSONInitialStatusJSONInitialized,
+			initField,
+			initFieldValue,
 		)); nil != err {
 			return
 		}
