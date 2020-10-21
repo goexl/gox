@@ -14,9 +14,12 @@ import (
 
 type FileType int
 
-var (
-	FileTypeAny  FileType = 0
-	FileTypeDir  FileType = 1
+const (
+	// FileTypeAny 任何文件
+	FileTypeAny FileType = 0
+	// FileTypeDir 目录
+	FileTypeDir FileType = 1
+	// FileTypeFile 文件
 	FileTypeFile FileType = 2
 )
 
@@ -33,14 +36,14 @@ func IsFileExist(filename string) bool {
 	return exist
 }
 
-// GetFileName 获得文件名
-func GetFileName(filePath string) string {
+// GetFilename 获得文件名
+func GetFilename(filePath string) string {
 	return filePath[0 : len(filePath)-len(filepath.Ext(filePath))]
 }
 
 // GetFileDir 获得文件的目录形式
 func GetFileDir(filePath string) string {
-	return filepath.Join(filepath.Dir(filePath), GetFileName(filepath.Base(filePath)))
+	return filepath.Join(filepath.Dir(filePath), GetFilename(filepath.Base(filePath)))
 }
 
 // GetContentType 获得文件的ContentType
@@ -64,12 +67,12 @@ func GetFileContentType(file *os.File) (contentType string, err error) {
 	return
 }
 
-// GetFileNameWithExt 获得带扩展名的文件名
-func GetFileNameWithExt(filePath string, ext string) (path string) {
+// GetFilenameWithExt 获得带扩展名的文件名
+func GetFilenameWithExt(filePath string, ext string) (path string) {
 	if "" == strings.TrimSpace(ext) {
 		path = filePath
 	} else {
-		path = fmt.Sprintf("%s.%s", GetFileName(filePath), ext)
+		path = fmt.Sprintf("%s.%s", GetFilename(filePath), ext)
 	}
 
 	return
