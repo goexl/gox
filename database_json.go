@@ -10,12 +10,16 @@ import (
 type (
 	// JSONInitializer JSON初始化者
 	JSONInitializer interface {
-		// IsInitialized 是否已经初始化完成
-		IsInitialized() bool
-		// InitializeField 初始化字段
-		InitializeField() string
 		// InitSQL 初始化SQL
 		InitSQL(table string, field string) (string, error)
+		// IsInitialized 是否已经初始化完成
+		IsInitialized() bool
+	}
+
+	// JSONFielder JSON字段
+	JSONFielder interface {
+		// InitializeField 初始化字段
+		InitializeField() string
 	}
 
 	// JSONInitialized JSON是否初始化
@@ -53,7 +57,7 @@ func MySQLJsonUpdateWithConfig(
 		return
 	}
 
-	if _, err = sqlBuilder.WriteString(fmt.Sprintf(`UPDATE %v SET %v = JSON_SET(%v`, table, filed, filed)); nil != err {
+	if _, err = sqlBuilder.WriteString(fmt.Sprintf(`UPDATE %v SET %v = JSON_SET(COALESCE(%v, '{}')`, table, filed, filed)); nil != err {
 		return
 	}
 	if keyMap, err = Flatten(data, prefix, style); nil != err {
