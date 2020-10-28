@@ -36,7 +36,6 @@ func StructToMap(obj interface{}) (model map[string]interface{}, err error) {
 func MapToStruct(model map[string]interface{}, obj interface{}) (err error) {
 	var decoder *mapstructure.Decoder
 
-	model = make(map[string]interface{})
 	if decoder, err = mapstructure.NewDecoder(&mapstructure.DecoderConfig{
 		ZeroFields: false,
 		Result:     obj,
