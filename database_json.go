@@ -123,6 +123,7 @@ func JSONInit(db *sql.DB, initializer JSONInitializer, table string, field strin
 // MySQLJsonInit JSON初始化
 func MySQLJsonInit(
 	table string, filed string,
+	conditionFiled string, conditionValue interface{},
 	initField string, initFieldValue interface{},
 	paths ...string,
 ) (sql string, err error) {
@@ -141,7 +142,7 @@ func MySQLJsonInit(
 			return
 		}
 	}
-	if _, err = sqlBuilder.WriteString(")"); nil != err {
+	if _, err = sqlBuilder.WriteString(fmt.Sprintf(`) WHERE %v = '%v'`, conditionFiled, conditionValue)); nil != err {
 		return
 	}
 
