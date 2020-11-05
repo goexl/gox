@@ -7,7 +7,7 @@ import (
 	"unicode"
 )
 
-// 内嵌bytes.StringBuilder，支持连写
+// StringBuilder 内嵌bytes.StringBuilder，支持连写
 type StringBuilder struct {
 	*bytes.Buffer
 }
@@ -29,16 +29,16 @@ func (b *StringBuilder) Append(i interface{}) *StringBuilder {
 	case string:
 		b.append(val)
 	case []byte:
-		b.Write(val)
+		_, _ = b.Write(val)
 	case rune:
-		b.WriteRune(val)
+		_, _ = b.WriteRune(val)
 	}
 
 	return b
 }
 
 func (b *StringBuilder) append(s string) *StringBuilder {
-	b.WriteString(s)
+	_, _ = b.WriteString(s)
 
 	return b
 }
@@ -68,7 +68,7 @@ func UnderscoreName(name string, upperInitial bool) string {
 	return buffer.String()
 }
 
-// 下划线写法转为驼峰写法
+// CamelName 下划线写法转为驼峰写法
 func CamelName(name string) string {
 	name = strings.Replace(name, "_", " ", -1)
 	name = strings.Title(name)
@@ -76,6 +76,7 @@ func CamelName(name string) string {
 	return strings.Replace(name, " ", "", -1)
 }
 
+// SearchString 字符串查询
 func SearchString(slice []string, s string) int {
 	index := -1
 
@@ -88,6 +89,7 @@ func SearchString(slice []string, s string) int {
 	return index
 }
 
+// Contract 字符串连接
 func Contract(separator string, strings ...string) (result string) {
 	buffer := NewStringBuilder()
 
