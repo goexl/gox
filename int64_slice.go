@@ -22,7 +22,12 @@ func (s *Int64Slice) UnmarshalJSON(bytes []byte) error {
 }
 
 func (s *Int64Slice) UnmarshalParam(src string) error {
+	if "" == src {
+		return nil
+	}
+	
 	values := strings.Split(src, ",")
+	
 	return s.toInt64Slice(values)
 }
 
