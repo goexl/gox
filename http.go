@@ -44,7 +44,7 @@ type (
 	// HttpMethod Http方法
 	HttpMethod string
 
-	// ContentDispositionType
+	// ContentDispositionType 下载类型
 	ContentDispositionType string
 )
 
