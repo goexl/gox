@@ -10,7 +10,7 @@ type (
 	// Connection 连接池配置
 	Connection struct {
 		// MaxOpen 最大打开连接数
-		MaxOpen int `default:"150" ymal:"maxOpen" json:"maxOpen"`
+		MaxOpen int `default:"150" yaml:"maxOpen" json:"maxOpen"`
 		// MaxIdle 最大休眠连接数
 		MaxIdle int `default:"30" yaml:"maxIdle" json:"maxIdle"`
 		// MaxLifetime 每个连接最大存活时间
