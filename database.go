@@ -3,24 +3,40 @@ package gox
 import (
 	"fmt"
 	"strings"
+	`time`
 )
 
-// Database 数据库配置
-type Database struct {
-	Type string `default:"sqlite3"`
+type (
+	// Connection 连接池配置
+	Connection struct {
+		// MaxOpen 最大打开连接数
+		MaxOpen int `default:"150" ymal:"maxOpen" json:"maxOpen"`
+		// MaxIdle 最大休眠连接数
+		MaxIdle int `default:"30" yaml:"maxIdle" json:"maxIdle"`
+		// MaxLifetime 每个连接最大存活时间
+		MaxLifetime time.Duration `default:"5s" yaml:"maxLifetime" json:"maxLifetime"`
+	}
 
-	Address  string `default:"127.0.0.1:3306"`
-	Username string
-	Password string
-	Protocol string `default:"tcp"`
+	// Database 数据库配置
+	Database struct {
+		// Type 数据库类型，支持
+		Type string `default:"sqlite3"`
 
-	Suffix             string
-	Prefix             string
-	Schema             string `default:"schema"`
-	MigrationTableName string `default:"migration"`
-	Parameters         string
-	Path               string `default:"data.db"`
-}
+		Address  string `default:"127.0.0.1:3306"`
+		Username string
+		Password string
+		Protocol string `default:"tcp"`
+		// Connection 连接池配置
+		Connection Connection
+
+		Suffix             string
+		Prefix             string
+		Schema             string `default:"schema"`
+		MigrationTableName string `default:"migration"`
+		Parameters         string
+		Path               string `default:"data.db"`
+	}
+)
 
 // Dsn 取得数据库的DSN
 func (db *Database) Dsn() string {
