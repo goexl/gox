@@ -40,12 +40,32 @@ const (
 	ContentDispositionTypeInline ContentDispositionType = "inline"
 )
 
+const (
+	// ContentDispositionTypeHeader 请求头
+	HttpParameterTypeHeader HttpParameterType = "header"
+	// ContentDispositionTypePathParameter 路径参数
+	HttpParameterTypePathParameter HttpParameterType = "path"
+)
+
 type (
 	// HttpMethod Http方法
 	HttpMethod string
 
-	// ContentDispositionType
+	// ContentDispositionType 下载类型
 	ContentDispositionType string
+
+	// HttpParameterType Http额外参数类型
+	HttpParameterType string
+
+	// HttpParameter Http额外参数接口
+	HttpParameter interface {
+		// Type 类型
+		Type() HttpParameterType
+		// Key 键
+		Key() string
+		// Value 值
+		Value() string
+	}
 )
 
 // ContentDisposition 解决附件下载乱码
