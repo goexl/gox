@@ -29,7 +29,7 @@ func (p *Paging) OrderBy(sorter Sorter) string {
 		sortOrder = "DESC"
 	}
 
-	return fmt.Sprintf("%s %s", sorter.SortFieldName(), sortOrder)
+	return fmt.Sprintf("`%s` %s", sorter.SortFieldName(), sortOrder)
 }
 
 // MySQL 获得MySQL需要的分页参数
