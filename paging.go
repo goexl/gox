@@ -47,7 +47,7 @@ func (p *Paging) Limit() int {
 	return p.PerPage
 }
 
-type pageData struct {
+type PageData struct {
 	CurrentPage int         `json:"currentPage"`
 	HasNext     bool        `json:"hasNext"`
 	HasPrev     bool        `json:"hasPrev"`
@@ -57,7 +57,7 @@ type pageData struct {
 }
 
 // NewPage 生成新的分页数据对象
-func NewPage(items interface{}, totalNum int64, perPage int, page int) *pageData {
+func NewPage(items interface{}, totalNum int64, perPage int, page int) *PageData {
 	totalPage := totalNum / int64(perPage)
 	if (totalNum % int64(perPage)) > 0 {
 		totalPage += 1
@@ -73,7 +73,7 @@ func NewPage(items interface{}, totalNum int64, perPage int, page int) *pageData
 		hasNext = true
 	}
 
-	return &pageData{
+	return &PageData{
 		CurrentPage: page,
 		HasNext:     hasNext,
 		HasPrev:     hasPrev,
