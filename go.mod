@@ -6,5 +6,5 @@ require (
 	github.com/mitchellh/mapstructure v1.3.3
 	github.com/olivere/elastic/v7 v7.0.21
 	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
-	golang.org/x/text v0.3.2
+	golang.org/x/text v0.3.0
 )
