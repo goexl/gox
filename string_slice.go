@@ -25,7 +25,7 @@ func (ss StringSlice) ESSorters() []elastic.Sorter {
 
 		switch len(tmp) {
 		case 1:
-			if "" == tmp[0] {
+			if "" == strings.TrimSpace(tmp[0]) {
 				continue
 			}
 		case 2:
