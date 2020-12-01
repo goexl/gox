@@ -48,7 +48,10 @@ func (p *Paging) Limit() int {
 	return p.PerPage
 }
 
-var _ = NewPage(nil, 0, 0, 0)
+var (
+	_ = NewPage(nil, 1, 1, 1)
+	_ = NewPageExtra("", nil)
+)
 
 type (
 	pageData struct {
