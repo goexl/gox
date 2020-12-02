@@ -39,6 +39,22 @@ func Now() Timestamp {
 	return Timestamp(time.Now())
 }
 
+// GobEncode Gob序列化编码
+func (t Timestamp) GobEncode() ([]byte, error) {
+	return time.Time(t).MarshalBinary()
+}
+
+// GobDecode Gob序列化解码
+func (t *Timestamp) GobDecode(data []byte) (err error) {
+	rt := time.Time(*t)
+	if err = rt.UnmarshalBinary(data); nil != err {
+		return
+	}
+	*t = Timestamp(rt)
+
+	return
+}
+
 // MarshalJSON 序列化成JSON时调用
 func (t Timestamp) MarshalJSON() ([]byte, error) {
 	if t.IsZero() {
