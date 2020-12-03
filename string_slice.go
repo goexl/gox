@@ -1,7 +1,7 @@
 package gox
 
 import (
-	"strings"
+	`strings`
 )
 
 type StringSlice []string
