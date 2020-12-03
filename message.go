@@ -30,14 +30,17 @@ func NewCodeMessage(code Code, title, text string) *CodeMessage {
 	}
 }
 
+// ToCode 返回消息代码
 func (cm CodeMessage) ToCode() Code {
 	return cm.Code
 }
 
+// String 以字符串的形式打印
 func (cm CodeMessage) String() string {
 	return fmt.Sprintf("code=%d, title=%s, text=%s", cm.Code, *cm.Title, *cm.Text)
 }
 
+// ParseTitle 格式化输出Title,并返回新的消息对象
 func (cm CodeMessage) ParseTitle(params ...interface{}) CodeMessage {
 	title := fmt.Sprintf(*cm.Title, params...)
 	cm.Title = &title
@@ -45,6 +48,7 @@ func (cm CodeMessage) ParseTitle(params ...interface{}) CodeMessage {
 	return cm
 }
 
+// ParseText 格式化输出Text,并返回新的消息对象
 func (cm CodeMessage) ParseText(params ...interface{}) CodeMessage {
 	text := fmt.Sprintf(*cm.Text, params...)
 	cm.Text = &text
