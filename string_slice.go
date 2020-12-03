@@ -7,7 +7,7 @@ import (
 type StringSlice []string
 
 func (ss *StringSlice) UnmarshalParam(src string) error {
-	*ss = StringSlice(strings.Split(src, ","))
+	*ss = strings.Split(src, ",")
 
 	return nil
 }
