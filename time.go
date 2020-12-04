@@ -57,11 +57,12 @@ func (t *Timestamp) GobDecode(data []byte) (err error) {
 
 // MarshalJSON 序列化成JSON时调用
 func (t Timestamp) MarshalJSON() ([]byte, error) {
+	tt := t
 	if t.IsZero() {
-		t = Timestamp(time.Now())
+		tt = Timestamp(time.Now())
 	}
 
-	return []byte(`"` + time.Time(t).Format(DefaultTimeLayout) + `"`), nil
+	return []byte(`"` + time.Time(tt).Format(DefaultTimeLayout) + `"`), nil
 }
 
 // UnmarshalJSON 反序列化成JSON时调用
