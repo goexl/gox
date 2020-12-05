@@ -52,16 +52,31 @@ type (
 )
 
 // IdString Id的字符串形式
-func (b IdStruct) IdString() string {
-	return strconv.FormatInt(b.Id, 10)
+func (is *IdStruct) IdString() string {
+	return strconv.FormatInt(is.Id, 10)
 }
 
 // Exists 对象是否存在
-func (b BaseStruct) Exists() bool {
-	return 0 != b.Id
+func (bs *BaseStruct) Exists() bool {
+	return 0 != bs.Id
 }
 
 // IdString Id的字符串形式
-func (b BaseStruct) IdString() string {
-	return strconv.FormatInt(b.Id, 10)
+func (bs *BaseStruct) IdString() string {
+	return strconv.FormatInt(bs.Id, 10)
+}
+
+// IdString Id的字符串形式
+func (cs *CreateStruct) IdString() string {
+	return strconv.FormatInt(cs.Id, 10)
+}
+
+// IdString Id的字符串形式
+func (us *UpdateStruct) IdString() string {
+	return strconv.FormatInt(us.Id, 10)
+}
+
+// IdString Id的字符串形式
+func (ds *DeleteStruct) IdString() string {
+	return strconv.FormatInt(ds.Id, 10)
 }
