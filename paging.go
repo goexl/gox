@@ -1,7 +1,7 @@
 package gox
 
 import (
-	`encoding/json`
+	"encoding/json"
 	"fmt"
 	"strings"
 )
@@ -122,6 +122,7 @@ func (pd pageData) MarshalJSON() ([]byte, error) {
 	data["totalNum"] = pd.TotalNum
 	data["items"] = pd.Items
 	data["currentPage"] = pd.CurrentPage
+	data["totalPage"] = pd.TotalPage
 	for _, extra := range pd.Extras {
 		data[extra.Key] = extra.Value
 	}
