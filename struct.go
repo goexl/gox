@@ -7,47 +7,39 @@ import (
 type (
 	// IdStruct 带序列号的模型
 	IdStruct struct {
-		// 编号
+		// Id 编号
 		Id int64 `xorm:"pk notnull unique index('idx_id') default(0)" json:"id,string"`
 	}
 
-	// BaseStruct Xorm基础模型
-	BaseStruct struct {
-		// 编号
-		Id int64 `xorm:"pk notnull unique index('idx_id') default(0)" json:"id,string"`
-		// 创建时间
-		CreatedAt Timestamp `xorm:"created default('2020-02-04 09:55:52')" json:"createdAt"`
-		// 最后更新时间
-		UpdatedAt Timestamp `xorm:"updated default('2020-02-04 09:55:52')" json:"updatedAt"`
-	}
-
-	// CreateStruct 带创建时间模型
-	CreateStruct struct {
-		// 编号
-		Id int64 `xorm:"pk notnull unique index('idx_id') default(0)" json:"id,string"`
-		// 创建时间
+	// CreatedStruct 带创建时间模型
+	CreatedStruct struct {
+		// CreatedAt 创建时间
 		CreatedAt Timestamp `xorm:"created default('2020-02-04 09:55:52')" json:"createdAt"`
 	}
 
-	// UpdateStruct 带修改时间模型
-	UpdateStruct struct {
-		// 编号
-		Id int64 `xorm:"pk notnull unique index('idx_id') default(0)" json:"id,string"`
-		// 最后更新时间
+	// UpdatedStruct 带修改时间模型
+	UpdatedStruct struct {
+		// UpdatedAt 最后更新时间
 		UpdatedAt Timestamp `xorm:"updated default('2020-02-04 09:55:52')" json:"updatedAt"`
 	}
 
-	// DeleteStruct 软删除模型
-	DeleteStruct struct {
-		// 编号
-		Id int64 `xorm:"pk notnull unique index('idx_id') default(0)" json:"id,string"`
-		// 创建时间
-		CreatedAt Timestamp `xorm:"created default('2020-02-04 09:55:52')" json:"createdAt"`
-		// 最后更新时间
-		UpdatedAt Timestamp `xorm:"updated default('2020-02-04 09:55:52')" json:"updatedAt"`
-		// 删除时间
-		// 用户软删除
+	// DeletedStruct 软删除模型
+	DeletedStruct struct {
+		// DeletedAt 删除时间，用户软删除
 		DeletedAt Timestamp `xorm:"deleted default('2020-02-04 09:55:52')" json:"deletedAt"`
+	}
+
+	// BaseStruct 基础数据库模型
+	BaseStruct struct {
+		IdStruct      `xorm:"extends"`
+		CreatedStruct `xorm:"extends"`
+		UpdatedStruct `xorm:"extends"`
+	}
+
+	// SoftDeleteStruct 带软删除功能的数据库模型
+	SoftDeleteStruct struct {
+		BaseStruct    `xorm:"extends"`
+		DeletedStruct `xorm:"extends"`
 	}
 )
 
@@ -57,26 +49,6 @@ func (is *IdStruct) IdString() string {
 }
 
 // Exists 对象是否存在
-func (bs *BaseStruct) Exists() bool {
-	return 0 != bs.Id
-}
-
-// IdString Id的字符串形式
-func (bs *BaseStruct) IdString() string {
-	return strconv.FormatInt(bs.Id, 10)
-}
-
-// IdString Id的字符串形式
-func (cs *CreateStruct) IdString() string {
-	return strconv.FormatInt(cs.Id, 10)
-}
-
-// IdString Id的字符串形式
-func (us *UpdateStruct) IdString() string {
-	return strconv.FormatInt(us.Id, 10)
-}
-
-// IdString Id的字符串形式
-func (ds *DeleteStruct) IdString() string {
-	return strconv.FormatInt(ds.Id, 10)
+func (is *IdStruct) Exists() bool {
+	return 0 != is.Id
 }
