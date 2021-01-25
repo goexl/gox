@@ -195,3 +195,11 @@ func (w *Weekday) UnmarshalJSON(b []byte) (err error) {
 func (w *Weekday) WeekDay() time.Weekday {
 	return time.Weekday(*w)
 }
+
+func TruncateDay(t time.Time) time.Time {
+	return time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
+}
+
+func TruncateUnix(timestamp int64) int64 {
+	return TruncateDay(time.Unix(timestamp, 0)).Unix()
+}
