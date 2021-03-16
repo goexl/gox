@@ -14,6 +14,7 @@ func TestParsePackageName(t *testing.T) {
 		{input: "www.a.com", expected: "com.a.www"},
 		{input: "c.b.a.com", expected: "com.a.b.c"},
 		{input: "b-d.a.com", expected: "com.a.d.b"},
+		{input: "yunke-web.dev.class100.com", expected: "com.class100.dev.web.yunke"},
 	}
 
 	for _, tc := range tests {
