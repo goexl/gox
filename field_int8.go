@@ -9,7 +9,7 @@ type Int8Field struct {
 }
 
 // NewInt8Field 创建一个整形字段
-func NewInt8Field(key string, value int) *Int8Field {
+func NewInt8Field(key string, value int8) *Int8Field {
 	return &Int8Field{
 		StringKey: StringKey{
 			key: key,

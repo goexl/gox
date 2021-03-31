@@ -4,7 +4,7 @@ var _ Value = (*Int8Value)(nil)
 
 // Int8Value 整形值
 type Int8Value struct {
-	value int
+	value int8
 }
 
 func (iv *Int8Value) Value() interface{} {

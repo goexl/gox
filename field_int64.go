@@ -9,7 +9,7 @@ type Int64Field struct {
 }
 
 // NewInt64Field 创建一个整形字段
-func NewInt64Field(key string, value int) *Int64Field {
+func NewInt64Field(key string, value int64) *Int64Field {
 	return &Int64Field{
 		StringKey: StringKey{
 			key: key,
