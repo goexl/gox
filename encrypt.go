@@ -2,6 +2,7 @@ package gox
 
 import (
 	`crypto/md5`
+	`crypto/rand`
 	`encoding/hex`
 )
 
@@ -13,6 +14,21 @@ func Md5(from string) (to string, err error) {
 	}
 
 	to = hex.EncodeToString(alg.Sum(nil))
+
+	return
+}
+
+// SymmetricKey 生成对称加密算法密钥
+func SymmetricKey(bits uint) (key []byte, err error) {
+	if 0 != bits%8 {
+		err = ErrKeySize
+
+		return
+	}
+
+	size := bits / 8
+	key = make([]byte, size)
+	_, err = rand.Read(key)
 
 	return
 }

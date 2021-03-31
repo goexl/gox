@@ -1,8 +1,8 @@
 package gox
 
-type DBString string
+type String string
 
-func (s DBString) ToDB() ([]byte, error) {
+func (s String) ToDB() ([]byte, error) {
 	if "" == s {
 		return nil, nil
 	}
@@ -10,11 +10,11 @@ func (s DBString) ToDB() ([]byte, error) {
 	return []byte(s), nil
 }
 
-func (s *DBString) FromDB(bytes []byte) error {
+func (s *String) FromDB(bytes []byte) error {
 	if 0 == len(bytes) {
 		*s = ""
 	}
-	*s = DBString(bytes)
+	*s = String(bytes)
 
 	return nil
 }
