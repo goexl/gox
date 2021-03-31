@@ -14,10 +14,10 @@ type Int64Field struct {
 	value.Int64Value
 }
 
-// NewInt64Field 创建一个整形字段
-func NewInt64Field(k string, v int64) *Int64Field {
+// Int64 创建一个整形字段
+func Int64(k string, v int64) *Int64Field {
 	return &Int64Field{
-		StringKey:  key.NewStringKey(k),
-		Int64Value: value.NewInt64Value(v),
+		StringKey:  key.String(k),
+		Int64Value: value.Int64(v),
 	}
 }

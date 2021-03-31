@@ -14,10 +14,10 @@ type UintField struct {
 	value.UintValue
 }
 
-// NewUintField 创建一个整形字段
-func NewUintField(k string, v uint) *UintField {
+// Uint 创建一个整形字段
+func Uint(k string, v uint) *UintField {
 	return &UintField{
-		StringKey: key.NewStringKey(k),
-		UintValue: value.NewUintValue(v),
+		StringKey: key.String(k),
+		UintValue: value.Uint(v),
 	}
 }

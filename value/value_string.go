@@ -11,8 +11,8 @@ type StringValue struct {
 	value string
 }
 
-// NewStringValue 字符串值
-func NewStringValue(value string) StringValue {
+// String 字符串值
+func String(value string) StringValue {
 	return StringValue{
 		value: value,
 	}

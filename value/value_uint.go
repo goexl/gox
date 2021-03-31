@@ -11,8 +11,8 @@ type UintValue struct {
 	value uint
 }
 
-// NewUintValue 整形值
-func NewUintValue(value uint) UintValue {
+// Uint 整形值
+func Uint(value uint) UintValue {
 	return UintValue{
 		value: value,
 	}

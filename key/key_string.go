@@ -11,8 +11,8 @@ type StringKey struct {
 	key string
 }
 
-// NewStringKey 字符串键
-func NewStringKey(k string) StringKey {
+// String 字符串键
+func String(k string) StringKey {
 	return StringKey{
 		key: k,
 	}

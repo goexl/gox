@@ -14,10 +14,10 @@ type StringField struct {
 	value.StringValue
 }
 
-// NewStringField 创建一个整形字段
-func NewStringField(k string, v string) *StringField {
+// String 创建一个整形字段
+func String(k string, v string) *StringField {
 	return &StringField{
-		StringKey:   key.NewStringKey(k),
-		StringValue: value.NewStringValue(v),
+		StringKey:   key.String(k),
+		StringValue: value.String(v),
 	}
 }

@@ -14,10 +14,10 @@ type IntField struct {
 	value.IntValue
 }
 
-// NewIntField 创建一个整形字段
-func NewIntField(k string, v int) *IntField {
+// Int 创建一个整形字段
+func Int(k string, v int) *IntField {
 	return &IntField{
-		StringKey: key.NewStringKey(k),
-		IntValue:  value.NewIntValue(v),
+		StringKey: key.String(k),
+		IntValue:  value.Int(v),
 	}
 }

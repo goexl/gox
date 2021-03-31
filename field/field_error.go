@@ -14,10 +14,10 @@ type ErrorField struct {
 	value.ErrorValue
 }
 
-// NewErrorField 创建一个整形字段
-func NewErrorField(err error) *ErrorField {
+// Error 创建一个整形字段
+func Error(err error) *ErrorField {
 	return &ErrorField{
-		StringKey:  key.NewStringKey("error"),
-		ErrorValue: value.NewErrorValue(err),
+		StringKey:  key.String("error"),
+		ErrorValue: value.Error(err),
 	}
 }

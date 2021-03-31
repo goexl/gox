@@ -11,8 +11,8 @@ type Int64Value struct {
 	value int64
 }
 
-// NewInt64Value 整形值
-func NewInt64Value(value int64) Int64Value {
+// Int64 整形值
+func Int64(value int64) Int64Value {
 	return Int64Value{
 		value: value,
 	}

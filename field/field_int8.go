@@ -14,10 +14,10 @@ type Int8Field struct {
 	value.Int8Value
 }
 
-// NewInt8Field 创建一个整形字段
-func NewInt8Field(k string, v int8) *Int8Field {
+// Int8 创建一个整形字段
+func Int8(k string, v int8) *Int8Field {
 	return &Int8Field{
-		StringKey: key.NewStringKey(k),
-		Int8Value: value.NewInt8Value(v),
+		StringKey: key.String(k),
+		Int8Value: value.Int8(v),
 	}
 }

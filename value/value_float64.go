@@ -11,8 +11,8 @@ type Float64Value struct {
 	value float64
 }
 
-// NewFloat64Value 浮点值
-func NewFloat64Value(value float64) Float64Value {
+// Float64 浮点值
+func Float64(value float64) Float64Value {
 	return Float64Value{
 		value: value,
 	}

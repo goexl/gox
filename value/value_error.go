@@ -11,8 +11,8 @@ type ErrorValue struct {
 	value error
 }
 
-// NewErrorValue 错误值
-func NewErrorValue(err error) ErrorValue {
+// Error 错误值
+func Error(err error) ErrorValue {
 	return ErrorValue{
 		value: err,
 	}

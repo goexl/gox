@@ -11,8 +11,8 @@ type IntValue struct {
 	value int
 }
 
-// NewIntValue 整形值
-func NewIntValue(value int) IntValue {
+// Int 整形值
+func Int(value int) IntValue {
 	return IntValue{
 		value: value,
 	}
