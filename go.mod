@@ -1,6 +1,6 @@
 module github.com/storezhang/gox
 
-go 1.14
+go 1.16
 
 require (
 	github.com/mitchellh/mapstructure v1.3.3
