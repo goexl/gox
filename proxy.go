@@ -2,6 +2,7 @@ package gox
 
 import (
 	`fmt`
+	`net/url`
 )
 
 const (
@@ -36,7 +37,12 @@ type (
 
 func (p *Proxy) Addr() (addr string) {
 	if "" != p.Username && "" != p.Password {
-		addr = fmt.Sprintf("%s://%s:%s@%s:%d", p.Scheme, p.Username, p.Password, p.Host, p.Port)
+		addr = fmt.Sprintf(
+			"%s://%s:%s@%s:%d",
+			p.Scheme,
+			url.QueryEscape(p.Username), url.QueryEscape(p.Password),
+			p.Host, p.Port,
+		)
 	} else {
 		addr = fmt.Sprintf("%s://%s:%d", p.Scheme, p.Host, p.Port)
 	}
