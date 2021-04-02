@@ -66,6 +66,14 @@ type (
 		// Value 值
 		Value() string
 	}
+
+	// Http Http配置
+	Http struct {
+		// Server 服务器配置
+		Server HttpServer `json:"server" yaml:"server"`
+		// Client 客户端配置
+		Client HttpClient `json:"client" yaml:"client"`
+	}
 )
 
 // ContentDisposition 解决附件下载乱码
