@@ -15,7 +15,7 @@ type (
 		Skip bool `default:"true" json:"skip" yaml:"skip"`
 		// Root 根秘钥文件路径
 		Root string `json:"root" yaml:"root" validate:"required,file"`
-		// Client 客户端
-		Client ClientCertificate `json:"client" yaml:"client" validate:"structonly"`
+		// Clients 客户端
+		Clients []ClientCertificate `json:"clients" yaml:"clients" validate:"structonly"`
 	}
 )
