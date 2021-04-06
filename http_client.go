@@ -11,9 +11,9 @@ type (
 		// Timeout 超时
 		Timeout time.Duration `json:"timeout" yaml:"timeout"`
 		// Proxy 代理
-		Proxy Proxy `json:"proxy" yaml:"proxy"`
+		Proxy Proxy `json:"proxy" yaml:"proxy" validate:"structonly"`
 		// Auth 授权配置
-		Auth Auth `json:"auth" yaml:"auth"`
+		Auth Auth `json:"auth" yaml:"auth" validate:"structonly"`
 		// AllowGetPayload 是否允许Get方法传输数据
 		AllowGetPayload bool `default:"true" json:"allowGetPayload" yaml:"allowGetPayload"`
 		// QueryParams 通用的查询参数
@@ -23,6 +23,6 @@ type (
 		// Headers 通用头信息
 		Headers map[string]string `json:"headers" yaml:"headers"`
 		// Cookies 通用Cookie
-		Cookies []http.Cookie `json:"cookies" yaml:"cookies"`
+		Cookies []*http.Cookie `json:"cookies" yaml:"cookies"`
 	}
 )
