@@ -21,5 +21,7 @@ type (
 		Password string `json:"password" yaml:"password"`
 		// Token 授权码
 		Token string `json:"token" yaml:"token"`
+		// Scheme 身份验证方案类型
+		Scheme string `json:"scheme" yaml:"scheme"`
 	}
 )
