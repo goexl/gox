@@ -1,7 +1,7 @@
 package gox
 
 import (
-	`fmt`
+	`encoding/json`
 )
 
 type (
@@ -40,6 +40,12 @@ func NewCodeError(errorCode ErrorCode, message string, data interface{}) *CodeEr
 	}
 }
 
+func ParseCodeError(str string) (ec *CodeError, err error) {
+	err = json.Unmarshal([]byte(str), &ec)
+
+	return
+}
+
 func (ce *CodeError) ToErrorCode() ErrorCode {
 	return ce.ErrorCode
 }
@@ -52,6 +58,12 @@ func (ce *CodeError) ToData() interface{} {
 	return ce.Data
 }
 
-func (ce *CodeError) Error() string {
-	return fmt.Sprintf("{ErrorCode=%d, Message=%s, Data=%v}", ce.ErrorCode, ce.Message, ce.Data)
+func (ce *CodeError) Error() (str string) {
+	if data, err := json.Marshal(ce); nil != err {
+		return
+	} else {
+		str = string(data)
+	}
+
+	return
 }
