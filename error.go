@@ -40,6 +40,7 @@ func NewCodeError(errorCode ErrorCode, message string, data interface{}) *CodeEr
 	}
 }
 
+// ParseCodeError 从JSON字符串中解析错误
 func ParseCodeError(str string) (ec *CodeError, err error) {
 	err = json.Unmarshal([]byte(str), &ec)
 
