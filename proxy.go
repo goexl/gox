@@ -5,8 +5,8 @@ import (
 	`net/url`
 )
 
-// Proxy 代理配置
-type Proxy struct {
+// ProxyConfig 代理配置
+type ProxyConfig struct {
 	// Host 主机（可以是Ip或者域名）
 	Host string `json:"ip" yaml:"ip" validate:"required"`
 	// Port 端口
@@ -19,7 +19,7 @@ type Proxy struct {
 	Password string `json:"password" yaml:"password"`
 }
 
-func (p *Proxy) Addr() (addr string) {
+func (p *ProxyConfig) Addr() (addr string) {
 	if "" != p.Username && "" != p.Password {
 		addr = fmt.Sprintf(
 			"%s://%s:%s@%s:%d",

@@ -1,8 +1,8 @@
 package gox
 
-// HttpServer Http服务器配置
+// HttpServerConfig Http服务器配置
 type (
-	HttpServer struct {
+	HttpServerConfig struct {
 		// Host 监听的地址，可以是IP也可以是域名
 		Host string `default:"localhost" json:"ip" yaml:"ip" validate:"required"`
 		// Port 监听的端口

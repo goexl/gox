@@ -11,8 +11,8 @@ type (
 	// AuthType 授权类型
 	AuthType string
 
-	// Auth 授权信息
-	Auth struct {
+	// AuthConfig 授权信息
+	AuthConfig struct {
 		// Type 授权类型
 		Type AuthType `default:"type" json:"type" yaml:"type" validate:"oneof=basic token"`
 		// Username 用户名

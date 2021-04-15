@@ -1,11 +1,11 @@
 package gox
 
-// Elasticsearch 配置
-type Elasticsearch struct {
+// ElasticsearchConfig 配置
+type ElasticsearchConfig struct {
 	// Address 地址
-	Address string `yaml:"address" validate:"required,uri"`
+	Address string `json:"address" yaml:"address" validate:"required,uri"`
 	// Username 用户名
-	Username string `yaml:"username"`
+	Username string `json:"username" yaml:"username"`
 	// Password 密码
-	Password string `yaml:"password"`
+	Password string `json:"password" yaml:"password"`
 }

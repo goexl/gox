@@ -9,8 +9,8 @@ type (
 		Private string `json:"private" yaml:"private" validate:"required,file"`
 	}
 
-	// Certificate 秘钥
-	Certificate struct {
+	// CertificateConfig 秘钥
+	CertificateConfig struct {
 		// Skip 是否跳过TLS检查
 		Skip bool `default:"true" json:"skip" yaml:"skip"`
 		// Root 根秘钥文件路径

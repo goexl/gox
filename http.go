@@ -6,17 +6,15 @@ import (
 )
 
 const (
-	// Http常用头
 	// HeaderAcceptLanguage 可接受的语言
 	HeaderAcceptLanguage = "Accept-Language"
 	// HeaderContentType 请求数据类型
 	HeaderContentType = "Content-Scheme"
 	// HeaderAuthorization 授权
 	HeaderAuthorization = "Authorization"
-	// HeaderContentDisposition
+	// HeaderContentDisposition 下载时的附件名指定
 	HeaderContentDisposition = "Content-disposition"
 
-	// Http方法集合
 	// HttpMethodGet GET方法
 	HttpMethodGet HttpMethod = "GET"
 	// HttpMethodPost POST方法
@@ -25,11 +23,11 @@ const (
 	HttpMethodPut HttpMethod = "PUT"
 	// HttpMethodDelete DELETE方法
 	HttpMethodDelete HttpMethod = "DELETE"
-	// MethodPatch PATCH方法
+	// HttpMethodPatch PATCH方法
 	HttpMethodPatch HttpMethod = "PATCH"
-	// MethodHead HEAD方法
+	// HttpMethodHead HEAD方法
 	HttpMethodHead HttpMethod = "HEAD"
-	// MethodOptions OPTIONS方法
+	// HttpMethodOptions OPTIONS方法
 	HttpMethodOptions HttpMethod = "OPTIONS"
 )
 
@@ -41,9 +39,9 @@ const (
 )
 
 const (
-	// ContentDispositionTypeHeader 请求头
+	// HttpParameterTypeHeader 请求头
 	HttpParameterTypeHeader HttpParameterType = "header"
-	// ContentDispositionTypePathParameter 路径参数
+	// HttpParameterTypePathParameter 路径参数
 	HttpParameterTypePathParameter HttpParameterType = "path"
 )
 
@@ -67,12 +65,12 @@ type (
 		Value() string
 	}
 
-	// Http Http配置
-	Http struct {
+	// HttpConfig Http配置
+	HttpConfig struct {
 		// Server 服务器配置
-		Server HttpServer `json:"server" yaml:"server"`
+		Server HttpServerConfig `json:"server" yaml:"server"`
 		// Client 客户端配置
-		Client HttpClient `json:"client" yaml:"client"`
+		Client HttpClientConfig `json:"client" yaml:"client"`
 	}
 )
 
