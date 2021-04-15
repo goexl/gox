@@ -11,9 +11,11 @@ type ElasticsearchConfig struct {
 	// Username 用户名
 	Username string `json:"username" yaml:"username"`
 	// Password 密码
-	Password    string `json:"password" yaml:"password"`
-	HealthCheck bool
-	Sniff       bool
+	Password string `json:"password" yaml:"password"`
+	// Health 健康检查配置
+	Health CheckConfig `json:"health" yaml:"health" validate:"structonly"`
+	// Sniffer 嗅探器配置
+	Sniffer CheckConfig `json:"sniffer" yaml:"sniffer" validate:"structonly"`
 	// Gzip 配置是否启用压缩
 	Gzip bool `default:"false" json:"gzip" yaml:"gzip"`
 	// Headers 传输头
