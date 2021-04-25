@@ -1,8 +1,10 @@
 package gox
 
 import (
+	`crypto/hmac`
 	`crypto/md5`
 	`crypto/rand`
+	`crypto/sha256`
 	`encoding/hex`
 )
 
@@ -29,6 +31,18 @@ func SymmetricKey(bits uint) (key []byte, err error) {
 	size := bits / 8
 	key = make([]byte, size)
 	_, err = rand.Read(key)
+
+	return
+}
+
+// Sha256Hmac 计算SHA256加密
+func Sha256Hmac(data string, secret string) (sha string, err error) {
+	h := hmac.New(sha256.New, []byte(secret))
+	if _, err = h.Write([]byte(data)); nil != err {
+		return
+	}
+
+	sha = hex.EncodeToString(h.Sum(nil))
 
 	return
 }
