@@ -199,7 +199,7 @@ func (i Id) Time() int64 {
 	return (int64(i) >> timeShift) + epoch
 }
 
-// Snowflake 返回节点数
+// Node 返回节点数
 func (i Id) Node() int64 {
 	return int64(i) & nodeMask >> nodeShift
 }
