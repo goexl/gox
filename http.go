@@ -9,7 +9,7 @@ const (
 	// HeaderAcceptLanguage 可接受的语言
 	HeaderAcceptLanguage = "Accept-Language"
 	// HeaderContentType 请求数据类型
-	HeaderContentType = "Content-Scheme"
+	HeaderContentType = "Content-Type"
 	// HeaderAuthorization 授权
 	HeaderAuthorization = "Authorization"
 	// HeaderContentDisposition 下载时的附件名指定
