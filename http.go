@@ -68,9 +68,9 @@ type (
 	// HttpConfig Http配置
 	HttpConfig struct {
 		// Server 服务器配置
-		Server HttpServerConfig `json:"server" yaml:"server"`
+		Server HttpServerConfig `json:"server" yaml:"server" validate:"structonly"`
 		// Client 客户端配置
-		Client HttpClientConfig `json:"client" yaml:"client"`
+		Client HttpClientConfig `json:"client" yaml:"client" validate:"structonly"`
 	}
 )
 
