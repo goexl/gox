@@ -4,7 +4,7 @@ package gox
 type (
 	HttpServerConfig struct {
 		// Host 监听的地址，可以是IP也可以是域名
-		Host string `default:"localhost" json:"host" yaml:"host" validate:"required"`
+		Host string `default:"0.0.0.0" json:"host" yaml:"host" validate:"required"`
 		// Port 监听的端口
 		Port int `default:"8081" json:"port" yaml:"port" validate:"required"`
 		// BasePath 前缀地址
