@@ -10,7 +10,6 @@ const (
 	// DefaultTimeLayout 默认的时间布局
 	DefaultTimeLayout = "2006-01-02 15:04:05"
 
-	// 时间常量
 	// Day 一天
 	Day = 24 * time.Hour
 	// Week 一周
@@ -37,6 +36,11 @@ func ZeroTimestamp() Timestamp {
 // Now 当前时间
 func Now() Timestamp {
 	return Timestamp(time.Now())
+}
+
+// Format 格式化字符串
+func (t *Timestamp) Format() string {
+	return time.Time(*t).Format(DefaultTimeLayout)
 }
 
 // GobEncode Gob序列化编码
