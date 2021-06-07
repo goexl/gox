@@ -10,4 +10,8 @@ type EmailConfig struct {
 	Username string `validate:"required"`
 	// 密码
 	Password string `validate:"required"`
+	// 发送者名字
+	Name string `validate:"required"`
+	// 发送者邮件地址
+	From string `validate:"required,email"`
 }
