@@ -16,8 +16,13 @@ type IntField struct {
 
 // Int 创建一个整形字段
 func Int(k string, v int) *IntField {
+	return Intp(k, &v)
+}
+
+// Intp 创建一个整形字段
+func Intp(k string, v *int) *IntField {
 	return &IntField{
 		StringKey: key.String(k),
-		IntValue:  value.Int(v),
+		IntValue:  value.Intp(v),
 	}
 }

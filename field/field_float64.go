@@ -16,8 +16,13 @@ type Float64Field struct {
 
 // Float64 创建一个整形字段
 func Float64(k string, v float64) *Float64Field {
+	return Float64p(k, &v)
+}
+
+// Float64p 创建一个整形字段
+func Float64p(k string, v *float64) *Float64Field {
 	return &Float64Field{
 		StringKey:    key.String(k),
-		Float64Value: value.Float64(v),
+		Float64Value: value.Float64p(v),
 	}
 }

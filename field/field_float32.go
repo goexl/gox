@@ -16,8 +16,13 @@ type Float32Field struct {
 
 // Float32 创建一个整形字段
 func Float32(k string, v float32) *Float32Field {
+	return Float32p(k, &v)
+}
+
+// Float32p 创建一个整形字段
+func Float32p(k string, v *float32) *Float32Field {
 	return &Float32Field{
 		StringKey:    key.String(k),
-		Float32Value: value.Float32(v),
+		Float32Value: value.Float32p(v),
 	}
 }

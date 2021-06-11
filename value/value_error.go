@@ -18,6 +18,6 @@ func Error(err error) ErrorValue {
 	}
 }
 
-func (iv *ErrorValue) Value() interface{} {
-	return iv.value
+func (ev *ErrorValue) Value() interface{} {
+	return ev.value
 }

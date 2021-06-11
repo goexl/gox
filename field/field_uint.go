@@ -16,8 +16,13 @@ type UintField struct {
 
 // Uint 创建一个整形字段
 func Uint(k string, v uint) *UintField {
+	return Uintp(k, &v)
+}
+
+// Uintp 创建一个整形字段
+func Uintp(k string, v *uint) *UintField {
 	return &UintField{
 		StringKey: key.String(k),
-		UintValue: value.Uint(v),
+		UintValue: value.Uintp(v),
 	}
 }

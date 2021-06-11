@@ -16,8 +16,13 @@ type StringField struct {
 
 // String 创建一个整形字段
 func String(k string, v string) *StringField {
+	return Stringp(k, &v)
+}
+
+// Stringp 创建一个整形字段
+func Stringp(k string, v *string) *StringField {
 	return &StringField{
 		StringKey:   key.String(k),
-		StringValue: value.String(v),
+		StringValue: value.Stringp(v),
 	}
 }
