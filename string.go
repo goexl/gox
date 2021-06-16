@@ -1,66 +1,28 @@
 package gox
 
 import (
-	"bytes"
-	"strconv"
-	"strings"
-	"unicode"
+	`strings`
+	`unicode`
 )
 
-// StringBuilder 内嵌bytes.StringBuilder，支持连写
-type StringBuilder struct {
-	*bytes.Buffer
-}
-
-func NewStringBuilder() *StringBuilder {
-	return &StringBuilder{Buffer: new(bytes.Buffer)}
-}
-
-func (b *StringBuilder) Append(i interface{}) *StringBuilder {
-	switch val := i.(type) {
-	case int:
-		b.append(strconv.Itoa(val))
-	case int64:
-		b.append(strconv.FormatInt(val, 10))
-	case uint:
-		b.append(strconv.FormatUint(uint64(val), 10))
-	case uint64:
-		b.append(strconv.FormatUint(val, 10))
-	case string:
-		b.append(val)
-	case []byte:
-		_, _ = b.Write(val)
-	case rune:
-		_, _ = b.WriteRune(val)
-	}
-
-	return b
-}
-
-func (b *StringBuilder) append(s string) *StringBuilder {
-	_, _ = b.WriteString(s)
-
-	return b
-}
-
-// 驼峰式写法转为下划线写法
+// UnderscoreName 驼峰式写法转为下划线写法
 func UnderscoreName(name string, upperInitial bool) string {
-	buffer := NewStringBuilder()
+	buffer := strings.Builder{}
 	for index, char := range name {
 		if unicode.IsUpper(char) {
 			if 0 != index {
-				buffer.Append('_')
+				buffer.WriteRune('_')
 			}
 			if upperInitial {
-				buffer.Append(unicode.ToUpper(char))
+				buffer.WriteRune(unicode.ToUpper(char))
 			} else {
-				buffer.Append(unicode.ToLower(char))
+				buffer.WriteRune(unicode.ToLower(char))
 			}
 		} else {
 			if 0 == index && upperInitial {
-				buffer.Append(unicode.ToUpper(char))
+				buffer.WriteRune(unicode.ToUpper(char))
 			} else {
-				buffer.Append(char)
+				buffer.WriteRune(char)
 			}
 		}
 	}
@@ -90,13 +52,13 @@ func SearchString(slice []string, s string) int {
 }
 
 // Contract 字符串连接
-func Contract(separator string, strings ...string) (result string) {
-	buffer := NewStringBuilder()
+func Contract(separator string, contracts ...string) (result string) {
+	buffer := strings.Builder{}
 
-	for index, string := range strings {
-		buffer.Append(string)
-		if len(strings)-1 != index {
-			buffer.Append(separator)
+	for index, contract := range contracts {
+		buffer.WriteString(contract)
+		if len(contracts)-1 != index {
+			buffer.WriteString(separator)
 		}
 	}
 	result = buffer.String()
