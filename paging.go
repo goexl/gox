@@ -23,7 +23,7 @@ type Sorter interface {
 	SortFieldName() string
 }
 
-// 排序字符串
+// OrderBy 排序字符串
 func (p *Paging) OrderBy(sorter Sorter) string {
 	sortOrder := "ASC"
 	if strings.HasPrefix(strings.ToLower(p.SortOrder), "desc") {

@@ -64,12 +64,6 @@ type (
 		// Value 值
 		Value() string
 	}
-
-	// HttpConfig Http配置
-	HttpConfig struct {
-		// Server 服务器配置
-		Server HttpServerConfig `json:"server" yaml:"server" validate:"structonly"`
-	}
 )
 
 // ContentDisposition 解决附件下载乱码

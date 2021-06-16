@@ -1,6 +1,6 @@
 package gox
 
-// 基础用户数据
+// BaseUser 基础用户数据
 type BaseUser struct {
 	BaseStruct `xorm:"extends"`
 

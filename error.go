@@ -5,7 +5,7 @@ import (
 )
 
 type (
-	// ToErrorCode 错误码
+	// ErrorCode 错误码
 	ErrorCode int
 
 	// Error 接口，符合条件的错误统一处理
@@ -22,11 +22,11 @@ type (
 
 	// CodeError 带错误编号和消息的错误
 	CodeError struct {
-		// ErrorCode 错误码
+		// 错误码
 		ErrorCode ErrorCode `json:"errorCode"`
-		// Message 消息
+		// 消息
 		Message string `json:"message"`
-		// Data 数据
+		// 数据
 		Data interface{} `json:"data"`
 	}
 )

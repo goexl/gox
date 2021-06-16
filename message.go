@@ -10,12 +10,12 @@ type (
 
 	// CodeMessage 带消息代码的消息
 	CodeMessage struct {
-		// Code 消息代码
+		// 消息代码
 		Code Code `json:"code"`
-		// Title 消息标题
+		// 消息标题
 		// 通常是模板字符串
 		Title *string `json:"title"`
-		// Text 消息内容
+		// 消息内容
 		// 通常是模板字符串
 		Text *string `json:"text,omitempty"`
 	}
