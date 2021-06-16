@@ -38,7 +38,7 @@ func randString(length int, letterBytes string) string {
 	b := make([]byte, length)
 
 	for i, cache, remain := length-1, src.Int63(), letterIdxMax; i >= 0; {
-		if remain == 0 {
+		if 0 == remain {
 			cache, remain = src.Int63(), letterIdxMax
 		}
 		if idx := int(cache & letterIdxMask); idx < len(letterBytes) {
