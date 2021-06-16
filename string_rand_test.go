@@ -45,3 +45,10 @@ func TestRandString(t *testing.T) {
 		}
 	}
 }
+
+func TestRandVerificationCode(t *testing.T) {
+	got := RandCode()
+	if 6 != len(got) {
+		t.Fatalf("期望：%v，实际：%v", 6, got)
+	}
+}

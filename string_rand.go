@@ -28,6 +28,11 @@ func RandDigit(length int) string {
 	return randString(length, digitBytes)
 }
 
+// RandCode 生成随机验证码
+func RandCode() string {
+	return RandDigit(6)
+}
+
 // 生成随时字符串
 func randString(length int, letterBytes string) string {
 	b := make([]byte, length)
