@@ -12,6 +12,7 @@ import (
 	`syscall`
 )
 
+// 文件类型
 type FileType int
 
 const (
@@ -36,28 +37,28 @@ func IsFileExist(filename string) bool {
 	return exist
 }
 
-// GetFilename 获得文件名
-func GetFilename(filePath string) string {
-	return filePath[0 : len(filePath)-len(filepath.Ext(filePath))]
+// Filename 获得文件名称
+func Filename(path string) string {
+	return filepath.Base(path)[len(filepath.Dir(path)):]
 }
 
-// GetFileDir 获得文件的目录形式
-func GetFileDir(filePath string) string {
-	return filepath.Join(filepath.Dir(filePath), GetFilename(filepath.Base(filePath)))
+// Dir 获得文件的目录形式
+func Dir(path string) string {
+	return filepath.Join(filepath.Dir(path), Filename(filepath.Base(path)))
 }
 
-// GetContentType 获得文件的ContentType
-func GetContentType(filepath string) (contentType string, err error) {
+// ContentType 获得文件的ContentType
+func ContentType(path string) (contentType string, err error) {
 	var file *os.File
-	if file, err = os.Open(filepath); nil != err {
+	if file, err = os.Open(path); nil != err {
 		return
 	}
 
-	return GetFileContentType(file)
+	return FileContentType(file)
 }
 
-// GetFileContentType 获得文件的ContentType
-func GetFileContentType(file *os.File) (contentType string, err error) {
+// FileContentType 获得文件的ContentType
+func FileContentType(file *os.File) (contentType string, err error) {
 	buffer := make([]byte, 512)
 	if _, err = file.Read(buffer); nil != err {
 		return
@@ -67,12 +68,12 @@ func GetFileContentType(file *os.File) (contentType string, err error) {
 	return
 }
 
-// GetFilenameWithExt 获得带扩展名的文件名
-func GetFilenameWithExt(filePath string, ext string) (path string) {
+// FilenameWithExt 获得带扩展名的文件名
+func FilenameWithExt(path string, ext string) (name string) {
 	if "" == strings.TrimSpace(ext) {
-		path = filePath
+		name = path
 	} else {
-		path = fmt.Sprintf("%s.%s", GetFilename(filePath), ext)
+		name = fmt.Sprintf("%s.%s", Filename(path), ext)
 	}
 
 	return
