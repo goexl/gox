@@ -39,7 +39,10 @@ func IsFileExist(filename string) bool {
 
 // Filename 获得文件名称
 func Filename(path string) string {
-	return filepath.Base(path)[len(filepath.Dir(path)):]
+	name := filepath.Base(path)
+	ext := filepath.Ext(path)
+
+	return name[:len(name)-len(ext)]
 }
 
 // Dir 获得文件的目录形式
