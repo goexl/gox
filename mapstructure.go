@@ -7,9 +7,9 @@ import (
 type (
 	// MapStruct Map和结构体转换
 	MapStruct interface {
-		// ToMap 转换成Map
+		// StructToMap 转换成Map
 		StructToMap() (model map[string]interface{}, err error)
-		// 转换成结构体
+		// MapToStruct 转换成结构体
 		MapToStruct(model map[string]interface{}) (err error)
 	}
 )
@@ -45,6 +45,17 @@ func MapToStruct(model map[string]interface{}, obj interface{}) (err error) {
 	}
 
 	err = decoder.Decode(model)
+
+	return
+}
+
+// CopyStruct 复制结构体数据
+func CopyStruct(from interface{}, to interface{}) (err error) {
+	tmp := make(map[string]interface{})
+	if tmp, err = StructToMap(from); nil != err {
+		return
+	}
+	err = MapToStruct(tmp, to)
 
 	return
 }
