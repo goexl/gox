@@ -22,6 +22,7 @@ func StructToMap(obj interface{}) (model map[string]interface{}, err error) {
 	if decoder, err = mapstructure.NewDecoder(&mapstructure.DecoderConfig{
 		ZeroFields: false,
 		Result:     &model,
+		Squash:     true,
 		TagName:    "json",
 	}); nil != err {
 		return
@@ -39,6 +40,7 @@ func MapToStruct(model map[string]interface{}, obj interface{}) (err error) {
 	if decoder, err = mapstructure.NewDecoder(&mapstructure.DecoderConfig{
 		ZeroFields: false,
 		Result:     obj,
+		Squash:     true,
 		TagName:    "json",
 	}); nil != err {
 		return
