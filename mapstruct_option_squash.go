@@ -13,7 +13,7 @@ func Squash(squash bool) *mapstructOptionSquash {
 	}
 }
 
-// EnableSquash 开户嵌套
+// EnableSquash 开启嵌套
 func EnableSquash() *mapstructOptionSquash {
 	return Squash(true)
 }
