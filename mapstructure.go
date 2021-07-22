@@ -15,37 +15,43 @@ type (
 )
 
 // StructToMap 结构体转换成Map
-func StructToMap(obj interface{}) (model map[string]interface{}, err error) {
-	var decoder *mapstructure.Decoder
+func StructToMap(obj interface{}, opts ...mapstructOption) (model map[string]interface{}, err error) {
+	options := defaultMapstructOptions()
+	for _, opt := range opts {
+		opt.apply(options)
+	}
 
+	var decoder *mapstructure.Decoder
 	model = make(map[string]interface{})
 	if decoder, err = mapstructure.NewDecoder(&mapstructure.DecoderConfig{
-		ZeroFields: false,
+		ZeroFields: options.zeroFields,
 		Result:     &model,
-		Squash:     true,
-		TagName:    "json",
+		Squash:     options.squash,
+		TagName:    options.tag,
 	}); nil != err {
 		return
 	}
-
 	err = decoder.Decode(obj)
 
 	return
 }
 
 // MapToStruct Map转换成结构体
-func MapToStruct(model map[string]interface{}, obj interface{}) (err error) {
-	var decoder *mapstructure.Decoder
+func MapToStruct(model map[string]interface{}, obj interface{}, opts ...mapstructOption) (err error) {
+	options := defaultMapstructOptions()
+	for _, opt := range opts {
+		opt.apply(options)
+	}
 
+	var decoder *mapstructure.Decoder
 	if decoder, err = mapstructure.NewDecoder(&mapstructure.DecoderConfig{
-		ZeroFields: false,
+		ZeroFields: options.zeroFields,
 		Result:     obj,
-		Squash:     true,
-		TagName:    "json",
+		Squash:     options.squash,
+		TagName:    options.tag,
 	}); nil != err {
 		return
 	}
-
 	err = decoder.Decode(model)
 
 	return
