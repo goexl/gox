@@ -47,6 +47,6 @@ func (rm *reentrantMutex) Unlock() {
 		return
 	}
 
-	atomic.StoreUint64(&rm.owner, -1)
+	atomic.StoreUint64(&rm.owner, 0)
 	rm.Mutex.Unlock()
 }
