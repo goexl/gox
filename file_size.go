@@ -13,26 +13,26 @@ import (
 // 1K = 1*1024
 var (
 	sizeMap = map[units]int64{
-		g: 1024 * 1024 * 1024,
-		m: 1024 * 1024,
-		k: 1024,
+		gb: 1024 * 1024 * 1024,
+		mb: 1024 * 1024,
+		kb: 1024,
 	}
 )
 
 const (
-	g units = "g"
-	m units = "m"
-	k units = "k"
+	gb units = "gb"
+	mb units = "mb"
+	kb units = "kb"
 )
 
 type (
-	// 默认大小:B
+	// FileSize 默认大小:B
 	FileSize string
 	// 计量单位
 	units string
 )
 
-// 返回多少B
+// Size 返回多少B
 func (fs *FileSize) Size() (num int64) {
 	var (
 		str string
