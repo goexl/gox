@@ -58,12 +58,12 @@ func MapToStruct(model map[string]interface{}, obj interface{}, opts ...mapstruc
 }
 
 // CopyStruct 复制结构体数据
-func CopyStruct(from interface{}, to interface{}) (err error) {
+func CopyStruct(from interface{}, to interface{}, opts ...mapstructOption) (err error) {
 	tmp := make(map[string]interface{})
-	if tmp, err = StructToMap(from); nil != err {
+	if tmp, err = StructToMap(from, opts...); nil != err {
 		return
 	}
-	err = MapToStruct(tmp, to)
+	err = MapToStruct(tmp, to, opts...)
 
 	return
 }
