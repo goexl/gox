@@ -18,7 +18,7 @@ type (
 func StructToMap(obj interface{}, opts ...mapstructOption) (model map[string]interface{}, err error) {
 	options := defaultMapstructOptions()
 	for _, opt := range opts {
-		opt.apply(options)
+		opt.applyMapstruct(options)
 	}
 
 	var decoder *mapstructure.Decoder
@@ -40,7 +40,7 @@ func StructToMap(obj interface{}, opts ...mapstructOption) (model map[string]int
 func MapToStruct(model map[string]interface{}, obj interface{}, opts ...mapstructOption) (err error) {
 	options := defaultMapstructOptions()
 	for _, opt := range opts {
-		opt.apply(options)
+		opt.applyMapstruct(options)
 	}
 
 	var decoder *mapstructure.Decoder

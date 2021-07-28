@@ -1,5 +1,5 @@
 package gox
 
 type mapstructOption interface {
-	apply(options *mapstructOptions)
+	applyMapstruct(options *mapstructOptions)
 }
