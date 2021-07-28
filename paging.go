@@ -18,10 +18,6 @@ type Paging struct {
 	Order string `default:"DESC" json:"order" validate:"oneof=asc ASC ascending ASCENDING desc DESC descending DESCENDING"`
 }
 
-// Sorter 排序
-type Sorter interface {
-	SortFieldName() string
-}
 
 // OrderBy 排序字符串
 func (p *Paging) OrderBy(sorter Sorter) string {
@@ -30,7 +26,7 @@ func (p *Paging) OrderBy(sorter Sorter) string {
 		order = "DESC"
 	}
 
-	return fmt.Sprintf("`%s` %s", sorter.SortFieldName(), order)
+	return fmt.Sprintf("`%s` %s", sorter.SortField(), order)
 }
 
 // MySQL 获得MySQL需要的分页参数
