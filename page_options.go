@@ -1,9 +1,9 @@
 package gox
 
 type pageOptions struct {
-	size  int
-	page  int
-	extra map[string]interface{}
+	size   int
+	page   int
+	fields []Field
 }
 
 func defaultPageOptions() *pageOptions {

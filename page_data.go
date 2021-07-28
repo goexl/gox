@@ -18,7 +18,7 @@ type pageData struct {
 	// 数据列表
 	Items interface{} `json:"-"`
 	// 额外数据
-	Extra map[string]interface{} `json:"-"`
+	Fields []Field `json:"-"`
 }
 
 // NewPage 生成新的分页数据对象
@@ -50,7 +50,7 @@ func NewPage(items interface{}, total int64, opts ...pageOption) *pageData {
 		Total:   total,
 		Pages:   pages,
 		Items:   items,
-		Extra:   options.extra,
+		Fields:  options.fields,
 	}
 }
 
@@ -62,8 +62,8 @@ func (pd pageData) MarshalJSON() ([]byte, error) {
 	page["total"] = pd.Total
 	page["items"] = pd.Items
 	page["pages"] = pd.Pages
-	for key, value := range pd.Extra {
-		page[key] = value
+	for _, field := range pd.Fields {
+		page[field.Key()] = field.Value()
 	}
 
 	return json.Marshal(page)
