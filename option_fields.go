@@ -13,6 +13,6 @@ func Fields(fields ...Field) *optionFields {
 	}
 }
 
-func (e *optionFields) applyPage(options *pageOptions) {
-	options.fields = e.fields
+func (f *optionFields) applyPage(options *pageOptions) {
+	options.fields = f.fields
 }
