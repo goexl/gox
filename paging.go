@@ -15,7 +15,7 @@ type Paging struct {
 	// 查询关键字
 	Keyword string `json:"keyword"`
 	// 排序顺序
-	Sort string `default:"DESC" json:"sort" validate:"oneof=asc ASC ascending ASCENDING desc DESC descending DESCENDING"`
+	Order string `default:"DESC" json:"order" validate:"oneof=asc ASC ascending ASCENDING desc DESC descending DESCENDING"`
 }
 
 // Sorter 排序
@@ -25,12 +25,12 @@ type Sorter interface {
 
 // OrderBy 排序字符串
 func (p *Paging) OrderBy(sorter Sorter) string {
-	sortOrder := "ASC"
-	if strings.HasPrefix(strings.ToLower(p.Sort), "desc") {
-		sortOrder = "DESC"
+	order := "ASC"
+	if strings.HasPrefix(strings.ToLower(p.Order), "desc") {
+		order = "DESC"
 	}
 
-	return fmt.Sprintf("`%s` %s", sorter.SortFieldName(), sortOrder)
+	return fmt.Sprintf("`%s` %s", sorter.SortFieldName(), order)
 }
 
 // MySQL 获得MySQL需要的分页参数
