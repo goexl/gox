@@ -11,11 +11,11 @@ type Paging struct {
 	// 当前页
 	Page int `default:"1" json:"page" validate:"min=1"`
 	// 每页个数
-	PerPage int `default:"20" json:"perPage" validate:"min=1"`
+	Size int `default:"20" json:"size" validate:"min=1"`
 	// 查询关键字
 	Keyword string `json:"keyword"`
 	// 排序顺序
-	SortOrder string `default:"DESC" json:"sortOrder" validate:"oneof=asc ASC ascending ASCENDING desc DESC descending DESCENDING"`
+	Sort string `default:"DESC" json:"sort" validate:"oneof=asc ASC ascending ASCENDING desc DESC descending DESCENDING"`
 }
 
 // Sorter 排序
@@ -26,7 +26,7 @@ type Sorter interface {
 // OrderBy 排序字符串
 func (p *Paging) OrderBy(sorter Sorter) string {
 	sortOrder := "ASC"
-	if strings.HasPrefix(strings.ToLower(p.SortOrder), "desc") {
+	if strings.HasPrefix(strings.ToLower(p.Sort), "desc") {
 		sortOrder = "DESC"
 	}
 
@@ -35,17 +35,17 @@ func (p *Paging) OrderBy(sorter Sorter) string {
 
 // MySQL 获得MySQL需要的分页参数
 func (p *Paging) MySQL() (start int, offset int) {
-	return p.PerPage, (p.Page - 1) * p.PerPage
+	return p.Size, (p.Page - 1) * p.Size
 }
 
 // Start 获得开始下标
 func (p *Paging) Start() int {
-	return (p.Page - 1) * p.PerPage
+	return (p.Page - 1) * p.Size
 }
 
 // Limit 获得限制个数
 func (p *Paging) Limit() int {
-	return p.PerPage
+	return p.Size
 }
 
 var (
