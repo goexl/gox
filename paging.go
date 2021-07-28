@@ -8,13 +8,13 @@ import (
 // Paging 分页对象
 type Paging struct {
 	// 当前页
-	Page int `default:"1" json:"page" validate:"min=1"`
+	Page int `default:"1" json:"page" param:"page" query:"page" form:"page" xml:"page" validate:"min=1"`
 	// 每页个数
-	Size int `default:"20" json:"size" validate:"min=1"`
+	Size int `default:"20" json:"size" param:"size" query:"size" form:"size" xml:"size" validate:"min=1"`
 	// 查询关键字
-	Keyword string `json:"keyword"`
+	Keyword string `json:"keyword" param:"keyword" query:"keyword" form:"keyword" xml:"keyword" `
 	// 排序顺序
-	Order string `default:"DESC" json:"order" validate:"oneof=asc ASC ascending ASCENDING desc DESC descending DESCENDING"`
+	Order string `default:"DESC" json:"order" param:"order" query:"order" form:"order" xml:"order"  validate:"oneof=asc ASC ascending ASCENDING desc DESC descending DESCENDING"`
 }
 
 
