@@ -1,8 +1,8 @@
 package gox
 
 type pageOptions struct {
-	size   int
-	page   int
+	size   int32
+	page   int32
 	fields []Field
 }
 

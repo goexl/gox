@@ -6,7 +6,7 @@ import (
 
 type pageData struct {
 	// 当前页码
-	Page int `json:"-"`
+	Page int32 `json:"-"`
 	// 是否还有下一页数据
 	HasNext bool `json:"-"`
 	// 是否有上一页数据
