@@ -14,5 +14,7 @@ func Size(size int32) *optionSize {
 }
 
 func (s *optionSize) applyPage(options *pageOptions) {
-	options.size = s.size
+	if 0 != s.size {
+		options.size = s.size
+	}
 }

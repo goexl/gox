@@ -14,5 +14,7 @@ func Page(page int32) *optionPage {
 }
 
 func (p *optionPage) applyPage(options *pageOptions) {
-	options.page = p.page
+	if 0 != p.page {
+		options.page = p.page
+	}
 }
