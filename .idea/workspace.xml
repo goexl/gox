@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="11390517-a554-4a74-95c9-b0de85f4187c" name="Default Changelist" comment="" />
+    <list default="true" id="11390517-a554-4a74-95c9-b0de85f4187c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setter/duration.go" beforeDir="false" afterPath="$PROJECT_DIR$/setter/duration.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setter/string.go" beforeDir="false" afterPath="$PROJECT_DIR$/setter/string.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +28,13 @@
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="3" />
   </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
+  </component>
   <component name="GoVcsConfiguration">
     <option name="GO_FMT" value="false" />
   </component>
@@ -36,7 +50,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
@@ -52,7 +68,8 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="将可重入锁放到guc包中" />
     <MESSAGE value="修复页数和每页个数类型" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复页数和每页个数类型" />
+    <MESSAGE value="修复页数和个数为0时除0错误" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复页数和个数为0时除0错误" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
