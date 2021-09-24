@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11390517-a554-4a74-95c9-b0de85f4187c" name="Default Changelist" comment="">
+    <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="修复页数和每页个数类型">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setter/duration.go" beforeDir="false" afterPath="$PROJECT_DIR$/setter/duration.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setter/string.go" beforeDir="false" afterPath="$PROJECT_DIR$/setter/string.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/error.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page_data.go" beforeDir="false" afterPath="$PROJECT_DIR$/page.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page_option.go" beforeDir="false" afterPath="$PROJECT_DIR$/page_option.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page_options.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uri.go" beforeDir="false" afterPath="$PROJECT_DIR$/uri_scheme.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +44,7 @@
   <component name="ProjectId" id="1viTJKDE5lJaZiQuQwaRsY7xVh6" />
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -55,6 +59,10 @@
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -64,12 +72,23 @@
   <component name="UpdateCopyrightCheckinHandler">
     <option name="UPDATE_COPYRIGHT" value="true" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="828d9e7a-1e1f-45f9-8b73-022032dfa7d9">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="将可重入锁放到guc包中" />
     <MESSAGE value="修复页数和每页个数类型" />
-    <MESSAGE value="修复页数和个数为0时除0错误" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复页数和个数为0时除0错误" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复页数和每页个数类型" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
