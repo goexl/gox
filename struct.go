@@ -14,20 +14,20 @@ type (
 
 	// CreatedStruct 带创建时间模型
 	CreatedStruct struct {
-		// CreatedAt 创建时间
-		CreatedAt time.Time `xorm:"created default('2020-02-04 09:55:52')" json:"createdAt"`
+		// 创建时间
+		Created time.Time `xorm:"created default('2020-02-04 09:55:52')" json:"created"`
 	}
 
 	// UpdatedStruct 带修改时间模型
 	UpdatedStruct struct {
-		// UpdatedAt 最后更新时间
-		UpdatedAt time.Time `xorm:"updated default('2020-02-04 09:55:52')" json:"updatedAt"`
+		// 最后更新时间
+		Updated time.Time `xorm:"updated default('2020-02-04 09:55:52')" json:"updated"`
 	}
 
 	// DeletedStruct 软删除模型
 	DeletedStruct struct {
-		// DeletedAt 删除时间，用户软删除
-		DeletedAt time.Time `xorm:"deleted default('2020-02-04 09:55:52')" json:"deletedAt"`
+		// 删除时间，用户软删除
+		Deleted time.Time `xorm:"deleted default('2020-02-04 09:55:52')" json:"deleted"`
 	}
 
 	// BaseStruct 基础数据库模型
