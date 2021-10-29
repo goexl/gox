@@ -4,7 +4,7 @@ import (
 	`encoding/json`
 )
 
-type pageData struct {
+type page struct {
 	// 当前页码
 	Page int32 `json:"-"`
 	// 是否还有下一页数据
@@ -22,7 +22,7 @@ type pageData struct {
 }
 
 // NewPage 生成新的分页数据对象
-func NewPage(items interface{}, total int64, opts ...pageOption) *pageData {
+func NewPage(items interface{}, total int64, opts ...pageOption) *page {
 	options := defaultPageOptions()
 	for _, opt := range opts {
 		opt.applyPage(options)
@@ -43,7 +43,7 @@ func NewPage(items interface{}, total int64, opts ...pageOption) *pageData {
 		hasNext = true
 	}
 
-	return &pageData{
+	return &page{
 		Page:    options.page,
 		HasNext: hasNext,
 		HasPrev: hasPrev,
@@ -54,17 +54,17 @@ func NewPage(items interface{}, total int64, opts ...pageOption) *pageData {
 	}
 }
 
-func (pd pageData) MarshalJSON() ([]byte, error) {
-	page := make(map[string]interface{}, 7)
-	page["page"] = pd.Page
-	page["hasNext"] = pd.HasNext
-	page["hasPrev"] = pd.HasPrev
-	page["total"] = pd.Total
-	page["items"] = pd.Items
-	page["pages"] = pd.Pages
-	for _, field := range pd.Fields {
-		page[field.Key()] = field.Value()
+func (p page) MarshalJSON() ([]byte, error) {
+	data := make(map[string]interface{}, 7)
+	data[`page`] = p.Page
+	data[`hasNext`] = p.HasNext
+	data[`hasPrev`] = p.HasPrev
+	data[`total`] = p.Total
+	data[`items`] = p.Items
+	data[`pages`] = p.Pages
+	for _, field := range p.Fields {
+		data[field.Key()] = field.Value()
 	}
 
-	return json.Marshal(page)
+	return json.Marshal(data)
 }
