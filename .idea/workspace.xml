@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="修复页数和每页个数类型">
-      <change afterPath="$PROJECT_DIR$/option_data.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/error.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/error_var.go" beforeDir="false" afterPath="$PROJECT_DIR$/error_var.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/field.go" beforeDir="false" afterPath="$PROJECT_DIR$/field.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/option_fields.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/page_data.go" beforeDir="false" afterPath="$PROJECT_DIR$/page.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page_option.go" beforeDir="false" afterPath="$PROJECT_DIR$/page_option.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page_options.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uri.go" beforeDir="false" afterPath="$PROJECT_DIR$/uri_scheme.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +86,8 @@
     <MESSAGE value="修复页数和每页个数类型" />
     <MESSAGE value="废除Timestamp" />
     <MESSAGE value="替换时间字段为一个单词" />
-    <option name="LAST_COMMIT_MESSAGE" value="替换时间字段为一个单词" />
+    <MESSAGE value="增加字段列表类型" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加字段列表类型" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

@@ -12,7 +12,7 @@ type (
 )
 
 func (f Fields) Connects(fields Fields) (new Fields) {
-	new = make([]Field, len(f)+len(fields))
+	new = make([]Field, 0, len(f)+len(fields))
 	for _, _f := range f {
 		new = append(new, _f)
 	}
@@ -24,7 +24,7 @@ func (f Fields) Connects(fields Fields) (new Fields) {
 }
 
 func (f Fields) Connect(field Field) (new Fields) {
-	new = make([]Field, len(f)+1)
+	new = make([]Field, 0, len(f)+1)
 	new = append(new, field)
 
 	return
