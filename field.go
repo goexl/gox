@@ -25,6 +25,9 @@ func (f Fields) Connects(fields Fields) (new Fields) {
 
 func (f Fields) Connect(field Field) (new Fields) {
 	new = make([]Field, 0, len(f)+1)
+	for _, _f := range f {
+		new = append(new, _f)
+	}
 	new = append(new, field)
 
 	return
