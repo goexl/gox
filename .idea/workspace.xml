@@ -89,7 +89,8 @@
     <MESSAGE value="替换时间字段为一个单词" />
     <MESSAGE value="增加字段列表类型" />
     <MESSAGE value="修复页数和每页个数类型" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复页数和每页个数类型" />
+    <MESSAGE value="字段列表改为接口实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="字段列表改为接口实现" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

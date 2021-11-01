@@ -10,20 +10,24 @@ type (
 	// Fields 字段列表
 	Fields []Field
 
-	fielder interface {
+	fields interface {
 		// Fields 生成字段列表
 		Fields() Fields
 	}
 )
 
-func (f Fields) Connects(fielder fielder) (new Fields) {
-	new = make([]Field, 0, len(f)+len(fielder.Fields()))
+func (f Fields) Connects(fields ...fields) (new Fields) {
+	// 默认创建16个元素，然后再做精简
+	new = make([]Field, 0, 16)
 	for _, _f := range f {
 		new = append(new, _f)
 	}
-	for _, _f := range fielder.Fields() {
-		new = append(new, _f)
+	for _, field := range fields {
+		for _, _f := range field.Fields() {
+			new = append(new, _f)
+		}
 	}
+	fields = fields[:0]
 
 	return
 }
