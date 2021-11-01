@@ -9,14 +9,19 @@ type (
 
 	// Fields 字段列表
 	Fields []Field
+
+	fielder interface {
+		// Fields 生成字段列表
+		Fields() Fields
+	}
 )
 
-func (f Fields) Connects(fields Fields) (new Fields) {
-	new = make([]Field, 0, len(f)+len(fields))
+func (f Fields) Connects(fielder fielder) (new Fields) {
+	new = make([]Field, 0, len(f)+len(fielder.Fields()))
 	for _, _f := range f {
 		new = append(new, _f)
 	}
-	for _, _f := range fields {
+	for _, _f := range fielder.Fields() {
 		new = append(new, _f)
 	}
 
