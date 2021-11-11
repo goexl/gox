@@ -1,6 +1,8 @@
 package gox
 
 const (
+	// URISchemeUnknown 未知协议
+	URISchemeUnknown URIScheme = ``
 	// URISchemeSocksV4 Socks协议
 	URISchemeSocksV4 URIScheme = `socks4`
 	// URISchemeSocksV5 Socks协议

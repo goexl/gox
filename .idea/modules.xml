@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../drone-protobuf/.idea/drone-protobuf.iml" filepath="$PROJECT_DIR$/../drone-protobuf/.idea/drone-protobuf.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/gox.iml" filepath="$PROJECT_DIR$/.idea/gox.iml" />
     </modules>
   </component>
