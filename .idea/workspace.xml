@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../echox/binder.go" beforeDir="false" afterPath="$PROJECT_DIR$/../echox/binder.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../echox/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../echox/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../echox/option.go" beforeDir="false" afterPath="$PROJECT_DIR$/../echox/option.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../echox/option_binder.go" beforeDir="false" afterPath="$PROJECT_DIR$/../echox/option_binder.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +125,8 @@
     <MESSAGE value="项目初始化" />
     <MESSAGE value="增加模块描述文件" />
     <MESSAGE value="支持更简单的json语法" />
-    <option name="LAST_COMMIT_MESSAGE" value="支持更简单的json语法" />
+    <MESSAGE value="修复默认值" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复默认值" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
