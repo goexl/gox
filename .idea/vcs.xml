@@ -9,5 +9,7 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../echox" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../god" vcs="Git" />
   </component>
 </project>

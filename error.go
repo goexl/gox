@@ -10,56 +10,55 @@ type (
 
 	// Error 接口，符合条件的错误统一处理
 	Error interface {
-		// ToErrorCode 返回错误码
-		ToErrorCode() ErrorCode
-		// ToMessage 返回错误消息
-		ToMessage() string
-		// ToData 返回错误实体
+		// ErrorCode 返回错误码
+		ErrorCode() ErrorCode
+		// Message 返回错误消息
+		Message() string
+		// Fields 返回错误实体
 		// 在某些错误下，可能需要返回额外的信息给前端处理
 		// 比如，认证错误，需要返回哪些字段有错误
-		ToData() interface{}
+		Fields() Fields
 	}
 
-	// CodeError 带错误编号和消息的错误
-	CodeError struct {
+	codeError struct {
 		// 错误码
-		ErrorCode ErrorCode `json:"errorCode"`
+		Code ErrorCode `json:"code"`
 		// 消息
 		Message string `json:"message"`
 		// 数据
-		Data interface{} `json:"data"`
+		Fields Fields `json:"data"`
 	}
 )
 
 // NewCodeError 创建错误
-func NewCodeError(errorCode ErrorCode, message string, data interface{}) *CodeError {
-	return &CodeError{
-		ErrorCode: errorCode,
-		Message:   message,
-		Data:      data,
+func NewCodeError(errorCode ErrorCode, message string, fields Fields) *codeError {
+	return &codeError{
+		Code:    errorCode,
+		Message: message,
+		Data:    data,
 	}
 }
 
 // ParseCodeError 从JSON字符串中解析错误
-func ParseCodeError(str string) (ec *CodeError, err error) {
+func ParseCodeError(str string) (ec *codeError, err error) {
 	err = json.Unmarshal([]byte(str), &ec)
 
 	return
 }
 
-func (ce *CodeError) ToErrorCode() ErrorCode {
+func (ce *codeError) ToErrorCode() ErrorCode {
 	return ce.ErrorCode
 }
 
-func (ce *CodeError) ToMessage() string {
+func (ce *codeError) ToMessage() string {
 	return ce.Message
 }
 
-func (ce *CodeError) ToData() interface{} {
+func (ce *codeError) ToData() interface{} {
 	return ce.Data
 }
 
-func (ce *CodeError) Error() (str string) {
+func (ce *codeError) Error() (str string) {
 	if data, err := json.Marshal(ce); nil != err {
 		return
 	} else {

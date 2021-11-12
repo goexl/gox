@@ -6,5 +6,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="drone-protobuf" />
+    <orderEntry type="module" module-name="echox" />
+    <orderEntry type="module" module-name="god" />
   </component>
 </module>
