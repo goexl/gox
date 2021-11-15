@@ -9,5 +9,7 @@
     <orderEntry type="module" module-name="echox" />
     <orderEntry type="module" module-name="god" />
     <orderEntry type="module" module-name="simaqian" />
+    <orderEntry type="module" module-name="drone-mcu" />
+    <orderEntry type="module" module-name="drone-tig" />
   </component>
 </module>
