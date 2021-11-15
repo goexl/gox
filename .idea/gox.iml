@@ -8,5 +8,6 @@
     <orderEntry type="module" module-name="drone-protobuf" />
     <orderEntry type="module" module-name="echox" />
     <orderEntry type="module" module-name="god" />
+    <orderEntry type="module" module-name="simaqian" />
   </component>
 </module>
