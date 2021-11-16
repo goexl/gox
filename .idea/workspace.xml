@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ubuntu-setup/setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../ubuntu-setup/setup.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +27,7 @@
         <option name="title" value="All" />
       </GitPushTagMode>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../mengpo" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../ubuntu-setup" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -85,7 +85,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mengpo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ubuntu-setup" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -136,7 +136,8 @@
     <MESSAGE value="默认值支持环境变量" />
     <MESSAGE value="升级依赖" />
     <MESSAGE value="增加生命周期方法配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加生命周期方法配置" />
+    <MESSAGE value="更新依赖" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新依赖" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
