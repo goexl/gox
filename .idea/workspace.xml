@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../god/default.go" beforeDir="false" afterPath="$PROJECT_DIR$/../god/default.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mengpo/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gox.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gox.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lijing/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../lijing/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mengpo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mengpo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mengpo/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../mengpo/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +34,7 @@
         <option name="title" value="All" />
       </GitPushTagMode>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../god" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../mengpo" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -59,9 +62,7 @@
     <setting file="file://$PROJECT_DIR$/page.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/paging.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/error.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../god/const.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/error_var.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../god/go.mod" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/size.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../echox/context.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../echox/option.go" root0="FORCE_HIGHLIGHTING" />
@@ -69,12 +70,9 @@
     <setting file="file://$PROJECT_DIR$/field.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/file_size.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/option_page.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../god/error.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../echox/option_binder.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../god/default.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/option_size.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.16.4/src/time/time.go" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/../god/setter.go" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1viTJKDE5lJaZiQuQwaRsY7xVh6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -94,7 +92,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../drone-mcu" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mengpo" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -142,7 +140,8 @@
     <MESSAGE value="增加使用方法文档" />
     <MESSAGE value="提出常量" />
     <MESSAGE value="升级依赖" />
-    <option name="LAST_COMMIT_MESSAGE" value="升级依赖" />
+    <MESSAGE value="默认值支持环境变量" />
+    <option name="LAST_COMMIT_MESSAGE" value="默认值支持环境变量" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

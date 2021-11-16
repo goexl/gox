@@ -7,9 +7,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="drone-protobuf" />
     <orderEntry type="module" module-name="echox" />
-    <orderEntry type="module" module-name="god" />
     <orderEntry type="module" module-name="simaqian" />
     <orderEntry type="module" module-name="drone-mcu" />
     <orderEntry type="module" module-name="drone-tig" />
+    <orderEntry type="module" module-name="lijing" />
+    <orderEntry type="module" module-name="mengpo" />
   </component>
 </module>

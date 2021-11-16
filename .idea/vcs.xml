@@ -12,7 +12,8 @@
     <mapping directory="$PROJECT_DIR$/../drone-mcu" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../drone-tig" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../echox" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../god" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../lijing" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../mengpo" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../simaqian" vcs="Git" />
   </component>
 </project>
