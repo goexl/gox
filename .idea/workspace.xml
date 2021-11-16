@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../mengpo/before_func.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mengpo/option_before.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mengpo/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../mengpo/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mengpo/mengpo.go" beforeDir="false" afterPath="$PROJECT_DIR$/../mengpo/mengpo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mengpo/option.go" beforeDir="false" afterPath="$PROJECT_DIR$/../mengpo/option.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +135,8 @@
     <MESSAGE value="提出常量" />
     <MESSAGE value="默认值支持环境变量" />
     <MESSAGE value="升级依赖" />
-    <option name="LAST_COMMIT_MESSAGE" value="升级依赖" />
+    <MESSAGE value="增加生命周期方法配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加生命周期方法配置" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
