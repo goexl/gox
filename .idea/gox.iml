@@ -13,5 +13,6 @@
     <orderEntry type="module" module-name="lijing" />
     <orderEntry type="module" module-name="mengpo" />
     <orderEntry type="module" module-name="ubuntu-setup" />
+    <orderEntry type="module" module-name="drone-git" />
   </component>
 </module>

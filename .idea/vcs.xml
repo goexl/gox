@@ -9,6 +9,7 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../drone-git" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../drone-mcu" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../drone-tig" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../echox" vcs="Git" />

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../drone-git/.idea/drone-git.iml" filepath="$PROJECT_DIR$/../drone-git/.idea/drone-git.iml" />
       <module fileurl="file://$PROJECT_DIR$/../drone-mcu/.idea/drone-mcu.iml" filepath="$PROJECT_DIR$/../drone-mcu/.idea/drone-mcu.iml" />
       <module fileurl="file://$PROJECT_DIR$/../drone-protobuf/.idea/drone-protobuf.iml" filepath="$PROJECT_DIR$/../drone-protobuf/.idea/drone-protobuf.iml" />
       <module fileurl="file://$PROJECT_DIR$/../drone-tig/.idea/drone-tig.iml" filepath="$PROJECT_DIR$/../drone-tig/.idea/drone-tig.iml" />
