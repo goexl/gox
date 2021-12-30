@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../drone-protobuf/build.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-protobuf/log.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../simaqian/option_stacktrace.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drone-git/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../drone-git/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drone-protobuf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/../drone-protobuf/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drone-protobuf/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../drone-protobuf/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../simaqian/options.go" beforeDir="false" afterPath="$PROJECT_DIR$/../simaqian/options.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../simaqian/template.go" beforeDir="false" afterPath="$PROJECT_DIR$/../simaqian/template.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -193,7 +186,8 @@
     <MESSAGE value="增加拉模式" />
     <MESSAGE value="增加CannotCopy和CannotCompare" />
     <MESSAGE value="增加取得日志级别的方法" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加取得日志级别的方法" />
+    <MESSAGE value="增加打印调用堆栈信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加打印调用堆栈信息" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
