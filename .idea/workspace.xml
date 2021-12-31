@@ -176,15 +176,35 @@
               </DockerEnvVarImpl>
               <DockerEnvVarImpl>
                 <option name="name" value="PLUGIN_AUTHOR" />
-                <option name="value" value="华寅" />
+                <option name="value" value="storezhang" />
               </DockerEnvVarImpl>
               <DockerEnvVarImpl>
                 <option name="name" value="PLUGIN_EMAIL" />
                 <option name="value" value="storezhang@gmail.com" />
               </DockerEnvVarImpl>
+              <DockerEnvVarImpl>
+                <option name="name" value="PLUGIN_PATH" />
+                <option name="value" value="/data/server" />
+              </DockerEnvVarImpl>
+              <DockerEnvVarImpl>
+                <option name="name" value="PLUGIN_SSH_KEY" />
+                <option name="value" value="-----BEGIN OPENSSH PRIVATE KEY-----&#10;b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW&#10;QyNTUxOQAAACCTheVNB7qqaT+NVZr65sWbax9yDtwq+SB/EZIwACYhUAAAAJh5OymfeTsp&#10;nwAAAAtzc2gtZWQyNTUxOQAAACCTheVNB7qqaT+NVZr65sWbax9yDtwq+SB/EZIwACYhUA&#10;AAAEDR2Z3hvDRifK5hz6j0n9OcnMRL7v5dh9WXDulgkjvcUJOF5U0HuqppP41VmvrmxZtr&#10;H3IO3Cr5IH8RkjAAJiFQAAAAFHN0b3JlemhhbmdAZ21haWwuY29tAQ==&#10;-----END OPENSSH PRIVATE KEY-----&#10;" />
+              </DockerEnvVarImpl>
+              <DockerEnvVarImpl>
+                <option name="name" value="PLUGIN_VERBOSE" />
+                <option name="value" value="true" />
+              </DockerEnvVarImpl>
             </list>
           </option>
           <option name="sourceFilePath" value="../drone-git/Dockerfile" />
+          <option name="volumeBindings">
+            <list>
+              <DockerVolumeBindingImpl>
+                <option name="containerPath" value="/data" />
+                <option name="hostPath" value="/home/storezhang/docker/pangu" />
+              </DockerVolumeBindingImpl>
+            </list>
+          </option>
         </settings>
       </deployment>
       <method v="2" />
@@ -238,7 +258,8 @@
     <MESSAGE value="增加CannotCopy和CannotCompare" />
     <MESSAGE value="增加取得日志级别的方法" />
     <MESSAGE value="增加打印调用堆栈信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加打印调用堆栈信息" />
+    <MESSAGE value="修复日志打印堆栈跳跃错误" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复日志打印堆栈跳跃错误" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
