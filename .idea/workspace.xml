@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../drone-git/clear.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/docker/etc/s6/fastgithub/finish" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/docker/etc/s6/fastgithub/run" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/env.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/git.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/github.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/log.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/push.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/setup.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../drone-git/ssh.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drone-git/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../drone-git/.editorconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../drone-git/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../drone-git/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../drone-git/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../drone-git/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -234,7 +219,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="将可重入锁放到guc包中" />
     <MESSAGE value="废除Timestamp" />
     <MESSAGE value="替换时间字段为一个单词" />
     <MESSAGE value="增加字段列表类型" />
@@ -259,7 +243,8 @@
     <MESSAGE value="增加取得日志级别的方法" />
     <MESSAGE value="增加打印调用堆栈信息" />
     <MESSAGE value="修复日志打印堆栈跳跃错误" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复日志打印堆栈跳跃错误" />
+    <MESSAGE value="修复增加FastGithub导致的推送失败" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复增加FastGithub导致的推送失败" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
