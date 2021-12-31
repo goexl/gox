@@ -165,7 +165,7 @@
                 <option name="value" value="storezhang@gmail.com" />
               </DockerEnvVarImpl>
               <DockerEnvVarImpl>
-                <option name="name" value="PLUGIN_PATH" />
+                <option name="name" value="PLUGIN_FOLDER" />
                 <option name="value" value="/data/server" />
               </DockerEnvVarImpl>
               <DockerEnvVarImpl>
