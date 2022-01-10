@@ -4,7 +4,40 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="" />
+    <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="修复增加FastGithub导致的推送失败">
+      <change afterPath="$PROJECT_DIR$/error_code.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/error_fields.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/content.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/copy.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/copy_option.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/matchable.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/mode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/name.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/name_option.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/option.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/option_ext.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/option_matchable.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/option_mode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/option_pattern.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/option_type.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/option_write_mode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/owner.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/type.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/valid.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/walk.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file/walk_option.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gox.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gox.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encrypt.go" beforeDir="false" afterPath="$PROJECT_DIR$/encrypt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/error.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/error_var.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/file/file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_copy.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_size.go" beforeDir="false" afterPath="$PROJECT_DIR$/file/size.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/size.go" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,7 +58,7 @@
         <option name="title" value="All" />
       </GitPushTagMode>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../drone-git" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -56,7 +89,7 @@
     <setting file="file://$PROJECT_DIR$/../drone-protobuf/config.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../simaqian/template.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../mengpo/before_func.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/file_size.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/file/size.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../mengpo/before_default.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../mengpo/option.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/field.go" root0="FORCE_HIGHLIGHTING" />
@@ -82,12 +115,10 @@
     <setting file="file://$PROJECT_DIR$/../simaqian/logger.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../echox/context.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../echox/option.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/size.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../echox/option_binder.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../echox/echo.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/option_page.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../simaqian/option_level.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/error_var.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../mengpo/go.mod" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -113,23 +144,44 @@
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../drone-git" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/file" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoProjectSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspaces\Jetbrains\storezhang\gox\file" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\drone-git" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\simaqian" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\drone-protobuf" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\mengpo" />
-      <recent name="D:\Workspaces\Jetbrains\storezhang\god" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Workspaces\Jetbrains\storezhang\gox\file" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.git">
+  <component name="RunManager" selected="Go Build.git">
+    <configuration name="git" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="drone-git" />
+      <working_directory value="$PROJECT_DIR$" />
+      <envs>
+        <env name="PLUGIN_REMOTE" value="git@github.com:storezhang/drone-git-test.git" />
+        <env name="PLUGIN_AUTHOR" value="storezhang" />
+        <env name="PLUGIN_EMAIL" value="storezhang@gmail.com" />
+        <env name="PLUGIN_FOLDER" value="${GO}" />
+        <env name="PLUGIN_SSH_KEY" value="-----BEGIN OPENSSH PRIVATE KEY----- b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW QyNTUxOQAAACCTheVNB7qqaT+NVZr65sWbax9yDtwq+SB/EZIwACYhUAAAAJh5OymfeTsp nwAAAAtzc2gtZWQyNTUxOQAAACCTheVNB7qqaT+NVZr65sWbax9yDtwq+SB/EZIwACYhUA AAAEDR2Z3hvDRifK5hz6j0n9OcnMRL7v5dh9WXDulgkjvcUJOF5U0HuqppP41VmvrmxZtr H3IO3Cr5IH8RkjAAJiFQAAAAFHN0b3JlemhhbmdAZ21haWwuY29tAQ\=\= -----END OPENSSH PRIVATE KEY----- " />
+        <env name="PLUGIN_VERBOSE" value="true" />
+        <env name="GO" value="/lang/go" />
+      </envs>
+      <kind value="PACKAGE" />
+      <package value="drone-git" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="git" type="ShConfigurationType" activateToolWindowBeforeRun="false">
       <option name="SCRIPT_TEXT" value="go build -o git" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
@@ -166,7 +218,7 @@
               </DockerEnvVarImpl>
               <DockerEnvVarImpl>
                 <option name="name" value="PLUGIN_FOLDER" />
-                <option name="value" value="/data/server" />
+                <option name="value" value="${GO}" />
               </DockerEnvVarImpl>
               <DockerEnvVarImpl>
                 <option name="name" value="PLUGIN_SSH_KEY" />
@@ -175,6 +227,10 @@
               <DockerEnvVarImpl>
                 <option name="name" value="PLUGIN_VERBOSE" />
                 <option name="value" value="true" />
+              </DockerEnvVarImpl>
+              <DockerEnvVarImpl>
+                <option name="name" value="GO" />
+                <option name="value" value="/lang/go" />
               </DockerEnvVarImpl>
             </list>
           </option>
@@ -193,6 +249,7 @@
     </configuration>
     <list>
       <item itemvalue="Docker.git" />
+      <item itemvalue="Go Build.git" />
       <item itemvalue="Shell Script.git" />
     </list>
   </component>
@@ -264,5 +321,16 @@
         <entry key="GOSUMDB" value="off" />
       </map>
     </environment>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/../drone-git/config.go</url>
+          <line>72</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

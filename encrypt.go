@@ -23,8 +23,9 @@ func Md5(from string) (to string, err error) {
 // SymmetricKey 生成对称加密算法密钥
 func SymmetricKey(bits uint) (key []byte, err error) {
 	if 0 != bits%8 {
-		err = ErrKeySize
-
+		err = NewFieldsError(`密钥位数8的倍数`)
+	}
+	if nil != err {
 		return
 	}
 
