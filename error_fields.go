@@ -43,7 +43,7 @@ func (fe *fieldsError) Error() (error string) {
 		output[`data`] = data
 	}
 
-	if bytes, err := json.Marshal(fe); nil != err {
+	if bytes, err := json.Marshal(output); nil != err {
 		error = err.Error()
 	} else {
 		error = string(bytes)

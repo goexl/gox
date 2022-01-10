@@ -5,8 +5,9 @@ import (
 	`path/filepath`
 )
 
-// Files 循环遍历目录
-func Files(dir string, opts ...walkOption) (paths []string, err error) {
+// All 取得目录下所有文件，包含子目录
+// 默认文件匹配所有文件
+func All(dir string, opts ...walkOption) (paths []string, err error) {
 	_options := defaultWalkOptions()
 	for _, opt := range opts {
 		opt.applyWalk(_options)
