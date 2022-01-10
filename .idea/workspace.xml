@@ -4,39 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="修复增加FastGithub导致的推送失败">
-      <change afterPath="$PROJECT_DIR$/error_code.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/error_fields.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/content.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/copy.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/copy_option.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/matchable.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/mode.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/name.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/name_option.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/option.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/option_ext.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/option_matchable.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/option_mode.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/option_pattern.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/option_type.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/option_write_mode.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/owner.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/type.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/valid.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/walk.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file/walk_option.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gox.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gox.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encrypt.go" beforeDir="false" afterPath="$PROJECT_DIR$/encrypt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/error.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/error_var.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/file/file.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_copy.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_size.go" beforeDir="false" afterPath="$PROJECT_DIR$/file/size.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/size.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/copy.go" beforeDir="false" afterPath="$PROJECT_DIR$/file/copy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/mode.go" beforeDir="false" afterPath="$PROJECT_DIR$/file/write_mode.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -283,8 +254,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="废除Timestamp" />
-    <MESSAGE value="替换时间字段为一个单词" />
     <MESSAGE value="增加字段列表类型" />
     <MESSAGE value="字段列表改为接口实现" />
     <MESSAGE value="修复页数和每页个数类型" />
@@ -308,7 +277,9 @@
     <MESSAGE value="增加打印调用堆栈信息" />
     <MESSAGE value="修复日志打印堆栈跳跃错误" />
     <MESSAGE value="修复增加FastGithub导致的推送失败" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复增加FastGithub导致的推送失败" />
+    <MESSAGE value="重构Error，增加codeError和fieldsError" />
+    <MESSAGE value="重构文件操作，增加file包" />
+    <option name="LAST_COMMIT_MESSAGE" value="重构文件操作，增加file包" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

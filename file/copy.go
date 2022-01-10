@@ -19,12 +19,12 @@ func Copy(from string, to string, opts ...copyOption) (err error) {
 	}
 
 	if !Exist(from) { // 判断源文件是否存在
-		err = gox.NewFieldsError(`源文件不存在`, field.String(`filepath`, from))
+		err = gox.NewFieldsError(`源文件不存在`, field.String(`path`, from))
 	} else if Exist(to) { // 判断目的文件是否存在
 		if WriteModeError == _options.mode {
-			err = gox.NewFieldsError(`目的文件已存在`, field.String(`filepath`, to))
-		} else if WriteModeSkip == _options.mode {
-			return
+			err = gox.NewFieldsError(`目的文件已存在`, field.String(`path`, to))
+		} else if WriteModeRename == _options.mode {
+			to = NewName(to)
 		}
 	}
 	if nil != err {
@@ -48,13 +48,13 @@ func copyDir(from string, to string, options *copyOptions) (err error) {
 		return
 	}
 
+	var info os.FileInfo
+	if info, err = os.Stat(from); nil != err {
+		return
+	}
 	// 如果目的目录不存在，则创建目录
 	if !Exist(to) {
-		if fi, fiErr := os.Stat(from); nil == fiErr {
-			err = os.MkdirAll(to, fi.Mode())
-		} else {
-			err = fiErr
-		}
+		err = os.MkdirAll(to, info.Mode())
 	}
 	if nil != err {
 		return
