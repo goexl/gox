@@ -1,4 +1,4 @@
-package gox
+package file
 
 import (
 	`fmt`
@@ -26,22 +26,22 @@ const (
 )
 
 type (
-	// FileSize 默认大小:B
-	FileSize string
+	// Size 默认大小:B
+	Size string
 	// 计量单位
 	units string
 )
 
-// Size 返回多少B
-func (fs *FileSize) Size() (num int64) {
+// Size 返回多少字节
+func (s *Size) Size() (num int64) {
 	var (
 		str string
 		sm  = make(map[units]int)
 		i   int
 	)
-	str = fs.toString()
+	str = s.toString()
 	for k := range sizeMap {
-		i, str = fs.toInt(str, k)
+		i, str = s.toInt(str, k)
 		sm[k] = i
 	}
 	if len(str) != 0 {
@@ -55,7 +55,7 @@ func (fs *FileSize) Size() (num int64) {
 	return
 }
 
-func (fs *FileSize) toInt(str string, u units) (i int, ret string) {
+func (s *Size) toInt(str string, u units) (i int, ret string) {
 	var err error
 	strs := strings.SplitN(str, u.toString(), 2)
 
@@ -76,8 +76,8 @@ func (fs *FileSize) toInt(str string, u units) (i int, ret string) {
 	return 0, ""
 }
 
-func (fs *FileSize) toString() string {
-	return strings.TrimSpace(strings.ToLower(string(*fs)))
+func (s *Size) toString() string {
+	return strings.TrimSpace(strings.ToLower(string(*s)))
 }
 
 func (u *units) toString() string {
