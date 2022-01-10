@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="" />
+    <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/exec/option_args.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exec/option_stderr.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exec/option_stdout.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exec/option_terminal.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exec/option.go" beforeDir="false" afterPath="$PROJECT_DIR$/exec/option.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +94,7 @@
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/exec" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -96,11 +103,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspaces\Jetbrains\storezhang\gox\exec" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\gox\file" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\drone-git" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\simaqian" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\drone-protobuf" />
-      <recent name="D:\Workspaces\Jetbrains\storezhang\mengpo" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Workspaces\Jetbrains\storezhang\gox\file" />
@@ -263,7 +270,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="修复页数和每页个数类型" />
     <MESSAGE value="增加未知协议" />
     <MESSAGE value="修复默认值设置" />
     <MESSAGE value="项目初始化" />
@@ -288,7 +294,8 @@
     <MESSAGE value="重构文件操作，增加file包" />
     <MESSAGE value="修复codeError和fieldError字符串为空" />
     <MESSAGE value="增加文件复制测试方法" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加文件复制测试方法" />
+    <MESSAGE value="增加Exec模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加Exec模块" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
