@@ -18,7 +18,7 @@ func Copy(from string, to string, opts ...copyOption) (err error) {
 		opt.applyCopy(_options)
 	}
 
-	if !Exist(from) { // 判断源文件是否存在
+	if !Exist(from) && WriteModeError != _options.mode { // 判断源文件是否存在
 		err = gox.NewFieldsError(`源文件不存在`, field.String(`path`, from))
 	} else if Exist(to) { // 判断目的文件是否存在
 		if WriteModeError == _options.mode {
