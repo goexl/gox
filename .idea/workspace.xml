@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/exec/option_args.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exec/option_stderr.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exec/option_stdout.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exec/option_terminal.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exec/option.go" beforeDir="false" afterPath="$PROJECT_DIR$/exec/option.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/walk.go" beforeDir="false" afterPath="$PROJECT_DIR$/file/walk.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +20,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.16.3" />
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.16.4" />
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
       <GitPushTagMode>
@@ -57,19 +53,43 @@
     <option name="GO_FMT" value="false" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/page.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/paging.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/field.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../mengpo/before_func.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-protobuf/env.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/option_size.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-protobuf/main.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-protobuf/config.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/template.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../mengpo/before_func.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/file/size.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../mengpo/before_default.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../mengpo/option.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../mengpo/go.mod" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/error.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/option_page.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/cannot_copy.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/field.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../mengpo/mengpo.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/page.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/simaqian.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/group.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/group_restful.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-tig/Dockerfile" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/cannot_copy.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-mcu/Dockerfile" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-tig/.github/workflows/docker.yml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-tig/drone.sh" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-tig/tag.sh" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/level.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/middleware.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-protobuf/go.mod" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/error.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-git/Dockerfile" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/cannot_compare.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.16.4/src/time/time.go" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/paging.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/logger.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/context.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/option.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/option_binder.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/echo.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/option_page.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/option_level.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../mengpo/go.mod" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -94,7 +114,7 @@
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/exec" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/file" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -103,142 +123,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Workspaces\Jetbrains\storezhang\gox\exec" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\gox\file" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\drone-git" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\simaqian" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\drone-protobuf" />
+      <recent name="D:\Workspaces\Jetbrains\storezhang\mengpo" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Workspaces\Jetbrains\storezhang\gox\file" />
     </key>
-  </component>
-  <component name="RunManager" selected="Go Test.TestCopy in github.com/storezhang/gox/file">
-    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
-      <module name="gox" />
-      <working_directory value="$PROJECT_DIR$" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="git" type="GoApplicationRunConfiguration" factoryName="Go Application">
-      <module name="drone-git" />
-      <working_directory value="$PROJECT_DIR$" />
-      <envs>
-        <env name="PLUGIN_REMOTE" value="git@github.com:storezhang/drone-git-test.git" />
-        <env name="PLUGIN_AUTHOR" value="storezhang" />
-        <env name="PLUGIN_EMAIL" value="storezhang@gmail.com" />
-        <env name="PLUGIN_FOLDER" value="${GO}" />
-        <env name="PLUGIN_SSH_KEY" value="-----BEGIN OPENSSH PRIVATE KEY----- b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW QyNTUxOQAAACCTheVNB7qqaT+NVZr65sWbax9yDtwq+SB/EZIwACYhUAAAAJh5OymfeTsp nwAAAAtzc2gtZWQyNTUxOQAAACCTheVNB7qqaT+NVZr65sWbax9yDtwq+SB/EZIwACYhUA AAAEDR2Z3hvDRifK5hz6j0n9OcnMRL7v5dh9WXDulgkjvcUJOF5U0HuqppP41VmvrmxZtr H3IO3Cr5IH8RkjAAJiFQAAAAFHN0b3JlemhhbmdAZ21haWwuY29tAQ\=\= -----END OPENSSH PRIVATE KEY----- " />
-        <env name="PLUGIN_VERBOSE" value="true" />
-        <env name="GO" value="/lang/go" />
-      </envs>
-      <kind value="PACKAGE" />
-      <package value="drone-git" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestCopy in github.com/storezhang/gox/file" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="gox" />
-      <working_directory value="$PROJECT_DIR$/file" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="github.com/storezhang/gox/file" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestCopy\E$" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
-      <module name="gox" />
-      <working_directory value="$PROJECT_DIR$" />
-      <go_parameters value="-i" />
-      <kind value="DIRECTORY" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <method v="2" />
-    </configuration>
-    <configuration name="git" type="ShConfigurationType" activateToolWindowBeforeRun="false">
-      <option name="SCRIPT_TEXT" value="go build -o git" />
-      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-      <option name="SCRIPT_PATH" value="go build -o git" />
-      <option name="SCRIPT_OPTIONS" value="" />
-      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/../drone-git" />
-      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
-      <option name="INTERPRETER_PATH" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="EXECUTE_IN_TERMINAL" value="true" />
-      <option name="EXECUTE_SCRIPT_FILE" value="false" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="git" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
-      <deployment type="dockerfile">
-        <settings>
-          <option name="imageTag" value="storezhang/git" />
-          <option name="containerName" value="Git" />
-          <option name="envVars">
-            <list>
-              <DockerEnvVarImpl>
-                <option name="name" value="PLUGIN_REMOTE" />
-                <option name="value" value="git@github.com:storezhang/drone-git-test.git" />
-              </DockerEnvVarImpl>
-              <DockerEnvVarImpl>
-                <option name="name" value="PLUGIN_AUTHOR" />
-                <option name="value" value="storezhang" />
-              </DockerEnvVarImpl>
-              <DockerEnvVarImpl>
-                <option name="name" value="PLUGIN_EMAIL" />
-                <option name="value" value="storezhang@gmail.com" />
-              </DockerEnvVarImpl>
-              <DockerEnvVarImpl>
-                <option name="name" value="PLUGIN_FOLDER" />
-                <option name="value" value="${GO}" />
-              </DockerEnvVarImpl>
-              <DockerEnvVarImpl>
-                <option name="name" value="PLUGIN_SSH_KEY" />
-                <option name="value" value="-----BEGIN OPENSSH PRIVATE KEY-----&#10;b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW&#10;QyNTUxOQAAACCTheVNB7qqaT+NVZr65sWbax9yDtwq+SB/EZIwACYhUAAAAJh5OymfeTsp&#10;nwAAAAtzc2gtZWQyNTUxOQAAACCTheVNB7qqaT+NVZr65sWbax9yDtwq+SB/EZIwACYhUA&#10;AAAEDR2Z3hvDRifK5hz6j0n9OcnMRL7v5dh9WXDulgkjvcUJOF5U0HuqppP41VmvrmxZtr&#10;H3IO3Cr5IH8RkjAAJiFQAAAAFHN0b3JlemhhbmdAZ21haWwuY29tAQ==&#10;-----END OPENSSH PRIVATE KEY-----&#10;" />
-              </DockerEnvVarImpl>
-              <DockerEnvVarImpl>
-                <option name="name" value="PLUGIN_VERBOSE" />
-                <option name="value" value="true" />
-              </DockerEnvVarImpl>
-              <DockerEnvVarImpl>
-                <option name="name" value="GO" />
-                <option name="value" value="/lang/go" />
-              </DockerEnvVarImpl>
-            </list>
-          </option>
-          <option name="sourceFilePath" value="../drone-git/Dockerfile" />
-          <option name="volumeBindings">
-            <list>
-              <DockerVolumeBindingImpl>
-                <option name="containerPath" value="/data" />
-                <option name="hostPath" value="/home/storezhang/docker/pangu" />
-              </DockerVolumeBindingImpl>
-            </list>
-          </option>
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Docker.git" />
-      <item itemvalue="Go Build.git" />
-      <item itemvalue="Shell Script.git" />
-      <item itemvalue="Go Test.TestCopy in github.com/storezhang/gox/file" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Test.TestCopy in github.com/storezhang/gox/file" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,6 +163,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="增加字段列表类型" />
+    <MESSAGE value="字段列表改为接口实现" />
+    <MESSAGE value="修复页数和每页个数类型" />
     <MESSAGE value="增加未知协议" />
     <MESSAGE value="修复默认值设置" />
     <MESSAGE value="项目初始化" />
@@ -292,10 +188,7 @@
     <MESSAGE value="修复增加FastGithub导致的推送失败" />
     <MESSAGE value="重构Error，增加codeError和fieldsError" />
     <MESSAGE value="重构文件操作，增加file包" />
-    <MESSAGE value="修复codeError和fieldError字符串为空" />
-    <MESSAGE value="增加文件复制测试方法" />
-    <MESSAGE value="增加Exec模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加Exec模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="重构文件操作，增加file包" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
