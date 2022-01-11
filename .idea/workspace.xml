@@ -5,8 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.drone.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/walk.go" beforeDir="false" afterPath="$PROJECT_DIR$/file/walk.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/content.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/copy.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/copy_option.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/copy_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/file.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/matchable.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/name.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/name_option.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/option.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/option_ext.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/option_matchable.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/option_mode.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/option_pattern.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/option_type.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/option_write_mode.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/owner.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/size.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/type.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/valid.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/walk.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/walk_option.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/write_mode.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/file/copy/.README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/file/copy/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +84,6 @@
     <setting file="file://$PROJECT_DIR$/../drone-protobuf/config.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../simaqian/template.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../mengpo/before_func.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/file/size.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../mengpo/before_default.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../mengpo/option.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/field.go" root0="FORCE_HIGHLIGHTING" />
@@ -114,7 +138,7 @@
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/file" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -123,11 +147,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspaces\Jetbrains\storezhang\gox" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\gox\file" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\drone-git" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\simaqian" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\drone-protobuf" />
-      <recent name="D:\Workspaces\Jetbrains\storezhang\mengpo" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Workspaces\Jetbrains\storezhang\gox\file" />
