@@ -5,33 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.drone.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/content.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/copy.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/copy_option.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/copy_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/file.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/matchable.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/name.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/name_option.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/option.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/option_ext.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/option_matchable.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/option_mode.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/option_pattern.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/option_type.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/option_write_mode.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/owner.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/size.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/type.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/valid.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/walk.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/walk_option.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/write_mode.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/file/copy/.README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/file/copy/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/field.go" beforeDir="false" afterPath="$PROJECT_DIR$/field.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,42 +53,42 @@
     <option name="GO_FMT" value="false" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../drone-protobuf/env.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../mengpo/option.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/echo.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/option_size.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../drone-protobuf/main.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../drone-protobuf/config.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../simaqian/template.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../mengpo/before_func.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../mengpo/before_default.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../mengpo/option.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/field.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../mengpo/mengpo.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/page.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/option_binder.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-protobuf/env.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/option.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../simaqian/simaqian.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../echox/group.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../echox/group_restful.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../drone-tig/Dockerfile" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/cannot_copy.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../drone-mcu/Dockerfile" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../drone-tig/.github/workflows/docker.yml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../drone-tig/drone.sh" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../drone-tig/tag.sh" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../simaqian/level.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../echox/middleware.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../drone-protobuf/go.mod" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-protobuf/config.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/error.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../drone-git/Dockerfile" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/cannot_compare.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.16.4/src/time/time.go" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/paging.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../simaqian/logger.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../echox/context.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../echox/option.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../echox/option_binder.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../echox/echo.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/option_page.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/level.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../simaqian/option_level.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/option_page.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-tig/Dockerfile" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/cannot_copy.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-tig/drone.sh" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-protobuf/go.mod" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-tig/.github/workflows/docker.yml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/field.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../mengpo/go.mod" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/page.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/cannot_compare.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/context.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../drone-mcu/Dockerfile" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/template.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/group.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../mengpo/before_func.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../mengpo/mengpo.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/group_restful.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/paging.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../mengpo/before_default.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.16.4/src/time/time.go" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/../drone-tig/tag.sh" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../echox/middleware.go" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -187,7 +162,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="增加字段列表类型" />
     <MESSAGE value="字段列表改为接口实现" />
     <MESSAGE value="修复页数和每页个数类型" />
     <MESSAGE value="增加未知协议" />
@@ -212,7 +186,8 @@
     <MESSAGE value="修复增加FastGithub导致的推送失败" />
     <MESSAGE value="重构Error，增加codeError和fieldsError" />
     <MESSAGE value="重构文件操作，增加file包" />
-    <option name="LAST_COMMIT_MESSAGE" value="重构文件操作，增加file包" />
+    <MESSAGE value="file包迁移到storezhang/gfx，exec包迁移到storezhang/gex" />
+    <option name="LAST_COMMIT_MESSAGE" value="file包迁移到storezhang/gfx，exec包迁移到storezhang/gex" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

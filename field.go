@@ -16,6 +16,12 @@ type (
 	}
 )
 
+// Fields 支持自身连写
+func (f Fields) Fields() Fields {
+	return f
+}
+
+// Connects 连接其它字段
 func (f Fields) Connects(fields ...fields) (new Fields) {
 	// 默认创建16个元素，然后再做精简
 	new = make([]Field, 0, 16)
@@ -32,6 +38,7 @@ func (f Fields) Connects(fields ...fields) (new Fields) {
 	return
 }
 
+// Connect 连接其它字段
 func (f Fields) Connect(field Field) (new Fields) {
 	new = make([]Field, 0, len(f)+1)
 	for _, _f := range f {
