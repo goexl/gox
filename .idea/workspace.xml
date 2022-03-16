@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/exception_message.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.drone.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.drone.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exception_field.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encrypt.go" beforeDir="false" afterPath="$PROJECT_DIR$/encrypt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/exception.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/error_code.go" beforeDir="false" afterPath="$PROJECT_DIR$/exception_code.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/error_fields.go" beforeDir="false" afterPath="$PROJECT_DIR$/exception_fields.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/field.go" beforeDir="false" afterPath="$PROJECT_DIR$/field.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exception.go" beforeDir="false" afterPath="$PROJECT_DIR$/exception.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exception_code.go" beforeDir="false" afterPath="$PROJECT_DIR$/exception_code.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exception_fields.go" beforeDir="false" afterPath="$PROJECT_DIR$/exception_fields.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +23,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.16.4" />
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.17.6" />
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
       <GitPushTagMode>
@@ -161,7 +158,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="增加字段列表类型" />
     <MESSAGE value="字段列表改为接口实现" />
     <MESSAGE value="修复页数和每页个数类型" />
     <MESSAGE value="增加未知协议" />
@@ -186,7 +182,8 @@
     <MESSAGE value="修复增加FastGithub导致的推送失败" />
     <MESSAGE value="重构Error，增加codeError和fieldsError" />
     <MESSAGE value="重构文件操作，增加file包" />
-    <option name="LAST_COMMIT_MESSAGE" value="重构文件操作，增加file包" />
+    <MESSAGE value="重构错误" />
+    <option name="LAST_COMMIT_MESSAGE" value="重构错误" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

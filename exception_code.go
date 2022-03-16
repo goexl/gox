@@ -14,7 +14,6 @@ type (
 	}
 
 	codeException struct {
-		// 错误码
 		code int
 	}
 )

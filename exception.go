@@ -17,11 +17,8 @@ type (
 	}
 
 	exception struct {
-		// 错误码
 		code int
-		// 消息
 		message string
-		// 数据
 		fields Fields
 	}
 )
@@ -66,9 +63,11 @@ func (e exception) MarshalJSON() (bytes []byte, err error) {
 
 func (e *exception) Error() string {
 	var sb strings.Builder
+	sb.WriteRune('{')
 	sb.WriteString(fmt.Sprintf(`code = %d, `, e.code))
 	sb.WriteString(fmt.Sprintf(`message = %s, `, e.message))
 	sb.WriteString(fmt.Sprintf(`data = %s`, e.fields.String()))
+	sb.WriteRune('}')
 
 	return sb.String()
 }
