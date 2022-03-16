@@ -3,7 +3,7 @@ package value
 import (
 	`time`
 
-	`github.com/storezhang/gox`
+	`github.com/goexl/gox`
 )
 
 var _ gox.Value = (*DurationsValue)(nil)

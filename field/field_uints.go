@@ -1,9 +1,9 @@
 package field
 
 import (
-	`github.com/storezhang/gox`
-	`github.com/storezhang/gox/key`
-	`github.com/storezhang/gox/value`
+	`github.com/goexl/gox`
+	`github.com/goexl/gox/key`
+	`github.com/goexl/gox/value`
 )
 
 var _ gox.Key = (*UintsField)(nil)

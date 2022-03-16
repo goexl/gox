@@ -1,7 +1,7 @@
 package value
 
 import (
-	`github.com/storezhang/gox`
+	`github.com/goexl/gox`
 )
 
 var _ gox.Value = (*Float64Value)(nil)

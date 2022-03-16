@@ -1,7 +1,7 @@
 package key
 
 import (
-	`github.com/storezhang/gox`
+	`github.com/goexl/gox`
 )
 
 var _ gox.Key = (*StringKey)(nil)
