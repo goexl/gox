@@ -1,41 +1,18 @@
 kind: pipeline
 type: docker
-name: Golang扩展库
+name: Gox
 
 
 clone:
   disable: true
 
 
-trigger:
-  event:
-    exclude:
-      - pull_request
-
-
 steps:
-  - name: 拉代码
-    image: plugins/git
-    pull: if-not-exists
+  - name: 代码
+    image: dronestock/git
 
   - name: 编译
-      image: dronestock/pangu
-      pull: if-not-exists
-      settings:
-        output: gox
-
-  - name: 打包Docker并推送
-    image: plugins/docker
-    when:
-      branch:
-        - develop
-        - master
+    image: pangum/pangu
     settings:
-      repo: storezhang/gox
-      tags:
-        - latest
-      compress: true
-      mirror: https://docker.mirrors.ustc.edu.cn
-      username: storezhang
-      password:
-        from_secret: token_docker
+      compress:
+        enabled: false

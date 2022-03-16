@@ -8,6 +8,12 @@ import (
 	`encoding/hex`
 )
 
+var (
+	_ = Md5
+	_ = SymmetricKey
+	_ = Sha256Hmac
+)
+
 // Md5 将字符串加密成Md5字符串
 func Md5(from string) (to string, err error) {
 	alg := md5.New()
@@ -23,7 +29,7 @@ func Md5(from string) (to string, err error) {
 // SymmetricKey 生成对称加密算法密钥
 func SymmetricKey(bits uint) (key []byte, err error) {
 	if 0 != bits%8 {
-		err = NewFieldsError(`密钥位数8的倍数`)
+		err = NewMessageException(`密钥位数8的倍数`)
 	}
 	if nil != err {
 		return

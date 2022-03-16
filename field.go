@@ -1,5 +1,10 @@
 package gox
 
+import (
+	`fmt`
+	`strings`
+)
+
 type (
 	// Field 用于描述一个字段（即键值对）
 	Field interface {
@@ -47,4 +52,13 @@ func (f Fields) Connect(field Field) (new Fields) {
 	new = append(new, field)
 
 	return
+}
+
+func (f Fields) String() string {
+	kvs := make([]string, 0, len(f))
+	for _, field := range f {
+		kvs = append(kvs, fmt.Sprintf(`%s = %v`, field.Key(), field.Value()))
+	}
+
+	return fmt.Sprintf(`[%s]`, strings.Join(kvs, `,`))
 }
