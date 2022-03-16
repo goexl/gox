@@ -9,6 +9,7 @@ import (
 var _ = NewFieldsException
 
 type (
+	// FieldsException 带多个字段列表的异常
 	FieldsException interface {
 		MessageException
 
@@ -24,7 +25,7 @@ type (
 	}
 )
 
-// NewFieldsException 创建错误
+// NewFieldsException 创建带多个字段列表的异常
 func NewFieldsException(message string, fields ...Field) *fieldsException {
 	return &fieldsException{
 		message: message,

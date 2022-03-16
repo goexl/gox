@@ -9,6 +9,7 @@ import (
 var _ = NewFieldException
 
 type (
+	// FieldException 带字段的异常
 	FieldException interface {
 		MessageException
 
@@ -24,7 +25,7 @@ type (
 	}
 )
 
-// NewFieldException 创建错误
+// NewFieldException 创建带字段的异常
 func NewFieldException(message string, field Field) *fieldException {
 	return &fieldException{
 		message: message,

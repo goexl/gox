@@ -6,8 +6,8 @@ import (
 
 var _ = NewCodeException
 
-// CodeException 带状态码的错误
 type (
+	// CodeException 带状态码的异常
 	CodeException interface {
 		// Code 返回错误码
 		Code() int
@@ -18,7 +18,7 @@ type (
 	}
 )
 
-// NewCodeException 创建异常
+// NewCodeException 创建带状态码的异常
 func NewCodeException(code int) *codeException {
 	return &codeException{
 		code: code,

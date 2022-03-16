@@ -7,7 +7,7 @@ import (
 var _ = NewMessageException
 
 type (
-	// MessageException 带消息的错误
+	// MessageException 带消息的异常
 	MessageException interface {
 		// Message 返回错误消息
 		Message() string
@@ -18,7 +18,7 @@ type (
 	}
 )
 
-// NewMessageException 创建异常
+// NewMessageException 创建带消息的异常
 func NewMessageException(message string) *messageException {
 	return &messageException{
 		message: message,
