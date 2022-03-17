@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception_code.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception_field.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception_fields.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception_message.go" beforeDir="false" />
-    </list>
+    <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -143,7 +136,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="字段列表改为接口实现" />
     <MESSAGE value="修复页数和每页个数类型" />
     <MESSAGE value="增加未知协议" />
     <MESSAGE value="修复默认值设置" />
@@ -168,7 +160,8 @@
     <MESSAGE value="重构Error，增加codeError和fieldsError" />
     <MESSAGE value="重构文件操作，增加file包" />
     <MESSAGE value="file包迁移到storezhang/gfx，exec包迁移到storezhang/gex" />
-    <option name="LAST_COMMIT_MESSAGE" value="file包迁移到storezhang/gfx，exec包迁移到storezhang/gex" />
+    <MESSAGE value="将异常迁移到goexl/exc" />
+    <option name="LAST_COMMIT_MESSAGE" value="将异常迁移到goexl/exc" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
