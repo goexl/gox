@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="" />
+    <list default="true" id="7c3af81f-0f05-4578-b918-d18cf4e4d9f6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exception.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exception_code.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exception_field.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exception_fields.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exception_message.go" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +24,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.17.6" />
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.16.4" />
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
       <GitPushTagMode>
@@ -50,14 +57,19 @@
     <option name="GO_FMT" value="false" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/page.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/paging.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/option_page.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/field.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/cannot_copy.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/level.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/option_page.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/simaqian.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/logger.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/option_size.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/exception.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/page.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/cannot_compare.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/option_level.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../simaqian/template.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/paging.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/cannot_copy.go" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../Developments/Google/Golang/go1.16.4/src/time/time.go" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -82,7 +94,7 @@
     <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.github" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -91,36 +103,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Workspaces\Jetbrains\storezhang\gox\.github" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\gox" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\gox\file" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\drone-git" />
       <recent name="D:\Workspaces\Jetbrains\storezhang\simaqian" />
+      <recent name="D:\Workspaces\Jetbrains\storezhang\drone-protobuf" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Workspaces\Jetbrains\storezhang\gox\file" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
-      <module name="gox" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="github.com/storezhang/gox" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
-      <module name="gox" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="DIRECTORY" />
-      <package value="github.com/storezhang/gox" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <method v="2" />
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +143,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="字段列表改为接口实现" />
+    <MESSAGE value="修复页数和每页个数类型" />
+    <MESSAGE value="增加未知协议" />
     <MESSAGE value="修复默认值设置" />
     <MESSAGE value="项目初始化" />
     <MESSAGE value="增加模块描述文件" />
@@ -173,11 +167,8 @@
     <MESSAGE value="修复增加FastGithub导致的推送失败" />
     <MESSAGE value="重构Error，增加codeError和fieldsError" />
     <MESSAGE value="重构文件操作，增加file包" />
-    <MESSAGE value="重构错误" />
-    <MESSAGE value="增加字段异常" />
-    <MESSAGE value="增加依赖自动升级" />
-    <MESSAGE value="storezhang/gox迁移到goexl/gox" />
-    <option name="LAST_COMMIT_MESSAGE" value="storezhang/gox迁移到goexl/gox" />
+    <MESSAGE value="file包迁移到storezhang/gfx，exec包迁移到storezhang/gex" />
+    <option name="LAST_COMMIT_MESSAGE" value="file包迁移到storezhang/gfx，exec包迁移到storezhang/gex" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
