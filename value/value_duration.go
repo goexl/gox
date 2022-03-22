@@ -1,12 +1,17 @@
 package value
 
 import (
+	`fmt`
 	`time`
 
 	`github.com/goexl/gox`
 )
 
-var _ gox.Value = (*DurationValue)(nil)
+var (
+	_           = Duration
+	_           = Durationp
+	_ gox.Value = (*DurationValue)(nil)
+)
 
 // DurationValue 时间段值
 type DurationValue struct {
@@ -27,4 +32,8 @@ func Durationp(value *time.Duration) DurationValue {
 
 func (dv *DurationValue) Value() interface{} {
 	return dv.value
+}
+
+func (dv *DurationValue) String() string {
+	return fmt.Sprintf(`%v`, *dv.value)
 }

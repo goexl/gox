@@ -1,6 +1,8 @@
 package value
 
 import (
+	`encoding/json`
+
 	`github.com/goexl/gox`
 )
 
@@ -20,4 +22,14 @@ func Float64s(value ...float64) Float64sValue {
 
 func (fv *Float64sValue) Value() interface{} {
 	return fv.value
+}
+
+func (fv *Float64sValue) String() (str string) {
+	if bytes, err := json.Marshal(fv.value); nil != err {
+		str = `error`
+	} else {
+		str = string(bytes)
+	}
+
+	return
 }

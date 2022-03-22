@@ -1,6 +1,8 @@
 package value
 
 import (
+	`encoding/json`
+
 	`github.com/goexl/gox`
 )
 
@@ -20,4 +22,14 @@ func Bools(value ...bool) BoolsValue {
 
 func (bv *BoolsValue) Value() interface{} {
 	return bv.value
+}
+
+func (bv *BoolsValue) String() (str string) {
+	if bytes, err := json.Marshal(bv.value); nil != err {
+		str = `error`
+	} else {
+		str = string(bytes)
+	}
+
+	return
 }

@@ -1,10 +1,16 @@
 package value
 
 import (
+	`fmt`
+
 	`github.com/goexl/gox`
 )
 
-var _ gox.Value = (*Float32Value)(nil)
+var (
+	_           = Float32
+	_           = Float32p
+	_ gox.Value = (*Float32Value)(nil)
+)
 
 // Float32Value 浮点值
 type Float32Value struct {
@@ -25,4 +31,8 @@ func Float32p(value *float32) Float32Value {
 
 func (fv *Float32Value) Value() interface{} {
 	return fv.value
+}
+
+func (fv *Float32Value) String() string {
+	return fmt.Sprintf(`%v`, *fv.value)
 }

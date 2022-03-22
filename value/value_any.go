@@ -1,6 +1,8 @@
 package value
 
 import (
+	`encoding/json`
+
 	`github.com/goexl/gox`
 )
 
@@ -20,4 +22,14 @@ func Any(value interface{}) AnyValue {
 
 func (av *AnyValue) Value() interface{} {
 	return av.value
+}
+
+func (av *AnyValue) String() (str string) {
+	if bytes, err := json.Marshal(av.value); nil != err {
+		str = `error`
+	} else {
+		str = string(bytes)
+	}
+
+	return
 }

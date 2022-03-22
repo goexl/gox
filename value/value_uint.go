@@ -1,10 +1,16 @@
 package value
 
 import (
+	`fmt`
+
 	`github.com/goexl/gox`
 )
 
-var _ gox.Value = (*UintValue)(nil)
+var (
+	_           = Uint
+	_           = Uintp
+	_ gox.Value = (*UintValue)(nil)
+)
 
 // UintValue 整形值
 type UintValue struct {
@@ -23,6 +29,10 @@ func Uintp(value *uint) UintValue {
 	}
 }
 
-func (iv *UintValue) Value() interface{} {
-	return iv.value
+func (uv *UintValue) Value() interface{} {
+	return uv.value
+}
+
+func (uv *UintValue) String() string {
+	return fmt.Sprintf(`%v`, *uv.value)
 }

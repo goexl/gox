@@ -1,6 +1,7 @@
 package value
 
 import (
+	`encoding/json`
 	`time`
 
 	`github.com/goexl/gox`
@@ -20,6 +21,16 @@ func Times(value ...time.Time) TimesValue {
 	}
 }
 
-func (iv *TimesValue) Value() interface{} {
-	return iv.value
+func (sv *TimesValue) Value() interface{} {
+	return sv.value
+}
+
+func (sv *TimesValue) String() (str string) {
+	if bytes, err := json.Marshal(sv.value); nil != err {
+		str = `error`
+	} else {
+		str = string(bytes)
+	}
+
+	return
 }

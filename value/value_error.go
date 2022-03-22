@@ -1,6 +1,8 @@
 package value
 
 import (
+	`encoding/json`
+
 	`github.com/goexl/gox`
 )
 
@@ -20,4 +22,14 @@ func Error(err error) ErrorValue {
 
 func (ev *ErrorValue) Value() interface{} {
 	return ev.value
+}
+
+func (ev *ErrorValue) String() (str string) {
+	if bytes, err := json.Marshal(ev.value); nil != err {
+		str = `error`
+	} else {
+		str = string(bytes)
+	}
+
+	return
 }
