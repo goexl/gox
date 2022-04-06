@@ -1,9 +1,15 @@
 package gox
 
 import (
-	`math`
-	`strconv`
-	`strings`
+	"math"
+	"strconv"
+	"strings"
+)
+
+const (
+	defaultFormatBase = 76
+	maxDecimalNum     = 9
+	maxFormatNum      = defaultFormatBase
 )
 
 var tenToAny = map[int]string{
@@ -85,45 +91,49 @@ var tenToAny = map[int]string{
 	75: "}",
 }
 
+// FormatIntd 进制转换，默认使用76进制
+func FormatIntd(num int64) string {
+	return FormatInt(num, defaultFormatBase)
+}
+
 // FormatInt 增强版进制转换，最大支持76进制
 func FormatInt(num int64, base int) string {
-	var (
-		remainder       int
-		remainderString string
-		finalBuilder    strings.Builder
-	)
-
+	var final strings.Builder
 	for 0 != num {
-		remainder = int(num % int64(base))
-		if 76 > remainder && 9 < remainder {
-			remainderString = tenToAny[remainder]
+		var current string = ""
+		remainder := int(num % int64(base))
+		if maxFormatNum > remainder && maxDecimalNum < remainder {
+			current = tenToAny[remainder]
 		} else {
-			remainderString = strconv.Itoa(remainder)
+			current = strconv.Itoa(remainder)
 		}
-		finalBuilder.WriteString(remainderString)
+		final.WriteString(current)
 		num = num / int64(base)
 	}
 
-	return finalBuilder.String()
+	return final.String()
+}
+
+// Atoid 进制转换，默认使用76进制
+func Atoid(num string) int64 {
+	return Atoi(num, defaultFormatBase)
 }
 
 // Atoi 增强版进制转换，支持任意进制，最大76进制
 func Atoi(num string, base int) int64 {
-	var newNum float64
-
-	newNum = 0.0
-	nNum := len(strings.Split(num, "")) - 1
+	final := 0.0
+	length := len(strings.Split(num, "")) - 1
 	for _, value := range strings.Split(num, "") {
 		tmp := float64(findKey(value))
 		if -1 != tmp {
-			newNum = newNum + tmp*math.Pow(float64(base), float64(nNum))
-			nNum = nNum - 1
+			final = final + tmp*math.Pow(float64(base), float64(length))
+			length = length - 1
 		} else {
 			break
 		}
 	}
 
-	return int64(newNum)
+	return int64(final)
 }
 
 func findKey(in string) (result int) {

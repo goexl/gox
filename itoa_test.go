@@ -1,7 +1,7 @@
 package gox
 
 import (
-	`testing`
+	"testing"
 )
 
 func TestFormatInt(t *testing.T) {
@@ -18,10 +18,10 @@ func TestFormatInt(t *testing.T) {
 		{original: 6, base: 76, expected: "6"},
 	}
 
-	for _, tc := range tests {
-		got := FormatInt(tc.original, tc.base)
-		if got != tc.expected {
-			t.Fatalf("期望：%v，实际：%v", tc.expected, got)
+	for _, test := range tests {
+		got := FormatInt(test.original, test.base)
+		if got != test.expected {
+			t.Fatalf("期望：%v，实际：%v", test.expected, got)
 		}
 	}
 }
@@ -40,10 +40,10 @@ func TestAtoi(t *testing.T) {
 		{original: "6", base: 76, expected: 6},
 	}
 
-	for _, tc := range tests {
-		got := Atoi(tc.original, tc.base)
-		if got != tc.expected {
-			t.Fatalf("期望：%v，实际：%v", tc.expected, got)
+	for _, test := range tests {
+		got := Atoi(test.original, test.base)
+		if got != test.expected {
+			t.Fatalf("期望：%v，实际：%v", test.expected, got)
 		}
 	}
 }
