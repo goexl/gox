@@ -163,7 +163,7 @@ func ParseBase64(str string) (id Id, err error) {
 	return
 }
 
-// Bytes 返回二进制数组表示形式
+// Capacity 返回二进制数组表示形式
 func (i Id) Bytes() []byte {
 	return []byte(i.String())
 }
