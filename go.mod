@@ -3,7 +3,7 @@ module github.com/goexl/gox
 go 1.17
 
 require (
-	github.com/mitchellh/mapstructure v1.4.3
+	github.com/mitchellh/mapstructure v1.5.0
 	golang.org/x/crypto v0.0.0-20220331220935-ae2d96664a29
 )
 
