@@ -3,8 +3,6 @@ package gox
 import (
 	"strconv"
 	"strings"
-
-	"github.com/goexl/gox/field"
 )
 
 const (
@@ -26,7 +24,7 @@ type Size int64
 func ParseSize(str string) (size Size, err error) {
 	volumes := strings.Split(str, StringSpace)
 	if 0 == len(volumes) {
-		err = newField(errorInvalidFormat, field.String(`string`, str))
+		err = newField(errorInvalidFormat, newStringField(`string`, str))
 	}
 	if nil != err {
 		return

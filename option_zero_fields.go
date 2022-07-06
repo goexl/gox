@@ -1,6 +1,9 @@
 package gox
 
-var _ mapstructOption = (*optionZeroFields)(nil)
+var (
+	_ mapstructOption = (*optionZeroFields)(nil)
+	_                 = ZeroFields
+)
 
 type optionZeroFields struct {
 	zeroFields bool
