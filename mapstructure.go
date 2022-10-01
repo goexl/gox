@@ -1,28 +1,30 @@
 package gox
 
 import (
-	`github.com/mitchellh/mapstructure`
+	"github.com/mitchellh/mapstructure"
 )
 
+var _ = StructToForm
+
 type (
-	// MapStruct Map和结构体转换
-	MapStruct interface {
-		// StructToMap 转换成Map
-		StructToMap() (model map[string]interface{}, err error)
+	// MapStructure Map和结构体转换
+	MapStructure interface {
+		// StructToMap 转换成映射
+		StructToMap() (model map[string]any, err error)
 		// MapToStruct 转换成结构体
-		MapToStruct(model map[string]interface{}) (err error)
+		MapToStruct(model map[string]any) (err error)
 	}
 )
 
 // StructToMap 结构体转换成Map
-func StructToMap(obj interface{}, opts ...mapstructOption) (model map[string]interface{}, err error) {
+func StructToMap(obj any, opts ...mapstructOption) (model map[string]any, err error) {
 	options := defaultMapstructOptions()
 	for _, opt := range opts {
 		opt.applyMapstruct(options)
 	}
 
 	var decoder *mapstructure.Decoder
-	model = make(map[string]interface{})
+	model = make(map[string]any)
 	if decoder, err = mapstructure.NewDecoder(&mapstructure.DecoderConfig{
 		ZeroFields: options.zeroFields,
 		Result:     &model,
@@ -36,8 +38,24 @@ func StructToMap(obj interface{}, opts ...mapstructOption) (model map[string]int
 	return
 }
 
+// StructToForm 结构体转换成表单
+func StructToForm(obj any, opts ...mapstructOption) (form map[string]string, err error) {
+	var model map[string]any
+	if model, err = StructToMap(obj, opts...); nil != err {
+		return
+	}
+
+	// 转换成表单
+	form = make(map[string]string)
+	for k, v := range model {
+		form[k] = v.(string)
+	}
+
+	return
+}
+
 // MapToStruct Map转换成结构体
-func MapToStruct(model map[string]interface{}, obj interface{}, opts ...mapstructOption) (err error) {
+func MapToStruct(model map[string]any, obj any, opts ...mapstructOption) (err error) {
 	options := defaultMapstructOptions()
 	for _, opt := range opts {
 		opt.applyMapstruct(options)
@@ -58,8 +76,8 @@ func MapToStruct(model map[string]interface{}, obj interface{}, opts ...mapstruc
 }
 
 // CopyStruct 复制结构体数据
-func CopyStruct(from interface{}, to interface{}, opts ...mapstructOption) (err error) {
-	tmp := make(map[string]interface{})
+func CopyStruct(from any, to any, opts ...mapstructOption) (err error) {
+	tmp := make(map[string]any)
 	if tmp, err = StructToMap(from, opts...); nil != err {
 		return
 	}
