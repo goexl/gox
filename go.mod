@@ -1,6 +1,6 @@
 module github.com/goexl/gox
 
-go 1.17
+go 1.18
 
 require (
 	github.com/mitchellh/mapstructure v1.5.0
