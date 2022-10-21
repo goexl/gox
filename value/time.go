@@ -1,10 +1,10 @@
 package value
 
 import (
-	`fmt`
-	`time`
+	"fmt"
+	"time"
 
-	`github.com/goexl/gox`
+	"github.com/goexl/gox"
 )
 
 var (

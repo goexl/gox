@@ -1,9 +1,9 @@
 package value
 
 import (
-	`encoding/json`
+	"encoding/json"
 
-	`github.com/goexl/gox`
+	"github.com/goexl/gox"
 )
 
 var _ gox.Value = (*StringsValue)(nil)
