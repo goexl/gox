@@ -2,7 +2,7 @@ package gox
 
 // User 基础用户数据
 type User struct {
-	Base `xorm:"extends"`
+	Model `xorm:"extends"`
 
 	// 用户名
 	Username string `xorm:"varchar(32) notnull default('') unique(uidx_name)" json:"username" validate:"omitempty,min=1,max=32,email"`

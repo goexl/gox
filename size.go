@@ -21,10 +21,10 @@ var _ = ParseSize
 type Size int64
 
 // ParseSize 解析字节大小
-func ParseSize(str string) (size Size, err error) {
-	volumes := strings.Split(str, StringSpace)
+func ParseSize(from string) (size Size, err error) {
+	volumes := strings.Split(from, StringSpace)
 	if 0 == len(volumes) {
-		err = newField("字节大小格式错误", newStringField("string", str))
+		err = newField("字节大小格式错误", newStringField("string", from))
 	}
 	if nil != err {
 		return
@@ -71,58 +71,11 @@ func ParseSize(str string) (size Size, err error) {
 }
 
 func (s *Size) String() string {
-	return s.Format()
+	return s.Formatter().Format()
 }
 
-func (s *Size) Format(opts ...sizeOption) string {
-	_options := defaultOptions()
-	for _, opt := range opts {
-		opt.applySize(_options)
-	}
-
-	var sb strings.Builder
-	for {
-		if *s < _options.unit {
-			break
-		}
-
-		switch {
-		case *s >= SizeEB:
-			unit := *s / SizeEB
-			*s -= unit * SizeEB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('e')
-		case *s >= SizePB:
-			unit := *s / SizePB
-			*s -= unit * SizePB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('p')
-		case *s >= SizeTB:
-			unit := *s / SizeTB
-			*s -= unit * SizeTB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('t')
-		case *s >= SizeGB:
-			unit := *s / SizeGB
-			*s -= unit * SizeGB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('g')
-		case *s >= SizeMB:
-			unit := *s / SizeMB
-			*s -= unit * SizeMB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('m')
-		case *s >= SizeKB:
-			unit := *s / SizeKB
-			*s -= unit * SizeKB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('k')
-		}
-
-		sb.WriteRune(_options.separator)
-	}
-
-	return sb.String()[:sb.Len()-1] // 去掉最后一个分隔符
+func (s *Size) Formatter() *sizeFormatter {
+	return newSizeFormatter(s)
 }
 
 func (s *Size) MarshalJSON() (bytes []byte, err error) {

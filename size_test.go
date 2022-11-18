@@ -35,7 +35,7 @@ func TestFormatByte(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		actual := test.in.Format()
+		actual := test.in.Formatter().Format()
 		if actual != test.expect {
 			t.Fatalf(`期望：%v，实际：%v`, test.expect, actual)
 		}

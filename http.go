@@ -1,8 +1,8 @@
 package gox
 
 import (
-	`fmt`
-	`net/url`
+	"fmt"
+	"net/url"
 )
 
 const (
@@ -54,16 +54,6 @@ type (
 
 	// HttpParameterType Http额外参数类型
 	HttpParameterType string
-
-	// HttpParameter Http额外参数接口
-	HttpParameter interface {
-		// Type 类型
-		Type() HttpParameterType
-		// Key 键
-		Key() string
-		// Value 值
-		Value() string
-	}
 )
 
 // ContentDisposition 解决附件下载乱码

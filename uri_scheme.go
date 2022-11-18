@@ -1,5 +1,18 @@
 package gox
 
+var (
+	_ = URISchemeUnknown
+	_ = URISchemeSocksV4
+	_ = URISchemeSocksV5
+	_ = URISchemeHttp
+	_ = URISchemeHttps
+	_ = URISchemeRtmp
+	_ = URISchemeMqtt
+	_ = URISchemeMqtts
+	_ = URISchemeWs
+	_ = URISchemeWss
+)
+
 const (
 	// URISchemeUnknown 未知协议
 	URISchemeUnknown URIScheme = ``

@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+var _ Key[string] = (*Secret)(nil)
+
 // Secret 应用授权
 type Secret struct {
 	// 授权，相当于用户名
