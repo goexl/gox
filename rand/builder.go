@@ -2,40 +2,40 @@ package rand
 
 var _ = New
 
-type builder struct {
+type generator struct {
 	_string *_string
 	length  int
 	bytes   string
 }
 
 // New 创建随机字符串
-func New() *builder {
-	return &builder{
+func New() *generator {
+	return &generator{
 		_string: newString(),
 		length:  8,
 		bytes:   letters,
 	}
 }
 
-func (b *builder) Length(length int) (builder *builder) {
-	b.length = length
+func (g *generator) Length(length int) *generator {
+	g.length = length
 
-	return
+	return g
 }
 
-func (b *builder) Code() (builder *builder) {
-	b.length = 6
-	b.bytes = numbers
+func (g *generator) Code() *generator {
+	g.length = 6
+	g.bytes = numbers
 
-	return
+	return g
 }
 
-func (b *builder) Digital() (builder *builder) {
-	b.bytes = numbers
+func (g *generator) Digital() *generator {
+	g.bytes = numbers
 
-	return
+	return g
 }
 
-func (b *builder) Build() (value string) {
-	return b._string.rand(b.length, b.bytes)
+func (g *generator) Generate() (value string) {
+	return g._string.rand(g.length, g.bytes)
 }
