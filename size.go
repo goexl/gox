@@ -24,7 +24,7 @@ type Size int64
 func ParseSize(str string) (size Size, err error) {
 	volumes := strings.Split(str, StringSpace)
 	if 0 == len(volumes) {
-		err = newField(errorInvalidFormat, newStringField(`string`, str))
+		err = newField("字节大小格式错误", newStringField("string", str))
 	}
 	if nil != err {
 		return
@@ -70,11 +70,11 @@ func ParseSize(str string) (size Size, err error) {
 	return
 }
 
-func (s Size) String() string {
+func (s *Size) String() string {
 	return s.Format()
 }
 
-func (s Size) Format(opts ...sizeOption) string {
+func (s *Size) Format(opts ...sizeOption) string {
 	_options := defaultOptions()
 	for _, opt := range opts {
 		opt.applySize(_options)
@@ -82,39 +82,39 @@ func (s Size) Format(opts ...sizeOption) string {
 
 	var sb strings.Builder
 	for {
-		if s < _options.unit {
+		if *s < _options.unit {
 			break
 		}
 
 		switch {
-		case s >= SizeEB:
-			unit := s / SizeEB
-			s -= unit * SizeEB
+		case *s >= SizeEB:
+			unit := *s / SizeEB
+			*s -= unit * SizeEB
 			sb.WriteString(strconv.Itoa(int(unit)))
 			sb.WriteRune('e')
-		case s >= SizePB:
-			unit := s / SizePB
-			s -= unit * SizePB
+		case *s >= SizePB:
+			unit := *s / SizePB
+			*s -= unit * SizePB
 			sb.WriteString(strconv.Itoa(int(unit)))
 			sb.WriteRune('p')
-		case s >= SizeTB:
-			unit := s / SizeTB
-			s -= unit * SizeTB
+		case *s >= SizeTB:
+			unit := *s / SizeTB
+			*s -= unit * SizeTB
 			sb.WriteString(strconv.Itoa(int(unit)))
 			sb.WriteRune('t')
-		case s >= SizeGB:
-			unit := s / SizeGB
-			s -= unit * SizeGB
+		case *s >= SizeGB:
+			unit := *s / SizeGB
+			*s -= unit * SizeGB
 			sb.WriteString(strconv.Itoa(int(unit)))
 			sb.WriteRune('g')
-		case s >= SizeMB:
-			unit := s / SizeMB
-			s -= unit * SizeMB
+		case *s >= SizeMB:
+			unit := *s / SizeMB
+			*s -= unit * SizeMB
 			sb.WriteString(strconv.Itoa(int(unit)))
 			sb.WriteRune('m')
-		case s >= SizeKB:
-			unit := s / SizeKB
-			s -= unit * SizeKB
+		case *s >= SizeKB:
+			unit := *s / SizeKB
+			*s -= unit * SizeKB
 			sb.WriteString(strconv.Itoa(int(unit)))
 			sb.WriteRune('k')
 		}
@@ -125,7 +125,7 @@ func (s Size) Format(opts ...sizeOption) string {
 	return sb.String()[:sb.Len()-1] // 去掉最后一个分隔符
 }
 
-func (s Size) MarshalJSON() (bytes []byte, err error) {
+func (s *Size) MarshalJSON() (bytes []byte, err error) {
 	bytes = []byte(s.String())
 
 	return

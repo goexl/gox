@@ -12,6 +12,6 @@ type Secret struct {
 	Sk string `json:"sk" yaml:"sk" xml:"sk" toml:"sk" validate:"required"`
 }
 
-func (s *Secret) CacheKey() string {
+func (s *Secret) Key() string {
 	return fmt.Sprintf("%s-%s", s.Ak, s.Sk)
 }

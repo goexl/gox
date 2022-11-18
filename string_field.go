@@ -16,6 +16,6 @@ func (s *stringField) Key() string {
 	return s.key
 }
 
-func (s *stringField) Value() interface{} {
+func (s *stringField) Value() any {
 	return s.value
 }

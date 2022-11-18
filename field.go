@@ -1,42 +1,32 @@
 package gox
 
 import (
-	`fmt`
-	`strings`
+	"fmt"
+	"strings"
 )
 
 type (
-	// Field 用于描述一个字段（即键值对）
-	Field interface {
-		Key
-		Value
-	}
+	// Field 字段，一个键值对，要求键必须是字符串
+	Field[T any] Kv[string, T]
 
 	// Fields 字段列表
-	Fields []Field
-
-	fields interface {
-		// Fields 生成字段列表
-		Fields() Fields
-	}
+	Fields[T any] []Field[T]
 )
 
 // Fields 支持自身连写
-func (f Fields) Fields() Fields {
+func (f Fields[T]) Fields() Fields[T] {
 	return f
 }
 
 // Connects 连接其它字段
-func (f Fields) Connects(fields ...fields) (new Fields) {
+func (f Fields[T]) Connects(fields ...Field[T]) (new Fields[T]) {
 	// 默认创建16个元素，然后再做精简
-	new = make([]Field, 0, 16)
+	new = make([]Field[T], 0, 16)
 	for _, _f := range f {
 		new = append(new, _f)
 	}
 	for _, field := range fields {
-		for _, _f := range field.Fields() {
-			new = append(new, _f)
-		}
+		new = append(new, field)
 	}
 	fields = fields[:0]
 
@@ -44,8 +34,8 @@ func (f Fields) Connects(fields ...fields) (new Fields) {
 }
 
 // Connect 连接其它字段
-func (f Fields) Connect(field Field) (new Fields) {
-	new = make([]Field, 0, len(f)+1)
+func (f Fields[T]) Connect(field Field[T]) (new Fields[T]) {
+	new = make([]Field[T], 0, len(f)+1)
 	for _, _f := range f {
 		new = append(new, _f)
 	}
@@ -54,7 +44,7 @@ func (f Fields) Connect(field Field) (new Fields) {
 	return
 }
 
-func (f Fields) String() string {
+func (f Fields[T]) String() string {
 	kvs := make([]string, 0, len(f))
 	for _, field := range f {
 		kvs = append(kvs, fmt.Sprintf(`%s = %v`, field.Key(), field.Value()))

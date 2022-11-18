@@ -1,10 +1,12 @@
 package gox
 
 import (
-	`bytes`
-	`runtime`
-	`strconv`
+	"bytes"
+	"runtime"
+	"strconv"
 )
+
+var _ = Gid
 
 // Gid 当前协程编号
 func Gid() (id uint64) {
