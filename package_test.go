@@ -1,12 +1,12 @@
 package gox
 
 import (
-	`testing`
+	"testing"
 )
 
-func TestParsePackageName(t *testing.T) {
-	tests := []struct {
-		input    string
+func TestParsePackage(t *testing.T) {
+	testcases := []struct {
+		input    Package
 		expected string
 	}{
 		{input: "", expected: "com"},
@@ -17,10 +17,10 @@ func TestParsePackageName(t *testing.T) {
 		{input: "yunke-web.dev.class100.com", expected: "com.class100.dev.web.yunke"},
 	}
 
-	for _, tc := range tests {
-		got := ParsePackageName(tc.input)
-		if got != tc.expected {
-			t.Fatalf("期望：%v，实际：%v", tc.expected, got)
+	for _, testcase := range testcases {
+		got := testcase.input.Name()
+		if got != testcase.expected {
+			t.Fatalf("期望：%v，实际：%v", testcase.expected, got)
 		}
 	}
 }

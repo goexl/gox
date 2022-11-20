@@ -1,11 +1,18 @@
 package gox
 
 import (
-	`strings`
+	"strings"
 )
 
-// ParsePackageName 从域名解析出包名
-func ParsePackageName(domain string) (name string) {
+// Package 包名
+type Package string
+
+func (p *Package) String() string {
+	return p.Name()
+}
+
+func (p *Package) Name() (name string) {
+	domain := string(*p)
 	// 包名不能包含特殊字符，比如-、_、@、#等
 	domain = strings.ReplaceAll(domain, "-", ".")
 	domain = strings.ReplaceAll(domain, "_", ".")

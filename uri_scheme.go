@@ -1,40 +1,40 @@
 package gox
 
 var (
-	_ = URISchemeUnknown
-	_ = URISchemeSocksV4
-	_ = URISchemeSocksV5
-	_ = URISchemeHttp
-	_ = URISchemeHttps
-	_ = URISchemeRtmp
-	_ = URISchemeMqtt
-	_ = URISchemeMqtts
-	_ = URISchemeWs
-	_ = URISchemeWss
+	_ = UriSchemeUnknown
+	_ = UriSchemeSocksV4
+	_ = UriSchemeSocksV5
+	_ = UriSchemeHttp
+	_ = UriSchemeHttps
+	_ = UriSchemeRtmp
+	_ = UriSchemeMqtt
+	_ = UriSchemeMqtts
+	_ = UriSchemeWs
+	_ = UriSchemeWss
 )
 
 const (
-	// URISchemeUnknown 未知协议
-	URISchemeUnknown URIScheme = ``
-	// URISchemeSocksV4 Socks协议
-	URISchemeSocksV4 URIScheme = `socks4`
-	// URISchemeSocksV5 Socks协议
-	URISchemeSocksV5 URIScheme = `socks4`
-	// URISchemeHttp Http协议
-	URISchemeHttp URIScheme = `http`
-	// URISchemeHttps Https协议
-	URISchemeHttps URIScheme = `https`
-	// URISchemeRtmp Rtmp协议
-	URISchemeRtmp URIScheme = `rtmp`
-	// URISchemeMqtt MQTT协议
-	URISchemeMqtt URIScheme = `mqtt`
-	// URISchemeMqtts MQTT安全协议
-	URISchemeMqtts URIScheme = `mqtts`
-	// URISchemeWs Websocket协议
-	URISchemeWs URIScheme = `ws`
-	// URISchemeWss Websocket安全协议
-	URISchemeWss URIScheme = `wss`
+	// UriSchemeUnknown 未知协议
+	UriSchemeUnknown UriScheme = ``
+	// UriSchemeSocksV4 Socks协议
+	UriSchemeSocksV4 UriScheme = "socks4"
+	// UriSchemeSocksV5 Socks协议
+	UriSchemeSocksV5 UriScheme = "socks4"
+	// UriSchemeHttp Http协议
+	UriSchemeHttp UriScheme = "http"
+	// UriSchemeHttps Https协议
+	UriSchemeHttps UriScheme = "https"
+	// UriSchemeRtmp Rtmp协议
+	UriSchemeRtmp UriScheme = "rtmp"
+	// UriSchemeMqtt MQTT协议
+	UriSchemeMqtt UriScheme = "mqtt"
+	// UriSchemeMqtts MQTT安全协议
+	UriSchemeMqtts UriScheme = "mqtts"
+	// UriSchemeWs Websocket协议
+	UriSchemeWs UriScheme = "ws"
+	// UriSchemeWss Websocket安全协议
+	UriSchemeWss UriScheme = "wss"
 )
 
-// URIScheme 协议
-type URIScheme string
+// UriScheme 协议
+type UriScheme string

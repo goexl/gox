@@ -9,7 +9,7 @@ import (
 )
 
 func TestFlatten(t *testing.T) {
-	cases := []struct {
+	testcases := []struct {
 		test   string
 		want   map[string]interface{}
 		prefix string
@@ -158,26 +158,26 @@ func TestFlatten(t *testing.T) {
 		},
 	}
 
-	for i, test := range cases {
+	for i, testcase := range testcases {
 		var m interface{}
-		err := json.Unmarshal([]byte(test.test), &m)
+		err := json.Unmarshal([]byte(testcase.test), &m)
 		if err != nil {
-			t.Errorf("%d: failed to unmarshal test: %v", i+1, err)
+			t.Errorf("%d: failed to unmarshal testcase: %v", i+1, err)
 			continue
 		}
-		got, err := Flatten(m.(map[string]interface{}), test.prefix, test.style)
+		got, err := Flatten(m.(map[string]interface{}), testcase.prefix, testcase.style)
 		if err != nil {
 			t.Errorf("%d: failed to flatten: %v", i+1, err)
 			continue
 		}
-		if !reflect.DeepEqual(got, test.want) {
-			t.Errorf("%d: mismatch, got: %v wanted: %v", i+1, got, test.want)
+		if !reflect.DeepEqual(got, testcase.want) {
+			t.Errorf("%d: mismatch, got: %v wanted: %v", i+1, got, testcase.want)
 		}
 	}
 }
 
 func TestFlattenString(t *testing.T) {
-	cases := []struct {
+	testcases := []struct {
 		test   string
 		want   string
 		prefix string
@@ -288,7 +288,7 @@ func TestFlattenString(t *testing.T) {
 		},
 	}
 
-	for i, test := range cases {
+	for i, test := range testcases {
 		got, err := FlattenString(test.test, test.prefix, test.style)
 		if err != test.err {
 			t.Errorf("%d: error mismatch, got: [%v], wanted: [%v]", i+1, err, test.err)

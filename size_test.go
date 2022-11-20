@@ -7,7 +7,7 @@ import (
 )
 
 func TestParseByte(t *testing.T) {
-	tests := []struct {
+	testcases := []struct {
 		in     string
 		expect gox.Size
 	}{
@@ -16,16 +16,16 @@ func TestParseByte(t *testing.T) {
 		{in: `1g 1m`, expect: gox.SizeGB + gox.SizeMB},
 	}
 
-	for _, test := range tests {
-		actual, _ := gox.ParseSize(test.in)
-		if actual != test.expect {
-			t.Fatalf(`期望：%v，实际：%v`, test.expect, actual)
+	for _, testcase := range testcases {
+		actual, _ := gox.ParseSize(testcase.in)
+		if actual != testcase.expect {
+			t.Fatalf(`期望：%v，实际：%v`, testcase.expect, actual)
 		}
 	}
 }
 
 func TestFormatByte(t *testing.T) {
-	tests := []struct {
+	testcases := []struct {
 		in     gox.Size
 		expect string
 	}{
@@ -34,10 +34,10 @@ func TestFormatByte(t *testing.T) {
 		{in: gox.SizeGB + gox.SizeMB, expect: `1g 1m`},
 	}
 
-	for _, test := range tests {
-		actual := test.in.Formatter().Format()
-		if actual != test.expect {
-			t.Fatalf(`期望：%v，实际：%v`, test.expect, actual)
+	for _, testcase := range testcases {
+		actual := testcase.in.Formatter().Format()
+		if actual != testcase.expect {
+			t.Fatalf(`期望：%v，实际：%v`, testcase.expect, actual)
 		}
 	}
 }
