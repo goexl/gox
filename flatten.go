@@ -10,58 +10,58 @@ type (
 		map[string]any | string
 	}
 
-	mapFlatten[T flattenType] struct {
+	flatten[T flattenType] struct {
 		from   T
-		style  *separatorStyle
+		style  *flattenStyle
 		prefix string
 	}
 
-	separatorStyle struct {
+	flattenStyle struct {
 		before string
 		middle string
 		after  string
 	}
 )
 
-func Flatten[T flattenType](from T) *mapFlatten[T] {
-	return &mapFlatten[T]{
+func Flatten[T flattenType](from T) *flatten[T] {
+	return &flatten[T]{
 		from:   from,
-		style:  &separatorStyle{middle: "."},
+		style:  &flattenStyle{middle: "."},
 		prefix: "",
 	}
 }
 
-func (mf *mapFlatten[T]) DotStyle() *mapFlatten[T] {
-	mf.style = &separatorStyle{middle: "."}
+func (mf *flatten[T]) DotStyle() *flatten[T] {
+	mf.style = &flattenStyle{middle: "."}
 
 	return mf
 }
 
-func (mf *mapFlatten[T]) PathStyle() *mapFlatten[T] {
-	mf.style = &separatorStyle{middle: "/"}
+func (mf *flatten[T]) PathStyle() *flatten[T] {
+	mf.style = &flattenStyle{middle: "/"}
 
 	return mf
 }
 
-func (mf *mapFlatten[T]) RailsStyle() *mapFlatten[T] {
-	mf.style = &separatorStyle{before: "[", after: "]"}
+func (mf *flatten[T]) RailsStyle() *flatten[T] {
+	mf.style = &flattenStyle{before: "[", after: "]"}
 
 	return mf
 }
 
-func (mf *mapFlatten[T]) UnderscoreStyle() *mapFlatten[T] {
-	mf.style = &separatorStyle{middle: "_"}
+func (mf *flatten[T]) UnderscoreStyle() *flatten[T] {
+	mf.style = &flattenStyle{middle: "_"}
 
 	return mf
 }
 
-func (mf *mapFlatten[T]) Prefix(prefix string) *mapFlatten[T] {
+func (mf *flatten[T]) Prefix(prefix string) *flatten[T] {
 	mf.prefix = prefix
 
 	return mf
 }
 
-func (mf *mapFlatten[T]) Convert() (to map[string]any, err error) {
+func (mf *flatten[T]) Convert() (to map[string]any, err error) {
 	to = make(map[string]any)
 	from := any(mf.from)
 	switch _from := from.(type) {
@@ -74,7 +74,7 @@ func (mf *mapFlatten[T]) Convert() (to map[string]any, err error) {
 	return
 }
 
-func (mf *mapFlatten[T]) string(bytes []byte, to *map[string]any) (err error) {
+func (mf *flatten[T]) string(bytes []byte, to *map[string]any) (err error) {
 	from := new(map[string]any)
 	if err = json.Unmarshal(bytes, from); nil == err {
 		err = mf.flatten(true, to, from)
@@ -83,7 +83,7 @@ func (mf *mapFlatten[T]) string(bytes []byte, to *map[string]any) (err error) {
 	return
 }
 
-func (mf *mapFlatten[T]) flatten(top bool, flatMap *map[string]any, nested any) (err error) {
+func (mf *flatten[T]) flatten(top bool, flatMap *map[string]any, nested any) (err error) {
 	switch nested.(type) {
 	case map[string]any:
 		for key, value := range nested.(map[string]any) {
@@ -100,7 +100,7 @@ func (mf *mapFlatten[T]) flatten(top bool, flatMap *map[string]any, nested any) 
 	return
 }
 
-func (mf *mapFlatten[T]) assign(flatMap *map[string]any, newKey string, value any) (err error) {
+func (mf *flatten[T]) assign(flatMap *map[string]any, newKey string, value any) (err error) {
 	switch value.(type) {
 	case map[string]any, []any:
 		if err := mf.flatten(false, flatMap, value); err != nil {
@@ -113,7 +113,7 @@ func (mf *mapFlatten[T]) assign(flatMap *map[string]any, newKey string, value an
 	return nil
 }
 
-func (mf *mapFlatten[T]) enKey(top bool, subKey string) string {
+func (mf *flatten[T]) enKey(top bool, subKey string) string {
 	key := mf.prefix
 
 	if top {
