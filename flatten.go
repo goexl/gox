@@ -2,128 +2,124 @@ package gox
 
 import (
 	"encoding/json"
-	"errors"
-	"regexp"
 	"strconv"
 )
 
-// The style of keys.  If there is an input with two
-// nested keys "f" and "g", with "f" at the root,
-//    { "f": { "g": ... } }
-// the output will be the concatenation
-//    f{Middle}{Before}g{After}...
-// Any struct element may be blank.
-// If you use Middle, you will probably leave Before & After blank, and vice-versa.
-// See examples in flatten_test.go and the "Default styles" here.
-type SeparatorStyle struct {
-	Before string // Prepend to key
-	Middle string // Add between keys
-	After  string // Append to key
-}
+type (
+	flattenType interface {
+		map[string]any | string
+	}
 
-// Default styles
-var (
-	// Separate nested key components with dots, e.g. "a.b.1.c.d"
-	DotStyle = SeparatorStyle{Middle: "."}
+	mapFlatten[T flattenType] struct {
+		from   T
+		style  *separatorStyle
+		prefix string
+	}
 
-	// Separate with path-like slashes, e.g. a/b/1/c/d
-	PathStyle = SeparatorStyle{Middle: "/"}
-
-	// Separate ala Rails, e.g. "a[b][c][1][d]"
-	RailsStyle = SeparatorStyle{Before: "[", After: "]"}
-
-	// Separate with underscores, e.g. "a_b_1_c_d"
-	UnderscoreStyle = SeparatorStyle{Middle: "_"}
+	separatorStyle struct {
+		before string
+		middle string
+		after  string
+	}
 )
 
-// Nested input must be a map or slice
-var NotValidInputError = errors.New("Not a valid input: map or slice")
-
-// Flatten generates a flat map from a nested one.  The original may include values of type map, slice and scalar,
-// but not struct.  Keys in the flat map will be a compound of descending map keys and slice iterations.
-// The presentation of keys is set by style.  A prefix is joined to each key.
-func Flatten(nested map[string]interface{}, prefix string, style SeparatorStyle) (map[string]interface{}, error) {
-	flatmap := make(map[string]interface{})
-
-	err := flatten(true, flatmap, nested, prefix, style)
-	if err != nil {
-		return nil, err
+func Flatten[T flattenType](from T) *mapFlatten[T] {
+	return &mapFlatten[T]{
+		from:   from,
+		style:  &separatorStyle{middle: "."},
+		prefix: "",
 	}
-
-	return flatmap, nil
 }
 
-// JSON nested input must be a map
-var NotValidJsonInputError = errors.New("Not a valid input, must be a map")
+func (mf *mapFlatten[T]) DotStyle() *mapFlatten[T] {
+	mf.style = &separatorStyle{middle: "."}
 
-var isJsonMap = regexp.MustCompile(`^\s*\{`)
-
-// FlattenString generates a flat JSON map from a nested one.  Keys in the flat map will be a compound of
-// descending map keys and slice iterations.  The presentation of keys is set by style.  A prefix is joined
-// to each key.
-func FlattenString(nestedStr, prefix string, style SeparatorStyle) (string, error) {
-	if !isJsonMap.MatchString(nestedStr) {
-		return "", NotValidJsonInputError
-	}
-
-	var nested map[string]interface{}
-	err := json.Unmarshal([]byte(nestedStr), &nested)
-	if err != nil {
-		return "", err
-	}
-
-	flatmap, err := Flatten(nested, prefix, style)
-	if err != nil {
-		return "", err
-	}
-
-	flatb, err := json.Marshal(&flatmap)
-	if err != nil {
-		return "", err
-	}
-
-	return string(flatb), nil
+	return mf
 }
 
-func flatten(top bool, flatMap map[string]interface{}, nested interface{}, prefix string, style SeparatorStyle) error {
-	assign := func(newKey string, v interface{}) error {
-		switch v.(type) {
-		case map[string]interface{}, []interface{}:
-			if err := flatten(false, flatMap, v, newKey, style); err != nil {
-				return err
-			}
-		default:
-			flatMap[newKey] = v
-		}
+func (mf *mapFlatten[T]) PathStyle() *mapFlatten[T] {
+	mf.style = &separatorStyle{middle: "/"}
 
-		return nil
+	return mf
+}
+
+func (mf *mapFlatten[T]) RailsStyle() *mapFlatten[T] {
+	mf.style = &separatorStyle{before: "[", after: "]"}
+
+	return mf
+}
+
+func (mf *mapFlatten[T]) UnderscoreStyle() *mapFlatten[T] {
+	mf.style = &separatorStyle{middle: "_"}
+
+	return mf
+}
+
+func (mf *mapFlatten[T]) Prefix(prefix string) *mapFlatten[T] {
+	mf.prefix = prefix
+
+	return mf
+}
+
+func (mf *mapFlatten[T]) Convert() (to map[string]any, err error) {
+	to = make(map[string]any)
+	from := any(mf.from)
+	switch _from := from.(type) {
+	case map[string]any:
+		err = mf.flatten(true, &to, _from)
+	case string:
+		err = mf.string([]byte(_from), &to)
 	}
 
+	return
+}
+
+func (mf *mapFlatten[T]) string(bytes []byte, to *map[string]any) (err error) {
+	from := new(map[string]any)
+	if err = json.Unmarshal(bytes, from); nil == err {
+		err = mf.flatten(true, to, from)
+	}
+
+	return
+}
+
+func (mf *mapFlatten[T]) flatten(top bool, flatMap *map[string]any, nested any) (err error) {
 	switch nested.(type) {
-	case map[string]interface{}:
-		for k, v := range nested.(map[string]interface{}) {
-			newKey := enKey(top, prefix, k, style)
-			assign(newKey, v)
+	case map[string]any:
+		for key, value := range nested.(map[string]any) {
+			newKey := mf.enKey(top, key)
+			err = mf.assign(flatMap, newKey, value)
 		}
-	case []interface{}:
-		for i, v := range nested.([]interface{}) {
-			newKey := enKey(top, prefix, strconv.Itoa(i), style)
-			assign(newKey, v)
+	case []any:
+		for index, value := range nested.([]interface{}) {
+			newKey := mf.enKey(top, strconv.Itoa(index))
+			err = mf.assign(flatMap, newKey, value)
+		}
+	}
+
+	return
+}
+
+func (mf *mapFlatten[T]) assign(flatMap *map[string]any, newKey string, value any) (err error) {
+	switch value.(type) {
+	case map[string]any, []any:
+		if err := mf.flatten(false, flatMap, value); err != nil {
+			return err
 		}
 	default:
-		return NotValidInputError
+		(*flatMap)[newKey] = value
 	}
 
 	return nil
 }
 
-func enKey(top bool, prefix, subKey string, style SeparatorStyle) string {
-	key := prefix
+func (mf *mapFlatten[T]) enKey(top bool, subKey string) string {
+	key := mf.prefix
 
 	if top {
 		key += subKey
 	} else {
-		key += style.Before + style.Middle + subKey + style.After
+		key += mf.style.before + mf.style.middle + subKey + mf.style.after
 	}
 
 	return key
