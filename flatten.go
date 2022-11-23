@@ -10,7 +10,7 @@ type (
 		map[string]any | string
 	}
 
-	flatten[T flattenType] struct {
+	flattenConverter[T flattenType] struct {
 		from   T
 		style  *flattenStyle
 		prefix string
@@ -23,103 +23,100 @@ type (
 	}
 )
 
-func Flatten[T flattenType](from T) *flatten[T] {
-	return &flatten[T]{
+func Flatten[T flattenType](from T) *flattenConverter[T] {
+	return &flattenConverter[T]{
 		from:   from,
 		style:  &flattenStyle{middle: "."},
 		prefix: "",
 	}
 }
 
-func (mf *flatten[T]) DotStyle() *flatten[T] {
-	mf.style = &flattenStyle{middle: "."}
+func (fc *flattenConverter[T]) DotStyle() *flattenConverter[T] {
+	fc.style = &flattenStyle{middle: "."}
 
-	return mf
+	return fc
 }
 
-func (mf *flatten[T]) PathStyle() *flatten[T] {
-	mf.style = &flattenStyle{middle: "/"}
+func (fc *flattenConverter[T]) PathStyle() *flattenConverter[T] {
+	fc.style = &flattenStyle{middle: "/"}
 
-	return mf
+	return fc
 }
 
-func (mf *flatten[T]) RailsStyle() *flatten[T] {
-	mf.style = &flattenStyle{before: "[", after: "]"}
+func (fc *flattenConverter[T]) RailsStyle() *flattenConverter[T] {
+	fc.style = &flattenStyle{before: "[", after: "]"}
 
-	return mf
+	return fc
 }
 
-func (mf *flatten[T]) UnderscoreStyle() *flatten[T] {
-	mf.style = &flattenStyle{middle: "_"}
+func (fc *flattenConverter[T]) UnderscoreStyle() *flattenConverter[T] {
+	fc.style = &flattenStyle{middle: "_"}
 
-	return mf
+	return fc
 }
 
-func (mf *flatten[T]) Prefix(prefix string) *flatten[T] {
-	mf.prefix = prefix
+func (fc *flattenConverter[T]) Prefix(prefix string) *flattenConverter[T] {
+	fc.prefix = prefix
 
-	return mf
+	return fc
 }
 
-func (mf *flatten[T]) Convert() (to map[string]any, err error) {
+func (fc *flattenConverter[T]) Convert() (to map[string]any, err error) {
 	to = make(map[string]any)
-	from := any(mf.from)
-	switch _from := from.(type) {
+	switch from := any(fc.from).(type) {
 	case map[string]any:
-		err = mf.flatten(true, &to, _from)
+		err = fc.flatten(true, to, from, fc.prefix)
 	case string:
-		err = mf.string([]byte(_from), &to)
+		err = fc.string([]byte(from), to)
 	}
 
 	return
 }
 
-func (mf *flatten[T]) string(bytes []byte, to *map[string]any) (err error) {
+func (fc *flattenConverter[T]) string(bytes []byte, to map[string]any) (err error) {
 	from := new(map[string]any)
 	if err = json.Unmarshal(bytes, from); nil == err {
-		err = mf.flatten(true, to, from)
+		err = fc.flatten(true, to, from, fc.prefix)
 	}
 
 	return
 }
 
-func (mf *flatten[T]) flatten(top bool, flatMap *map[string]any, nested any) (err error) {
-	switch nested.(type) {
+func (fc *flattenConverter[T]) flatten(top bool, flat map[string]any, nested any, prefix string) (err error) {
+	switch _nested := nested.(type) {
 	case map[string]any:
-		for key, value := range nested.(map[string]any) {
-			newKey := mf.enKey(top, key)
-			err = mf.assign(flatMap, newKey, value)
+		for key, value := range _nested {
+			newKey := fc.enKey(top, prefix, key)
+			err = fc.assign(flat, newKey, value)
 		}
 	case []any:
-		for index, value := range nested.([]interface{}) {
-			newKey := mf.enKey(top, strconv.Itoa(index))
-			err = mf.assign(flatMap, newKey, value)
+		for index, value := range _nested {
+			newKey := fc.enKey(top, prefix, strconv.Itoa(index))
+			err = fc.assign(flat, newKey, value)
 		}
 	}
 
 	return
 }
 
-func (mf *flatten[T]) assign(flatMap *map[string]any, newKey string, value any) (err error) {
+func (fc *flattenConverter[T]) assign(flat map[string]any, newKey string, value any) (err error) {
 	switch value.(type) {
 	case map[string]any, []any:
-		if err := mf.flatten(false, flatMap, value); err != nil {
-			return err
-		}
+		err = fc.flatten(false, flat, value, newKey)
 	default:
-		(*flatMap)[newKey] = value
+		flat[newKey] = value
 	}
 
-	return nil
+	return
 }
 
-func (mf *flatten[T]) enKey(top bool, subKey string) string {
-	key := mf.prefix
+func (fc *flattenConverter[T]) enKey(top bool, prefix string, subKey string) string {
+	key := prefix
 
 	if top {
 		key += subKey
 	} else {
-		key += mf.style.before + mf.style.middle + subKey + mf.style.after
+		key += fc.style.before + fc.style.middle + subKey + fc.style.after
 	}
 
 	return key

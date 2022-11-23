@@ -1,41 +1,49 @@
-package gox
+package gox_test
 
 import (
-	"encoding/json"
 	"reflect"
-	"strings"
 	"testing"
-	"unicode"
+
+	"github.com/goexl/gox"
 )
 
-func TestFlatten(t *testing.T) {
+const (
+	dotStyle style = iota
+	pathStyle
+	railsStyle
+	underscoreStyle
+)
+
+type style int
+
+func TestFlatten(test *testing.T) {
 	testcases := []struct {
-		test   string
-		want   map[string]interface{}
+		in     map[string]any
+		want   map[string]any
 		prefix string
-		style  SeparatorStyle
+		style  style
 	}{
 		{
-			`{
-				"foo": {
-					"jim":"bean"
+			map[string]any{
+				"foo": map[string]any{
+					"jim": "bean",
 				},
 				"fee": "bar",
-				"n1": {
-					"alist": [
+				"n1": map[string]any{
+					"alist": []any{
 						"a",
 						"b",
 						"c",
-						{
+						map[string]any{
 							"d": "other",
-							"e": "another"
-						}
-					]
+							"e": "another",
+						},
+					},
 				},
 				"number": 1.4567,
-				"bool":   true
-			}`,
-			map[string]interface{}{
+				"bool":   true,
+			},
+			map[string]any{
 				"foo.jim":      "bean",
 				"fee":          "bar",
 				"n1.alist.0":   "a",
@@ -47,27 +55,27 @@ func TestFlatten(t *testing.T) {
 				"bool":         true,
 			},
 			"",
-			DotStyle,
+			dotStyle,
 		},
 		{
-			`{
-				"foo": {
-					"jim":"bean"
+			map[string]any{
+				"foo": map[string]any{
+					"jim": "bean",
 				},
 				"fee": "bar",
-				"n1": {
-					"alist": [
-					"a",
-					"b",
-					"c",
-					{
-						"d": "other",
-						"e": "another"
-					}
-					]
-				}
-			}`,
-			map[string]interface{}{
+				"n1": map[string]any{
+					"alist": []any{
+						"a",
+						"b",
+						"c",
+						map[string]any{
+							"d": "other",
+							"e": "another",
+						},
+					},
+				},
+			},
+			map[string]any{
 				"foo[jim]":        "bean",
 				"fee":             "bar",
 				"n1[alist][0]":    "a",
@@ -77,29 +85,29 @@ func TestFlatten(t *testing.T) {
 				"n1[alist][3][e]": "another",
 			},
 			"",
-			RailsStyle,
+			railsStyle,
 		},
 		{
-			`{
-				"foo": {
-					"jim":"bean"
+			map[string]any{
+				"foo": map[string]any{
+					"jim": "bean",
 				},
 				"fee": "bar",
-				"n1": {
-					"alist": [
+				"n1": map[string]any{
+					"alist": []any{
 						"a",
 						"b",
 						"c",
-						{
+						map[string]any{
 							"d": "other",
-							"e": "another"
-						}
-					]
+							"e": "another",
+						},
+					},
 				},
 				"number": 1.4567,
-				"bool":   true
-			}`,
-			map[string]interface{}{
+				"bool":   true,
+			},
+			map[string]any{
 				"foo/jim":      "bean",
 				"fee":          "bar",
 				"n1/alist/0":   "a",
@@ -111,38 +119,43 @@ func TestFlatten(t *testing.T) {
 				"bool":         true,
 			},
 			"",
-			PathStyle,
+			pathStyle,
 		},
 		{
-			`{ "a": { "b": "c" }, "e": "f" }`,
-			map[string]interface{}{
+			map[string]any{
+				"a": map[string]any{
+					"b": "c",
+				},
+				"e": "f",
+			},
+			map[string]any{
 				"p:a.b": "c",
 				"p:e":   "f",
 			},
 			"p:",
-			DotStyle,
+			dotStyle,
 		},
 		{
-			`{
-				"foo": {
-					"jim":"bean"
+			map[string]any{
+				"foo": map[string]any{
+					"jim": "bean",
 				},
 				"fee": "bar",
-				"n1": {
-					"alist": [
+				"n1": map[string]any{
+					"alist": []any{
 						"a",
 						"b",
 						"c",
-						{
+						map[string]any{
 							"d": "other",
-							"e": "another"
-						}
-					]
+							"e": "another",
+						},
+					},
 				},
 				"number": 1.4567,
-				"bool":   true
-			}`,
-			map[string]interface{}{
+				"bool":   true,
+			},
+			map[string]any{
 				"foo_jim":      "bean",
 				"fee":          "bar",
 				"n1_alist_0":   "a",
@@ -154,159 +167,26 @@ func TestFlatten(t *testing.T) {
 				"bool":         true,
 			},
 			"",
-			UnderscoreStyle,
+			underscoreStyle,
 		},
 	}
 
-	for i, testcase := range testcases {
-		var m interface{}
-		err := json.Unmarshal([]byte(testcase.test), &m)
-		if err != nil {
-			t.Errorf("%d: failed to unmarshal testcase: %v", i+1, err)
-			continue
+	for index, testcase := range testcases {
+		converter := gox.Flatten(testcase.in).Prefix(testcase.prefix)
+		switch testcase.style {
+		case dotStyle:
+			converter.DotStyle()
+		case railsStyle:
+			converter.RailsStyle()
+		case pathStyle:
+			converter.PathStyle()
+		case underscoreStyle:
+			converter.UnderscoreStyle()
 		}
-		got, err := Flatten(m.(map[string]interface{}), testcase.prefix, testcase.style)
-		if err != nil {
-			t.Errorf("%d: failed to flatten: %v", i+1, err)
-			continue
-		}
-		if !reflect.DeepEqual(got, testcase.want) {
-			t.Errorf("%d: mismatch, got: %v wanted: %v", i+1, got, testcase.want)
-		}
-	}
-}
-
-func TestFlattenString(t *testing.T) {
-	testcases := []struct {
-		test   string
-		want   string
-		prefix string
-		style  SeparatorStyle
-		err    error
-	}{
-		// 1
-		{
-			`{ "a": "b" }`,
-			`{ "a": "b" }`,
-			"",
-			DotStyle,
-			nil,
-		},
-		// 2
-		{
-			`{ "a": { "b" : { "c" : { "d" : "e" } } }, "number": 1.4567, "bool": true }`,
-			`{ "a.b.c.d": "e", "bool": true, "number": 1.4567 }`,
-			"",
-			DotStyle,
-			nil,
-		},
-		// 3
-		{
-			`{ "a": { "b" : { "c" : { "d" : "e" } } }, "number": 1.4567, "bool": true }`,
-			`{ "a/b/c/d": "e", "bool": true, "number": 1.4567 }`,
-			"",
-			PathStyle,
-			nil,
-		},
-		// 4
-		{
-			`{ "a": { "b" : { "c" : { "d" : "e" } } } }`,
-			`{ "a--b--c--d": "e" }`,
-			"",
-			SeparatorStyle{Middle: "--"}, // emdash
-			nil,
-		},
-		// 5
-		{
-			`{ "a": { "b" : { "c" : { "d" : "e" } } } }`,
-			`{ "a(b)(c)(d)": "e" }`,
-			"",
-			SeparatorStyle{Before: "(", After: ")"}, // paren groupings
-			nil,
-		},
-		// 6 -- with leading whitespace
-		{
-			`
-			  	{ "a": { "b" : { "c" : { "d" : "e" } } } }`,
-			`{ "a(b)(c)(d)": "e" }`,
-			"",
-			SeparatorStyle{Before: "(", After: ")"}, // paren groupings
-			nil,
-		},
-
-		//
-		// Valid JSON text, but invalid for FlattenString
-		//
-
-		// 7
-		{
-			`[ "a": { "b": "c" }, "d" ]`,
-			`bogus`,
-			"",
-			PathStyle,
-			NotValidJsonInputError,
-		},
-		// 8
-		{
-			``,
-			`bogus`,
-			"",
-			PathStyle,
-			NotValidJsonInputError,
-		},
-		// 9
-		{
-			`astring`,
-			`bogus`,
-			"",
-			PathStyle,
-			NotValidJsonInputError,
-		},
-		// 10
-		{
-			`false`,
-			`bogus`,
-			"",
-			PathStyle,
-			NotValidJsonInputError,
-		},
-		// 11
-		{
-			`42`,
-			`bogus`,
-			"",
-			PathStyle,
-			NotValidJsonInputError,
-		},
-		// 12 -- prior to version 1.0.1, this was accepted & unmarshalled as an empty map, finally returning `{}`.
-		{
-			`null`,
-			`{}`,
-			"",
-			PathStyle,
-			NotValidJsonInputError,
-		},
-	}
-
-	for i, test := range testcases {
-		got, err := FlattenString(test.test, test.prefix, test.style)
-		if err != test.err {
-			t.Errorf("%d: error mismatch, got: [%v], wanted: [%v]", i+1, err, test.err)
-			continue
-		}
-		if err != nil {
-			continue
-		}
-
-		nixws := func(r rune) rune {
-			if unicode.IsSpace(r) {
-				return -1
-			}
-			return r
-		}
-
-		if got != strings.Map(nixws, test.want) {
-			t.Errorf("%d: mismatch, got: %v wanted: %v", i+1, got, test.want)
+		if got, err := converter.Convert(); nil != err {
+			test.Errorf("第%d个测试出错%v", index+1, err)
+		} else if !reflect.DeepEqual(got, testcase.want) {
+			test.Errorf("第%d个测试未通过，实际：%v，期望：%v", index+1, got, testcase.want)
 		}
 	}
 }
