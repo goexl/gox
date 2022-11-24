@@ -44,8 +44,9 @@ func (c Case) Camel() string {
 }
 
 // InitialLowercase 首字母小写
-func (c Case) InitialLowercase() string {
+func (c Case) InitialLowercase() Case {
 	from := string(c)
+	c = Case(string(unicode.ToLower(rune(from[0]))) + from[1:])
 
-	return string(unicode.ToLower(rune(from[0]))) + from[1:]
+	return c
 }
