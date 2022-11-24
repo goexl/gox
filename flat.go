@@ -6,62 +6,62 @@ import (
 )
 
 type (
-	flattenType interface {
+	flatType interface {
 		map[string]any | string
 	}
 
-	flattenConverter[T flattenType] struct {
+	flatConverter[T flatType] struct {
 		from   T
-		style  *flattenStyle
+		style  *flatStyle
 		prefix string
 	}
 
-	flattenStyle struct {
+	flatStyle struct {
 		before string
 		middle string
 		after  string
 	}
 )
 
-func Flatten[T flattenType](from T) *flattenConverter[T] {
-	return &flattenConverter[T]{
+func Flat[T flatType](from T) *flatConverter[T] {
+	return &flatConverter[T]{
 		from:   from,
-		style:  &flattenStyle{middle: "."},
+		style:  &flatStyle{middle: "."},
 		prefix: "",
 	}
 }
 
-func (fc *flattenConverter[T]) DotStyle() *flattenConverter[T] {
-	fc.style = &flattenStyle{middle: "."}
+func (fc *flatConverter[T]) DotStyle() *flatConverter[T] {
+	fc.style = &flatStyle{middle: "."}
 
 	return fc
 }
 
-func (fc *flattenConverter[T]) PathStyle() *flattenConverter[T] {
-	fc.style = &flattenStyle{middle: "/"}
+func (fc *flatConverter[T]) PathStyle() *flatConverter[T] {
+	fc.style = &flatStyle{middle: "/"}
 
 	return fc
 }
 
-func (fc *flattenConverter[T]) RailsStyle() *flattenConverter[T] {
-	fc.style = &flattenStyle{before: "[", after: "]"}
+func (fc *flatConverter[T]) RailsStyle() *flatConverter[T] {
+	fc.style = &flatStyle{before: "[", after: "]"}
 
 	return fc
 }
 
-func (fc *flattenConverter[T]) UnderscoreStyle() *flattenConverter[T] {
-	fc.style = &flattenStyle{middle: "_"}
+func (fc *flatConverter[T]) UnderscoreStyle() *flatConverter[T] {
+	fc.style = &flatStyle{middle: "_"}
 
 	return fc
 }
 
-func (fc *flattenConverter[T]) Prefix(prefix string) *flattenConverter[T] {
+func (fc *flatConverter[T]) Prefix(prefix string) *flatConverter[T] {
 	fc.prefix = prefix
 
 	return fc
 }
 
-func (fc *flattenConverter[T]) Convert() (to map[string]any, err error) {
+func (fc *flatConverter[T]) Convert() (to map[string]any, err error) {
 	to = make(map[string]any)
 	switch from := any(fc.from).(type) {
 	case map[string]any:
@@ -73,7 +73,7 @@ func (fc *flattenConverter[T]) Convert() (to map[string]any, err error) {
 	return
 }
 
-func (fc *flattenConverter[T]) string(bytes []byte, to map[string]any) (err error) {
+func (fc *flatConverter[T]) string(bytes []byte, to map[string]any) (err error) {
 	from := new(map[string]any)
 	if err = json.Unmarshal(bytes, from); nil == err {
 		err = fc.flatten(true, to, from, fc.prefix)
@@ -82,7 +82,7 @@ func (fc *flattenConverter[T]) string(bytes []byte, to map[string]any) (err erro
 	return
 }
 
-func (fc *flattenConverter[T]) flatten(top bool, flat map[string]any, nested any, prefix string) (err error) {
+func (fc *flatConverter[T]) flatten(top bool, flat map[string]any, nested any, prefix string) (err error) {
 	switch _nested := nested.(type) {
 	case map[string]any:
 		for key, value := range _nested {
@@ -99,7 +99,7 @@ func (fc *flattenConverter[T]) flatten(top bool, flat map[string]any, nested any
 	return
 }
 
-func (fc *flattenConverter[T]) assign(flat map[string]any, newKey string, value any) (err error) {
+func (fc *flatConverter[T]) assign(flat map[string]any, newKey string, value any) (err error) {
 	switch value.(type) {
 	case map[string]any, []any:
 		err = fc.flatten(false, flat, value, newKey)
@@ -110,7 +110,7 @@ func (fc *flattenConverter[T]) assign(flat map[string]any, newKey string, value 
 	return
 }
 
-func (fc *flattenConverter[T]) enKey(top bool, prefix string, subKey string) string {
+func (fc *flatConverter[T]) enKey(top bool, prefix string, subKey string) string {
 	key := prefix
 
 	if top {

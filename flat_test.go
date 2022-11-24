@@ -172,7 +172,7 @@ func TestFlatten(test *testing.T) {
 	}
 
 	for index, testcase := range testcases {
-		converter := gox.Flatten(testcase.in).Prefix(testcase.prefix)
+		converter := gox.Flat(testcase.in).Prefix(testcase.prefix)
 		switch testcase.style {
 		case dotStyle:
 			converter.DotStyle()
