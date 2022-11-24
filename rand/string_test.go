@@ -20,7 +20,7 @@ func TestDigit(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		got := rand.New().Length(tc.input).Digital().Generate()
+		got := rand.New().String().Length(tc.input).Digital().Generate()
 		if len(got) != tc.expected {
 			t.Fatalf("期望：%v，实际：%v", tc.expected, got)
 		}
@@ -41,7 +41,7 @@ func TestString(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		got := rand.New().Length(tc.input).Generate()
+		got := rand.New().String().Length(tc.input).Generate()
 		if len(got) != tc.expected {
 			t.Fatalf("期望：%v，实际：%v", tc.expected, got)
 		}
@@ -49,7 +49,7 @@ func TestString(t *testing.T) {
 }
 
 func TestCode(t *testing.T) {
-	got := rand.New().Code().Generate()
+	got := rand.New().String().Code().Generate()
 	if 6 != len(got) {
 		t.Fatalf("期望：%v，实际：%v", 6, got)
 	}

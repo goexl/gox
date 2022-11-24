@@ -1,41 +1,28 @@
 package rand
 
+import (
+	"time"
+)
+
 var _ = New
 
 type generator struct {
-	_string *_string
-	length  int
-	bytes   string
+	seed int64
 }
 
 // New 创建随机字符串
 func New() *generator {
 	return &generator{
-		_string: newString(),
-		length:  8,
-		bytes:   letters,
+		seed: time.Now().UnixNano(),
 	}
 }
 
-func (g *generator) Length(length int) *generator {
-	g.length = length
+func (g *generator) Seed(seed int64) *generator {
+	g.seed = seed
 
 	return g
 }
 
-func (g *generator) Code() *generator {
-	g.length = 6
-	g.bytes = numbers
-
-	return g
-}
-
-func (g *generator) Digital() *generator {
-	g.bytes = numbers
-
-	return g
-}
-
-func (g *generator) Generate() (value string) {
-	return g._string.rand(g.length, g.bytes)
+func (g *generator) String() *_string {
+	return newString(g.seed)
 }

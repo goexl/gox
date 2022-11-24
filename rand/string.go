@@ -2,7 +2,6 @@ package rand
 
 import (
 	"math/rand"
-	"time"
 	"unsafe"
 )
 
@@ -18,12 +17,39 @@ const (
 
 type _string struct {
 	source rand.Source
+	length int
+	bytes  string
 }
 
-func newString() *_string {
+func newString(seed int64) *_string {
 	return &_string{
-		source: rand.NewSource(time.Now().UnixNano()),
+		source: rand.NewSource(seed),
+		length: 8,
+		bytes:  letters,
 	}
+}
+
+func (s *_string) Length(length int) *_string {
+	s.length = length
+
+	return s
+}
+
+func (s *_string) Code() *_string {
+	s.length = 6
+	s.bytes = numbers
+
+	return s
+}
+
+func (s *_string) Digital() *_string {
+	s.bytes = numbers
+
+	return s
+}
+
+func (s *_string) Generate() (value string) {
+	return s.rand(s.length, s.bytes)
 }
 
 func (s *_string) rand(length int, letters string) string {
