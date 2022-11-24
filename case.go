@@ -9,9 +9,9 @@ import (
 type Case string
 
 // Underscore 转为下划线写法
-func (c *Case) Underscore(upperInitial bool) string {
+func (c Case) Underscore(upperInitial bool) string {
 	buffer := strings.Builder{}
-	from := string(*c)
+	from := string(c)
 	for index, char := range from {
 		if unicode.IsUpper(char) {
 			if 0 != index {
@@ -35,8 +35,8 @@ func (c *Case) Underscore(upperInitial bool) string {
 }
 
 // Camel 转为驼峰写法
-func (c *Case) Camel() string {
-	from := string(*c)
+func (c Case) Camel() string {
+	from := string(c)
 	from = strings.Replace(from, "_", " ", -1)
 	from = strings.Title(from)
 
@@ -44,8 +44,8 @@ func (c *Case) Camel() string {
 }
 
 // InitialLowercase 首字母小写
-func (c *Case) InitialLowercase() string {
-	from := string(*c)
+func (c Case) InitialLowercase() string {
+	from := string(c)
 
 	return string(unicode.ToLower(rune(from[0]))) + from[1:]
 }
