@@ -14,43 +14,41 @@ func (c *Case) String() string {
 }
 
 // Underscore 转为下划线写法
-func (c *Case) Underscore(upper bool) *Case {
+func (c *Case) Underscore(upperPos casePosition) *Case {
 	buffer := strings.Builder{}
-	from := string(*c)
-	for index, char := range from {
-		if unicode.IsUpper(char) {
-			if 0 != index {
-				buffer.WriteRune('_')
-			}
-			if upper {
-				buffer.WriteRune(unicode.ToUpper(char))
-			} else {
-				buffer.WriteRune(unicode.ToLower(char))
-			}
-		} else {
-			if 0 == index && upper {
-				buffer.WriteRune(unicode.ToUpper(char))
-			} else {
-				buffer.WriteRune(char)
-			}
+	words := strings.Split(c.clear(), " ")
+	for index, word := range words {
+		switch {
+		case 0 == index && CasePositionHead == upperPos:
+			buffer.WriteRune(unicode.ToUpper(rune(word[0])))
+		case len(words) == index && CasePositionTail == upperPos:
+			buffer.WriteRune(unicode.ToUpper(rune(word[0])))
+		case CasePositionAll == upperPos:
+			buffer.WriteRune(unicode.ToUpper(rune(word[0])))
+		case CasePositionNone == upperPos:
+			buffer.WriteRune(unicode.ToLower(rune(word[0])))
 		}
+		buffer.WriteString(word[1:])
+		buffer.WriteRune('_')
 	}
-	*c = Case(buffer.String())
+	*c = Case(buffer.String()[:buffer.Len()-2])
 
 	return c
 }
 
 // Camel 转为驼峰写法
-func (c *Case) Camel(upper bool) *Case {
-	from := string(*c)
-	from = strings.Replace(from, "_", " ", -1)
-	from = strings.Replace(from, "-", " ", -1)
-
+func (c *Case) Camel(upperPos casePosition) *Case {
 	buffer := strings.Builder{}
-	for index, word := range strings.Split(from, " ") {
-		if 0 == index && !upper {
-			buffer.WriteRune(unicode.ToLower(rune(word[0])))
-		} else {
+	words := strings.Split(c.clear(), " ")
+	for index, word := range words {
+		switch {
+		case 0 == index && CasePositionHead == upperPos:
+			buffer.WriteRune(unicode.ToUpper(rune(word[0])))
+		case len(words) == index && CasePositionTail == upperPos:
+			buffer.WriteRune(unicode.ToUpper(rune(word[0])))
+		case CasePositionNone == upperPos:
+			buffer.WriteRune(rune(word[0]))
+		default:
 			buffer.WriteRune(unicode.ToUpper(rune(word[0])))
 		}
 		buffer.WriteString(word[1:])
@@ -60,10 +58,27 @@ func (c *Case) Camel(upper bool) *Case {
 	return c
 }
 
-// LowercaseInitial 首字母小写
-func (c *Case) LowercaseInitial() *Case {
+// Lowercase 首字母小写
+func (c *Case) Lowercase(pos casePosition) *Case {
 	from := string(*c)
-	*c = Case(string(unicode.ToLower(rune(from[0]))) + from[1:])
+	switch pos {
+	case CasePositionHead:
+		from = string(unicode.ToLower(rune(from[0]))) + from[1:]
+	case CasePositionTail:
+		_len := len(from)
+		from = from[:_len-2] + string(unicode.ToLower(rune(from[_len-1])))
+	case CasePositionAll:
+		from = strings.ToLower(from)
+	}
+	*c = Case(from)
 
 	return c
+}
+
+func (c *Case) clear() (to string) {
+	to = string(*c)
+	to = strings.Replace(to, "_", " ", -1)
+	to = strings.Replace(to, "-", " ", -1)
+
+	return
 }
