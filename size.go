@@ -22,16 +22,8 @@ type Size int64
 
 // ParseSize 解析字节大小
 func ParseSize(from string) (size Size, err error) {
-	volumes := strings.Split(from, StringSpace)
-	if 0 == len(volumes) {
-		err = newField("字节大小格式错误", newStringField("string", from))
-	}
-	if nil != err {
-		return
-	}
-
 	// 逐步解析各个容量
-	for _, volume := range volumes {
+	for _, volume := range strings.Split(from, StringSpace) {
 		var unit, num string
 		length := len(volume)
 		check := volume[length-2]
@@ -49,7 +41,7 @@ func ParseSize(from string) (size Size, err error) {
 			return
 		}
 
-		switch unit {
+		switch strings.ToLower(unit) {
 		case `b`:
 			size += Size(capacity)
 		case `kb`, `k`:
@@ -72,6 +64,14 @@ func ParseSize(from string) (size Size, err error) {
 
 func (s *Size) String() string {
 	return s.Formatter().Format()
+}
+
+func (s *Size) Bit() int64 {
+	return int64(*s) * 8
+}
+
+func (s *Size) Bit32() int32 {
+	return int32(*s) * 8
 }
 
 func (s *Size) Formatter() *sizeFormatter {
