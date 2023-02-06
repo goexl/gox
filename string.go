@@ -76,7 +76,7 @@ func String(from any) (to string) {
 			to = string(bytes)
 		}
 	default:
-		to = fmt.Sprintf(`%v`, from)
+		to = fmt.Sprintf("%v", from)
 	}
 
 	return
