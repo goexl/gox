@@ -1,15 +1,15 @@
 package tpl
 
 type builder struct {
-	data        any
-	template    string
-	contentType contentType
+	data      any
+	input     []string
+	inputType inputType
 }
 
-func newBuilder(template string) *builder {
+func newBuilder(input string) *builder {
 	return &builder{
-		template:    template,
-		contentType: contentTypeString,
+		input:     []string{input},
+		inputType: inputTypeString,
 	}
 }
 
@@ -19,14 +19,15 @@ func (b *builder) Data(data any) *builder {
 	return b
 }
 
-func (b *builder) File() *builder {
-	b.contentType = contentTypeFile
+func (b *builder) File(paths ...string) *builder {
+	b.inputType = inputTypeFile
+	b.input = append(b.input, paths...)
 
 	return b
 }
 
 func (b *builder) String() *builder {
-	b.contentType = contentTypeString
+	b.inputType = inputTypeString
 
 	return b
 }
