@@ -1,7 +1,7 @@
 package tpl
 
 import (
-	"os"
+	"io"
 )
 
-type fun func(file *os.File) (err error)
+type fun func(wr io.Writer) (err error)

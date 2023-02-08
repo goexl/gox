@@ -4,12 +4,14 @@ type builder struct {
 	data      any
 	input     []string
 	inputType inputType
+	executor  executor
 }
 
 func newBuilder(input string) *builder {
 	return &builder{
 		input:     []string{input},
 		inputType: inputTypeString,
+		executor:  newTextExecutor(),
 	}
 }
 
@@ -30,4 +32,20 @@ func (b *builder) String() *builder {
 	b.inputType = inputTypeString
 
 	return b
+}
+
+func (b *builder) Text() *builder {
+	b.executor = newTextExecutor()
+
+	return b
+}
+
+func (b *builder) Html() *builder {
+	b.executor = newHtmlExecutor()
+
+	return b
+}
+
+func (b *builder) Build() *_template {
+	return newTemplate(b.input, b.inputType, b.data, b.executor)
 }

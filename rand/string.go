@@ -48,7 +48,7 @@ func (s *_string) Digital() *_string {
 	return s
 }
 
-func (s *_string) Generate() (value string) {
+func (s *_string) Generate() string {
 	return s.rand(s.length, s.bytes)
 }
 
