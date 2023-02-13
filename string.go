@@ -4,9 +4,16 @@ import (
 	"encoding/json"
 	"fmt"
 	"strconv"
+	"strings"
 )
 
-var _ = Strings
+var (
+	_ = Strings
+	_ = HasAnyPrefix
+	_ = HasAllPrefix
+	_ = HasAnySuffix
+	_ = HasAllSuffix
+)
 
 // Strings 将任意类型转换成字符串列表
 func Strings(from ...any) (to []string) {
@@ -77,6 +84,70 @@ func String(from any) (to string) {
 		}
 	default:
 		to = fmt.Sprintf("%v", from)
+	}
+
+	return
+}
+
+// HasAnyPrefix 判断是否包含任意一个前缀
+func HasAnyPrefix(str string, checks ...string) (has bool) {
+	has = false
+	for _, check := range checks {
+		if strings.HasPrefix(str, check) {
+			has = true
+		}
+
+		if has {
+			break
+		}
+	}
+
+	return
+}
+
+// HasAllPrefix 判断是否包含所有前缀
+func HasAllPrefix(str string, checks ...string) (has bool) {
+	has = true
+	for _, check := range checks {
+		if !strings.HasPrefix(str, check) {
+			has = false
+		}
+
+		if !has {
+			break
+		}
+	}
+
+	return
+}
+
+// HasAnySuffix 判断是否包含任意一个后缀
+func HasAnySuffix(str string, checks ...string) (has bool) {
+	has = false
+	for _, check := range checks {
+		if strings.HasSuffix(str, check) {
+			has = true
+		}
+
+		if has {
+			break
+		}
+	}
+
+	return
+}
+
+// HasAllSuffix 判断是否包含所有后缀
+func HasAllSuffix(str string, checks ...string) (has bool) {
+	has = true
+	for _, check := range checks {
+		if !strings.HasSuffix(str, check) {
+			has = false
+		}
+
+		if !has {
+			break
+		}
 	}
 
 	return
