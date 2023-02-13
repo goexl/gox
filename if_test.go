@@ -19,11 +19,11 @@ func TestIf(t *testing.T) {
 }
 
 func TestIfx(t *testing.T) {
-	if 8 != gox.Ifx[int](true, 8, 9) {
+	if 8 != gox.Ternary[int](true, 8, 9) {
 		t.Fatalf(`期望：%d，实际：%d`, 8, 9)
 	}
 
-	if "true" != gox.Ifx[string](true, "true", "false") {
+	if "true" != gox.Ternary[string](true, "true", "false") {
 		t.Fatalf(`期望：%s，实际：%s`, "true", "false")
 	}
 }
