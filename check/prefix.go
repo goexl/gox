@@ -12,6 +12,6 @@ func newPrefix() *prefix {
 	return new(prefix)
 }
 
-func (p *prefix) check(check string, target string) bool {
-	return strings.HasPrefix(target, check)
+func (p *prefix) check(check string, item string) bool {
+	return strings.HasPrefix(item, check)
 }

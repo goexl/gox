@@ -12,6 +12,6 @@ func newContains() *contains {
 	return new(contains)
 }
 
-func (p *contains) check(check string, target string) bool {
-	return strings.Contains(target, check)
+func (p *contains) check(check string, item string) bool {
+	return strings.Contains(item, check)
 }

@@ -21,7 +21,7 @@ func TestStr(t *testing.T) {
 	}
 
 	for _, test := range toStringTests {
-		actual := gox.Strings(test.in...)
+		actual := gox.ToStrings(test.in...)
 		if !reflect.DeepEqual(actual, test.expected) {
 			t.Errorf("str(%v) = %v；期望：%v", test.in, actual, test.expected)
 		}

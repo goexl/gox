@@ -6,20 +6,20 @@ import (
 	"strconv"
 )
 
-var _ = Strings
+var _ = ToStrings
 
-// Strings 将任意类型转换成字符串列表
-func Strings(from ...any) (to []string) {
+// ToStrings 将任意类型转换成字符串列表
+func ToStrings(from ...any) (to []string) {
 	to = make([]string, 0, len(from))
 	for _, value := range from {
-		to = append(to, String(value))
+		to = append(to, ToString(value))
 	}
 
 	return
 }
 
-// String 将任意类型转换为字符串
-func String(from any) (to string) {
+// ToString 将任意类型转换为字符串
+func ToString(from any) (to string) {
 	switch val := from.(type) {
 	case int8:
 		to = strconv.FormatInt(int64(val), 10)

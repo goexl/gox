@@ -50,7 +50,7 @@ func TestString(t *testing.T) {
 		}
 
 		got := false
-		_string := _check.String(test.check).Targets(test.targets...)
+		_string := _check.String(test.check).Items(test.targets...)
 		switch test.st {
 		case stringContains:
 			got = _string.Contains().Check()
