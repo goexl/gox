@@ -46,6 +46,6 @@ func (b *builder) Html() *builder {
 	return b
 }
 
-func (b *builder) Build() *_template {
-	return newTemplate(b.input, b.inputType, b.data, b.executor)
+func (b *builder) Build() *render {
+	return newRender(b.input, b.inputType, b.data, b.executor)
 }
