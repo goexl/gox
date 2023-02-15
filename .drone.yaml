@@ -1,18 +1,54 @@
 kind: pipeline
 type: docker
-name: Gox
+name: 发布
 
 
 clone:
   disable: true
 
 
+environment:
+  CHANGELOG_TAG_OUTPUT: CHANGELOG.tag.md
+
+
 steps:
   - name: 代码
-    image: dronestock/git
+    image: ccr.ccs.tencentyun.com/dronestock/git
 
   - name: 编译
-    image: pangum/pangu
+    image: ccr.ccs.tencentyun.com/pangum/drone
+    volumes:
+      - name: go
+        path: /var/lib/go
     settings:
       compress:
         enabled: false
+
+  - name: 改变
+    image: ccr.ccs.tencentyun.com/dronestock/changelog
+    when:
+      event:
+        - tag
+    settings:
+      output: $${CHANGELOG_TAG_OUTPUT}
+      tag: $${DRONE_TAG}
+
+  - name: 发布
+    image: ccr.ccs.tencentyun.com/dronestock/github
+    when:
+      event:
+        - tag
+    environment:
+      TOKEN:
+        from_secret: token_github
+    settings:
+      release:
+        tag: $${DRONE_TAG}
+        token: $${TOKEN}
+        body: exe:file("$${CHANGELOG_TAG_OUTPUT}")
+
+
+volumes:
+  - name: go
+    host:
+      path: /var/lib/cache/go
