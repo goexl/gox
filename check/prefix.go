@@ -12,6 +12,7 @@ func newPrefix() *prefix {
 	return new(prefix)
 }
 
+// nolint: unused
 func (p *prefix) check(check string, item string) bool {
 	return strings.HasPrefix(item, check)
 }

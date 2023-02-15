@@ -12,6 +12,7 @@ func newSuffix() *suffix {
 	return new(suffix)
 }
 
+// nolint: unused
 func (s *suffix) check(check string, item string) bool {
 	return strings.HasSuffix(item, check)
 }
