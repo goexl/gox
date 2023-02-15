@@ -12,6 +12,6 @@ func newSuffix() *suffix {
 	return new(suffix)
 }
 
-func (p *suffix) check(check string, item string) bool {
+func (s *suffix) check(check string, item string) bool {
 	return strings.HasSuffix(item, check)
 }
