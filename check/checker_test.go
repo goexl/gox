@@ -33,7 +33,7 @@ type (
 
 func TestString(t *testing.T) {
 	tests := []stringTest{
-		{t: checkAny, st: stringPrefix, check: "test", targets: []string{"t", "te", "b"}, expected: true},
+		{t: checkAny, st: stringPrefix, check: "test", targets: []string{"1", "2", "t"}, expected: true},
 		{t: checkAll, st: stringPrefix, check: "test", targets: []string{"test", "a", "b"}, expected: false},
 		{t: checkAny, st: stringSuffix, check: "1test", targets: []string{"t", "st", "b"}, expected: true},
 		{t: checkAll, st: stringSuffix, check: "test", targets: []string{"test1", "a", "b"}, expected: false},
