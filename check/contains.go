@@ -14,5 +14,5 @@ func newContains() *contains {
 
 // nolint: unused
 func (c *contains) check(check string, item string) bool {
-	return strings.Contains(item, check)
+	return strings.Contains(check, item)
 }
