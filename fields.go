@@ -12,7 +12,7 @@ func (f Fields[T]) Add(fields ...Field[T]) (new Fields[T]) {
 	new = make([]Field[T], 0, len(f)+len(fields))
 	new = append(new, f...)
 	new = append(new, fields...)
-	fields = fields[:0]
+	fields = nil
 
 	return
 }
