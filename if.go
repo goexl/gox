@@ -26,8 +26,8 @@ func Iff[T any](condition bool, result callback[T]) (t T) {
 	return
 }
 
-// Ifx 模拟三元表达式，主要用法是减少大括号
-func Ifx[T any](condition bool, first T, second T) (t T) {
+// Ift 模拟三元表达式，主要用法是减少大括号
+func Ift[T any](condition bool, first T, second T) (t T) {
 	return Ternary(condition, first, second)
 }
 
@@ -42,8 +42,8 @@ func Ternary[T any](condition bool, first T, second T) (t T) {
 	return
 }
 
-// Ift 模拟三元表达式，主要用法是减少大括号
-func Ift[T any](condition bool, first callback[T], second callback[T]) (t T) {
+// Ifx 模拟三元表达式，主要用法是减少大括号
+func Ifx[T any](condition bool, first callback[T], second callback[T]) (t T) {
 	return TernaryFunc(condition, first, second)
 }
 
