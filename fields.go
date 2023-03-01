@@ -8,13 +8,8 @@ import (
 // Fields 字段列表
 type Fields[T any] []Field[T]
 
-func (f Fields[T]) Add(fields ...Field[T]) (new Fields[T]) {
-	new = make([]Field[T], 0, len(f)+len(fields))
-	new = append(new, f...)
-	new = append(new, fields...)
-	fields = nil
-
-	return
+func (f Fields[T]) Add(fields ...Field[T]) Fields[T] {
+	return append(f, fields...)
 }
 
 func (f Fields[T]) String() string {
