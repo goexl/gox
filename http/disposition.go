@@ -23,6 +23,13 @@ func (d *disposition) String() (disposition string) {
 	return
 }
 
-func (d *disposition) Fill(headers Headers) {
-	headers[HeaderContentDisposition] = d.String()
+func (d *disposition) Set(headers Headers) {
+	headers.Set(HeaderContentDisposition, d.String())
+}
+
+func (d *disposition) Headers() (headers Headers) {
+	headers = make(Headers)
+	d.Set(headers)
+
+	return
 }
