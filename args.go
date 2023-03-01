@@ -7,7 +7,7 @@ func (a Args) Add(args ...any) (new Args) {
 	new = make(Args, 0, len(a)+len(args))
 	new = append(new, a...)
 	new = append(new, args...)
-	args = nil
+	args = args[:0]
 
 	return
 }

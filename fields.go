@@ -12,7 +12,7 @@ func (f Fields[T]) Add(fields ...Field[T]) (new Fields[T]) {
 	new = make([]Field[T], 0, len(f)+len(fields))
 	new = append(new, f...)
 	new = append(new, fields...)
-	fields = nil
+	fields = fields[:0]
 
 	return
 }
@@ -23,5 +23,5 @@ func (f Fields[T]) String() string {
 		kvs = append(kvs, fmt.Sprintf("%s = %v", field.Key(), field.Value()))
 	}
 
-	return fmt.Sprintf("[%s]", strings.Join(kvs, `,`))
+	return fmt.Sprintf("[%s]", strings.Join(kvs, ","))
 }
