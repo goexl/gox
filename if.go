@@ -6,7 +6,7 @@ var (
 	_ = Ifx[int]
 )
 
-type iff[T any] func() T
+type callback[T any] func() T
 
 // If 模块条件表达式，主要用法是减少大括号
 func If[T any](condition bool, result T) (t T) {
@@ -18,7 +18,7 @@ func If[T any](condition bool, result T) (t T) {
 }
 
 // Iff 模块条件表达式，主要用法是减少大括号
-func Iff[T any](condition bool, result iff[T]) (t T) {
+func Iff[T any](condition bool, result callback[T]) (t T) {
 	if condition {
 		t = result()
 	}
@@ -28,7 +28,7 @@ func Iff[T any](condition bool, result iff[T]) (t T) {
 
 // Ifx 模拟三元表达式，主要用法是减少大括号
 func Ifx[T any](condition bool, first T, second T) (t T) {
-	return Ternary[T](condition, first, second)
+	return Ternary(condition, first, second)
 }
 
 // Ternary 模拟三元表达式，主要用法是减少大括号
@@ -42,8 +42,13 @@ func Ternary[T any](condition bool, first T, second T) (t T) {
 	return
 }
 
-// Ternaryf 模拟三元表达式，主要用法是减少大括号
-func Ternaryf[T any](condition bool, first iff[T], second iff[T]) (t T) {
+// Ift 模拟三元表达式，主要用法是减少大括号
+func Ift[T any](condition bool, first callback[T], second callback[T]) (t T) {
+	return TernaryFunc(condition, first, second)
+}
+
+// TernaryFunc 模拟三元表达式，主要用法是减少大括号
+func TernaryFunc[T any](condition bool, first callback[T], second callback[T]) (t T) {
 	if condition {
 		t = first()
 	} else {
