@@ -3,10 +3,9 @@ package gox
 var (
 	_ = If[int]
 	_ = Iff[int]
+	_ = Ift[int]
 	_ = Ifx[int]
 )
-
-type callback[T any] func() T
 
 // If 模块条件表达式，主要用法是减少大括号
 func If[T any](condition bool, result T) (t T) {
