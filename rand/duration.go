@@ -17,8 +17,9 @@ func newDuration(params *durationParams) *duration {
 }
 
 func (d *duration) Generate() (duration time.Duration) {
-	if random, re := rand.Int(rand.Reader, big.NewInt(int64(d.params.diff()))); nil != re {
-		duration = time.Duration(random.Int64())
+	diff := d.params.diff()
+	if random, re := rand.Int(rand.Reader, big.NewInt(int64(diff))); nil != re {
+		duration = diff
 	} else {
 		duration = d.params.from + time.Duration(random.Int64())
 	}
