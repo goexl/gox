@@ -30,3 +30,7 @@ func (db *durationBuilder) Between(from time.Duration, to time.Duration) *durati
 
 	return db
 }
+
+func (db *durationBuilder) Build() *duration {
+	return newDuration(db.params)
+}

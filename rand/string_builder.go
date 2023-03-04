@@ -35,3 +35,7 @@ func (s *stringBuilder) Digital() *stringBuilder {
 
 	return s
 }
+
+func (sb *stringBuilder) Build() *_string {
+	return newString(sb.source, sb.params)
+}
