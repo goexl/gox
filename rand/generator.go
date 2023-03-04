@@ -17,6 +17,6 @@ func (g *generator) Duration() *durationBuilder {
 	return newDurationBuilder()
 }
 
-func (g *generator) Time() *durationBuilder {
-	return newDurationBuilder()
+func (g *generator) Time() *timeBuilder {
+	return newTimeBuilder()
 }
