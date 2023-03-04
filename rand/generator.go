@@ -1,10 +1,5 @@
 package rand
 
-import (
-	"math/rand"
-	"time"
-)
-
 var _ = New
 
 type generator struct {}
@@ -18,6 +13,6 @@ func (g *generator) String() *stringBuilder {
 	return newStringBuilder()
 }
 
-func (g *generator) Duration() *stringBuilder {
-	return newDurationBuilder(g.source)
+func (g *generator) Duration() *durationBuilder {
+	return newDurationBuilder()
 }

@@ -10,3 +10,7 @@ type durationParams struct {
 func newDurationParams() *durationParams {
 	return new(durationParams)
 }
+
+func (dp *durationParams) diff() time.Duration {
+	return dp.to - dp.from
+}

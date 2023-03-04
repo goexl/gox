@@ -2,6 +2,7 @@ package rand
 
 import (
 	"math/rand"
+	"time"
 )
 
 type stringBuilder struct {
@@ -9,9 +10,9 @@ type stringBuilder struct {
 	params *stringParams
 }
 
-func newStringBuilder(source rand.Source) *stringBuilder {
+func newStringBuilder() *stringBuilder {
 	return &stringBuilder{
-		source: source,
+		source: rand.NewSource(time.Now().UnixNano()),
 		params: newStringParams(),
 	}
 }
