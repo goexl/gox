@@ -1,28 +1,23 @@
 package rand
 
 import (
+	"math/rand"
 	"time"
 )
 
 var _ = New
 
-type generator struct {
-	seed int64
-}
+type generator struct {}
 
 // New 创建随机字符串
 func New() *generator {
-	return &generator{
-		seed: time.Now().UnixNano(),
-	}
+	return new(generator)
 }
 
-func (g *generator) Seed(seed int64) *generator {
-	g.seed = seed
-
-	return g
+func (g *generator) String() *stringBuilder {
+	return newStringBuilder()
 }
 
-func (g *generator) String() *_string {
-	return newString(g.seed)
+func (g *generator) Duration() *stringBuilder {
+	return newDurationBuilder(g.source)
 }
