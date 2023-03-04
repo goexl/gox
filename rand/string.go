@@ -2,6 +2,7 @@ package rand
 
 import (
 	"math/rand"
+	"time"
 )
 
 type _string struct {
@@ -9,14 +10,14 @@ type _string struct {
 	params *stringParams
 }
 
-func newString(source rand.Source, params *stringParams) *_string {
+func newString(params *stringParams) *_string {
 	return &_string{
-		source: source,
+		source: rand.NewSource(time.Now().UnixNano()),
 		params: params,
 	}
 }
 
-func (s *stringBuilder) Generate() string {
+func (s *_string) Generate() string {
 	return s.params.rand(s.source)
 }
 

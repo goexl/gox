@@ -1,18 +1,11 @@
 package rand
 
-import (
-	"math/rand"
-	"time"
-)
-
 type stringBuilder struct {
-	source rand.Source
 	params *stringParams
 }
 
 func newStringBuilder() *stringBuilder {
 	return &stringBuilder{
-		source: rand.NewSource(time.Now().UnixNano()),
 		params: newStringParams(),
 	}
 }
@@ -37,5 +30,5 @@ func (s *stringBuilder) Digital() *stringBuilder {
 }
 
 func (sb *stringBuilder) Build() *_string {
-	return newString(sb.source, sb.params)
+	return newString(sb.params)
 }

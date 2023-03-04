@@ -39,7 +39,7 @@ func (et *executorText) toFile(input []string, inputType inputType, data any, fi
 }
 
 func (et *executorText) toString(input []string, inputType inputType, data any) (result string, err error) {
-	tpl := template.New(rand.New().String().Generate())
+	tpl := template.New(rand.New().String().Build().Generate())
 	switch inputType {
 	case inputTypeFile:
 		et.template, err = tpl.ParseFiles(input...)
