@@ -16,3 +16,7 @@ func (g *generator) String() *stringBuilder {
 func (g *generator) Duration() *durationBuilder {
 	return newDurationBuilder()
 }
+
+func (g *generator) Time() *durationBuilder {
+	return newDurationBuilder()
+}

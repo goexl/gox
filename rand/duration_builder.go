@@ -12,12 +12,6 @@ func newDurationBuilder() *durationBuilder {
 	}
 }
 
-func (fb *durationBuilder) From(from time.Duration) *durationBuilder {
-	fb.params.from = from
-
-	return fb
-}
-
 func (db *durationBuilder) To(to time.Duration) *durationBuilder {
 	db.params.to = to
 
