@@ -71,12 +71,12 @@ func ToString(from any) (to string) {
 		to = *val
 	case fmt.Stringer:
 		to = val.String()
-	case json.Marshaler:
-		if bytes, err := val.MarshalJSON(); nil == err {
-			to = string(bytes)
-		}
 	default:
-		to = fmt.Sprintf("%v", from)
+		if bytes, err := json.Marshal(from); nil == err {
+			to = string(bytes)
+		} else {
+			to = fmt.Sprintf("%v", from)
+		}
 	}
 
 	return
