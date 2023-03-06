@@ -28,6 +28,6 @@ func (b *builder) Long(placeholder string) *builder {
 	return b
 }
 
-func (b *builder) Build() *arguments {
-	return newArguments(b.params)
+func (b *builder) Build() *argsBuilder {
+	return newArgsBuilder(b.params)
 }
