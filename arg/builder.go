@@ -28,6 +28,12 @@ func (b *builder) Long(placeholder string) *builder {
 	return b
 }
 
+func (b *builder) Equal(placeholder string) *builder {
+	b.params.equal = placeholder
+
+	return b
+}
+
 func (b *builder) Build() *argsBuilder {
 	return newArgsBuilder(b.params)
 }

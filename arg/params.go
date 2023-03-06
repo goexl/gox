@@ -4,6 +4,7 @@ type params struct {
 	size  int
 	short string
 	long  string
+	equal string
 }
 
 func newParams() *params {
@@ -11,5 +12,6 @@ func newParams() *params {
 		size:  size,
 		short: short,
 		long:  long,
+		equal: equal,
 	}
 }
