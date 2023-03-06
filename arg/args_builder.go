@@ -31,20 +31,21 @@ func (ab *argsBuilder) Add(args ...Arg) *argsBuilder {
 	return ab
 }
 
-func (a *argsBuilder) Short(key any, value any) *argsBuilder {
-	return a.arg(key, value, a.params.short)
+func (ab *argsBuilder) Short(key any, value any) *argsBuilder {
+	return ab.arg(key, value, ab.params.short)
 }
 
-func (a *argsBuilder) Long(key any, value any) *argsBuilder {
-	return a.arg(key, value, a.params.long)
+func (ab *argsBuilder) Long(key any, value any) *argsBuilder {
+	return ab.arg(key, value, ab.params.long)
 }
 
-func (a *argsBuilder) Build() Args {
-	return a.args
+func (ab *argsBuilder) Build() Args {
+	return ab.args
 }
 
-func (a *argsBuilder) arg(key any, value any, placeholder string) *argsBuilder {
-	a.args = append(a.args, gox.StringBuilder(placeholder, key, equal, value).String())
+func (ab *argsBuilder) arg(key any, value any, placeholder string) *argsBuilder {
+	arg := gox.StringBuilder(placeholder, key, ab.params.equal, value).String()
+	ab.args = append(ab.args, arg)
 
-	return a
+	return ab
 }
