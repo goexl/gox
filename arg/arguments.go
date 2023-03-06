@@ -12,11 +12,12 @@ type arguments struct {
 func newArguments(params *params) *arguments {
 	return &arguments{
 		args: make(Args, 0, params.size),
+		params: params,
 	}
 }
 
 func (a *arguments) Add(args ...Arg) *arguments {
-	a.args = append(a.args, args...)
+	a.args = append(a.args, gox.ToStrings(args...)...)
 
 	return a
 }

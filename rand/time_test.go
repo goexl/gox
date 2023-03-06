@@ -1,7 +1,6 @@
 package rand_test
 
 import (
-	"fmt"
 	"testing"
 	"time"
 
@@ -18,7 +17,6 @@ func TestTime(t *testing.T) {
 
 	for _, test := range tests {
 		got := rand.New().Time().Between(test.from, test.to).Build().Generate()
-		fmt.Println(got)
 		if got.Before(test.from) || got.After(test.to) {
 			t.Fatalf("期望：从%v到%v，实际：%v", test.from, test.to, got)
 		}
