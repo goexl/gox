@@ -1,10 +1,8 @@
 package gox
 
 const (
-	// StringEmpty 空字符串
-	StringEmpty = ""
-	StringSpace = " "
+	stringEmpty = ""
+	stringSpace = " "
 
-	// Float64Size 64位长度
-	Float64Size = 64
+	float64Size = 64
 )

@@ -10,7 +10,7 @@ type stringBuilder struct {
 	buffer *bytes.Buffer
 }
 
-// 创建连写字符串
+// StringBuilder 创建连写字符串
 func StringBuilder(items ...any) (sb *stringBuilder) {
 	sb = new(stringBuilder)
 	sb.buffer = new(bytes.Buffer)

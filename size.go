@@ -23,7 +23,7 @@ type Size int64
 // ParseSize 解析字节大小
 func ParseSize(from string) (size Size, err error) {
 	// 逐步解析各个容量
-	for _, volume := range strings.Split(from, StringSpace) {
+	for _, volume := range strings.Split(from, stringSpace) {
 		var unit, num string
 		length := len(volume)
 		check := volume[length-2]
@@ -37,7 +37,7 @@ func ParseSize(from string) (size Size, err error) {
 
 		// 计算数字大小
 		var capacity float64
-		if capacity, err = strconv.ParseFloat(num, Float64Size); nil != err {
+		if capacity, err = strconv.ParseFloat(num, float64Size); nil != err {
 			return
 		}
 
