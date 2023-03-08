@@ -1,23 +1,23 @@
-package arg_test
+package args_test
 
 import (
 	"reflect"
 	"testing"
 
-	"github.com/goexl/gox/arg"
+	"github.com/goexl/gox/args"
 )
 
 func TestAdd(t *testing.T) {
 	tests := []struct {
 		args     []any
-		expected arg.Args
+		expected []string
 	}{
-		{args: []any{"go", "test"}, expected: arg.Args{"go", "test"}},
-		{args: []any{"go", "mod", "tidy"}, expected: arg.Args{"go", "mod", "tidy"}},
+		{args: []any{"go", "test"}, expected: []string{"go", "test"}},
+		{args: []any{"go", "mod", "tidy"}, expected: []string{"go", "mod", "tidy"}},
 	}
 
 	for index, test := range tests {
-		got := arg.New().Build().Add(test.args...).Build()
+		got := args.New().Build().Add(test.args...).Build().String()
 		if !reflect.DeepEqual(test.expected, got) {
 			t.Fatalf("第%d个测试未通过，期望：%v，实际：%v", index+1, test.args, got)
 		}
@@ -26,16 +26,16 @@ func TestAdd(t *testing.T) {
 
 func TestLong(t *testing.T) {
 	tests := []struct {
-		key      any
+		key      string
 		value    any
-		expected arg.Args
+		expected []string
 	}{
-		{key: "go", value: "mod", expected: arg.Args{"--go=mod"}},
-		{key: "go", value: "fmt", expected: arg.Args{"--go=fmt"}},
+		{key: "go", value: "mod", expected: []string{"--go=mod"}},
+		{key: "go", value: "fmt", expected: []string{"--go=fmt"}},
 	}
 
 	for index, test := range tests {
-		got := arg.New().Build().Long(test.key, test.value).Build()
+		got := args.New().Build().Arg(test.key, test.value).Build().String()
 		if !reflect.DeepEqual(test.expected, got) {
 			t.Fatalf("第%d个测试未通过，期望：%v，实际：%v", index+1, test.expected, got)
 		}

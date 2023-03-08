@@ -1,8 +1,9 @@
-package arg
+package args
 
 const (
-	size  = 16
+	size  = 4
 	short = "-"
 	long  = "--"
 	equal = "="
+	space = " "
 )
