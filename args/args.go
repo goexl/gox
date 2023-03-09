@@ -9,6 +9,7 @@ import (
 // Args 参数列表
 type Args struct {
 	args []any
+	_    gox.CannotCopy
 }
 
 func newArgs(args []any) *Args {

@@ -8,6 +8,7 @@ import (
 type Builder struct {
 	args   []any
 	params *params
+	_      gox.CannotCopy
 }
 
 func newBuilder(params *params) *Builder {
@@ -28,6 +29,14 @@ func (b *Builder) Insert(args ...any) *Builder {
 
 func (b *Builder) Add(args ...any) *Builder {
 	b.args = append(b.args, args...)
+
+	return b
+}
+
+func (b *Builder) Subcommand(commands ...string) *Builder {
+	for _, command := range commands {
+		b.args = append(b.args, command)
+	}
 
 	return b
 }
