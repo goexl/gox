@@ -52,16 +52,22 @@ func (b *Builder) Arg(key string, value any) *Builder {
 	return b
 }
 
-func (b *Builder) Flag(key string) *Builder {
-	placeholder := b.params.long
-	if 1 == len(key) {
-		placeholder = b.params.short
+func (b *Builder) Flag(flags ...string) *Builder {
+	for _, flag := range flags {
+		b.flag(flag)
 	}
-	b.args = append(b.args, gox.StringBuilder(placeholder, key).String())
 
 	return b
 }
 
 func (b *Builder) Build() *Args {
 	return newArgs(b.args)
+}
+
+func (b *Builder) flag(flag string) {
+	placeholder := b.params.long
+	if 1 == len(flag) {
+		placeholder = b.params.short
+	}
+	b.args = append(b.args, gox.StringBuilder(placeholder, flag).String())
 }
