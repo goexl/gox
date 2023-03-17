@@ -1,3 +1,11 @@
+kind: secret
+name: token_github
+get:
+  path: secrets
+  name: token_github_storezhang
+---
+
+
 kind: pipeline
 type: docker
 name: 发布
@@ -39,13 +47,13 @@ steps:
       event:
         - tag
     environment:
-      TOKEN:
+      TOKEN_GITHUB:
         from_secret: token_github
     settings:
       release:
         tag: $${DRONE_TAG}
-        token: $${TOKEN}
-        body: file("$${CHANGELOG_TAG_OUTPUT}")
+        token: $${TOKEN_GITHUB}
+        body: file('$${CHANGELOG_TAG_OUTPUT}')
 
 
 volumes:
