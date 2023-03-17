@@ -127,8 +127,8 @@ func Atoid(num string) int64 {
 // Atoi 增强版进制转换，支持任意进制，最大76进制
 func Atoi(num string, base int) int64 {
 	final := 0.0
-	length := len(strings.Split(num, stringEmpty)) - 1
-	for _, value := range strings.Split(num, stringEmpty) {
+	length := len(strings.Split(num, empty)) - 1
+	for _, value := range strings.Split(num, empty) {
 		tmp := float64(findKey(value))
 		if -1 != tmp {
 			final = final + tmp*math.Pow(float64(base), float64(length))

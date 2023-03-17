@@ -1,8 +1,9 @@
 package gox
 
 const (
-	stringEmpty = ""
-	stringSpace = " "
+	empty = ""
+	quote = `"`
+	space = " "
 
 	float64Size = 64
 )

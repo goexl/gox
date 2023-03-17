@@ -3,6 +3,7 @@ package gox
 import (
 	"strconv"
 	"strings"
+	"unsafe"
 )
 
 const (
@@ -23,7 +24,7 @@ type Size int64
 // ParseSize 解析字节大小
 func ParseSize(from string) (size Size, err error) {
 	// 逐步解析各个容量
-	for _, volume := range strings.Split(from, stringSpace) {
+	for _, volume := range strings.Split(from, space) {
 		var unit, num string
 		length := len(volume)
 		check := volume[length-2]
@@ -42,19 +43,19 @@ func ParseSize(from string) (size Size, err error) {
 		}
 
 		switch strings.ToLower(unit) {
-		case `b`:
+		case "b":
 			size += Size(capacity)
-		case `kb`, `k`:
+		case "kb", "k":
 			size += Size(capacity) * SizeKB
-		case `mb`, `m`:
+		case "mb", "m":
 			size += Size(capacity) * SizeMB
-		case `gb`, `g`:
+		case "gb", "g":
 			size += Size(capacity) * SizeGB
-		case `tb`, `t`:
+		case "tb", "t":
 			size += Size(capacity) * SizeTB
-		case `pb`, `p`:
+		case "pb", "p":
 			size += Size(capacity) * SizePB
-		case `eb`, `e`:
+		case "eb", "e":
 			size += Size(capacity) * SizeEB
 		}
 	}
@@ -70,6 +71,10 @@ func (s *Size) Bit() int64 {
 	return int64(*s) * 8
 }
 
+func (s *Size) Byte() int64 {
+	return int64(*s)
+}
+
 func (s *Size) Bit32() int32 {
 	return int32(*s) * 8
 }
@@ -78,14 +83,15 @@ func (s *Size) Formatter() *sizeFormatter {
 	return newSizeFormatter(s)
 }
 
-func (s *Size) MarshalJSON() (bytes []byte, err error) {
-	bytes = []byte(s.String())
+func (s Size) MarshalJSON() (bytes []byte, err error) {
+	bytes = StringBuilder(quote, s.String(), quote).Bytes()
 
 	return
 }
 
 func (s *Size) UnmarshalJSON(bytes []byte) (err error) {
-	*s, err = ParseSize(string(bytes))
+	json := *(*string)(unsafe.Pointer(&bytes))
+	*s, err = ParseSize(strings.ReplaceAll(json, quote, empty))
 
 	return
 }

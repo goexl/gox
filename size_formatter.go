@@ -56,7 +56,7 @@ func (sf *sizeFormatter) Separator(separator rune) *sizeFormatter {
 }
 
 func (sf *sizeFormatter) Format() string {
-	var sb strings.Builder
+	sb := new(strings.Builder)
 	for {
 		if *sf.size < sf.unit {
 			break
