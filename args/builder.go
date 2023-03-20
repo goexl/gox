@@ -33,28 +33,34 @@ func (b *Builder) Add(args ...any) *Builder {
 	return b
 }
 
-func (b *Builder) Subcommand(commands ...string) *Builder {
-	for _, command := range commands {
-		b.args = append(b.args, command)
+func (b *Builder) Subcommand(command string, others ...string) *Builder {
+	b.args = append(b.args, command)
+	for _, other := range others {
+		b.args = append(b.args, other)
 	}
 
 	return b
 }
 
 func (b *Builder) Arg(key string, value any) *Builder {
-	placeholder := b.params.long
-	if 1 == len(key) {
-		placeholder = b.params.short
-	}
-	arg := gox.StringBuilder(placeholder, key, b.params.equal, value).String()
+	arg := gox.StringBuilder(b.key(key), key, b.params.equal, value).String()
 	b.args = append(b.args, arg)
+
+	return b
+}
+
+func (b *Builder) Args(key string, value any, others ...any) *Builder {
+	b.args = append(b.args, b.key(key), gox.ToString(value))
+	for _, other := range others {
+		b.args = append(b.args, gox.ToString(other))
+	}
 
 	return b
 }
 
 func (b *Builder) Flag(flags ...string) *Builder {
 	for _, flag := range flags {
-		b.flag(flag)
+		b.args = append(b.args, b.key(flag))
 	}
 
 	return b
@@ -64,10 +70,12 @@ func (b *Builder) Build() *Args {
 	return newArgs(b.args)
 }
 
-func (b *Builder) flag(flag string) {
+func (b *Builder) key(original string) (final string) {
 	placeholder := b.params.long
-	if 1 == len(flag) {
+	if 1 == len(original) {
 		placeholder = b.params.short
 	}
-	b.args = append(b.args, gox.StringBuilder(placeholder, flag).String())
+	final = gox.StringBuilder(placeholder, original).String()
+
+	return
 }
