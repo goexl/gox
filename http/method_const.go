@@ -7,6 +7,8 @@ const (
 	MethodPost Method = "Post"
 	// MethodPut 更新
 	MethodPut Method = "Put"
+	// MethodPatch 局部更新
+	MethodPatch Method = "Patch"
 	// MethodDelete 删除
 	MethodDelete Method = "Delete"
 )
