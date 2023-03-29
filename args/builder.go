@@ -43,14 +43,14 @@ func (b *Builder) Subcommand(command string, others ...string) *Builder {
 }
 
 func (b *Builder) Arg(key string, value any) *Builder {
-	arg := gox.StringBuilder(b.key(key), key, b.params.equal, value).String()
+	arg := gox.StringBuilder(b.key(key), b.params.equal, value).String()
 	b.args = append(b.args, arg)
 
 	return b
 }
 
 func (b *Builder) Args(key string, value any, others ...any) *Builder {
-	b.args = append(b.args, b.key(key), gox.ToString(value))
+	b.args = append(b.args, b.key(key), b.params.equal, gox.ToString(value))
 	for _, other := range others {
 		b.args = append(b.args, gox.ToString(other))
 	}
