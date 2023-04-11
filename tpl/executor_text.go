@@ -20,48 +20,53 @@ func newTextExecutor() *executorText {
 	return new(executorText)
 }
 
-func (et *executorText) toFile(input []string, inputType inputType, data any, filepath string) (err error) {
-	tpl := template.New(filepath)
-	switch inputType {
-	case inputTypeFile:
-		et.template, err = tpl.ParseFiles(input...)
-	case inputTypeString:
-		et.template, err = tpl.Parse(input[0])
-	default:
-		et.template, err = tpl.Parse(input[0])
-	}
-
-	if nil == err {
-		err = et.renderToFile(filepath, et.execute(data))
+func (et *executorText) toFile(input []string, it inputType, name string, data any, filepath string) (err error) {
+	if err = et.init(input, it); nil == err {
+		err = et.renderToFile(filepath, et.execute(name, data))
 	}
 
 	return
 }
 
-func (et *executorText) toString(input []string, inputType inputType, data any) (result string, err error) {
-	tpl := template.New(rand.New().String().Build().Generate())
-	switch inputType {
-	case inputTypeFile:
-		et.template, err = tpl.ParseFiles(input...)
-	case inputTypeString:
-		et.template, err = tpl.Parse(input[0])
-	default:
-		et.template, err = tpl.Parse(input[0])
-	}
-	if nil != err {
+func (et *executorText) toString(input []string, it inputType, name string, data any) (result string, err error) {
+	if err = et.init(input, it); nil != err {
 		return
 	}
 
 	buffer := new(bytes.Buffer)
-	if err = et.template.Execute(buffer, data); nil == err {
+	if "" == name {
+		err = et.template.Execute(buffer, data)
+	} else {
+		err = et.template.ExecuteTemplate(buffer, name, data)
+	}
+	if nil == err {
 		result = buffer.String()
 	}
 
 	return
 }
 
-func (et *executorText) execute(data any) fun {
+func (et *executorText) init(input []string, it inputType) (err error) {
+	switch it {
+	case inputTypeFile:
+		et.template, err = template.ParseFiles(input...)
+	case inputTypeString:
+		fallthrough
+	default:
+		et.template, err = template.New(rand.New().String().Build().Generate()).Parse(input[0])
+	}
+
+	return
+}
+
+func (et *executorText) execute(name string, data any) fun {
 	return func(wr io.Writer) (err error) {
-		return et.template.Execute(wr, data)
+		if "" == name {
+			err = et.template.Execute(wr, data)
+		} else {
+			err = et.template.ExecuteTemplate(wr, name, data)
+		}
+
+		return
 	}
 }
