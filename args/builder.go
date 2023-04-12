@@ -49,8 +49,8 @@ func (b *Builder) Arg(key string, value any) *Builder {
 	return b
 }
 
-func (b *Builder) Args(key string, value any, others ...any) *Builder {
-	b.args = append(b.args, b.key(key), b.params.equal, gox.ToString(value))
+func (b *Builder) Option(key string, value any, others ...any) *Builder {
+	b.args = append(b.args, b.key(key), gox.ToString(value))
 	for _, other := range others {
 		b.args = append(b.args, gox.ToString(other))
 	}
