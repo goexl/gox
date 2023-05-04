@@ -69,6 +69,7 @@ func (b *Builder) Flag(flags ...string) *Builder {
 func (b *Builder) Clone() (builder *Builder) {
 	builder = new(Builder)
 	builder.params = b.params
+	builder.args = make([]any, len(b.args))
 	_ = copy(builder.args, b.args)
 
 	return
