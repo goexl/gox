@@ -9,9 +9,7 @@ import (
 var _ = Stack
 
 // Stack 返回当前执行堆栈
-func Stack() string {
-	stack := 10
-	skip := 4
+func Stack(stack int, skip int) string {
 	callers := make([]uintptr, stack+1)
 	count := runtime.Callers(skip+2, callers)
 	frames := runtime.CallersFrames(callers[:count])
