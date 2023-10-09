@@ -12,8 +12,8 @@ import (
 type Labels map[string]string
 
 func (l Labels) String() string {
-	builder := new(strings.Builder)
 	size := 2
+	builder := new(strings.Builder)
 	keys := make([]string, 0, len(l))
 	for _key, value := range l {
 		keys = append(keys, _key)
