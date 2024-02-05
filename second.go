@@ -9,11 +9,21 @@ import (
 var (
 	_ json.Marshaler   = (*Second)(nil)
 	_ json.Unmarshaler = (*Second)(nil)
+	_                  = NewSecond
 )
 
 // Second 秒
 type Second time.Time
 
+// NewSecond 从时间创建秒
+func NewSecond(from time.Time) (second *Second) {
+	tmp := Second(from)
+	second = &tmp
+
+	return
+}
+
+// ParseSecond 从字符串解析秒
 func ParseSecond(from string) (second *Second, err error) {
 	second = new(Second)
 	err = second.UnmarshalJSON([]byte(from))

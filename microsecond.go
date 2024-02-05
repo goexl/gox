@@ -9,11 +9,21 @@ import (
 var (
 	_ json.Marshaler   = (*Microsecond)(nil)
 	_ json.Unmarshaler = (*Microsecond)(nil)
+	_                  = NewMicrosecond
 )
 
 // Microsecond 微秒
 type Microsecond time.Time
 
+// NewMicrosecond 从时间创建微秒
+func NewMicrosecond(from time.Time) (microsecond *Microsecond) {
+	tmp := Microsecond(from)
+	microsecond = &tmp
+
+	return
+}
+
+// ParseMicrosecond 从字符串解析微秒
 func ParseMicrosecond(from string) (microsecond *Microsecond, err error) {
 	microsecond = new(Microsecond)
 	err = microsecond.UnmarshalJSON([]byte(from))

@@ -9,11 +9,21 @@ import (
 var (
 	_ json.Marshaler   = (*Millisecond)(nil)
 	_ json.Unmarshaler = (*Millisecond)(nil)
+	_                  = NewMillisecond
 )
 
 // Millisecond 毫秒
 type Millisecond time.Time
 
+// NewMillisecond 从时间创建毫秒
+func NewMillisecond(from time.Time) (millisecond *Millisecond) {
+	tmp := Millisecond(from)
+	millisecond = &tmp
+
+	return
+}
+
+// ParseMillisecond 从字符串解析毫秒
 func ParseMillisecond(from string) (millisecond *Millisecond, err error) {
 	millisecond = new(Millisecond)
 	err = millisecond.UnmarshalJSON([]byte(from))
