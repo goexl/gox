@@ -45,5 +45,5 @@ func (s *Second) UnmarshalJSON(bytes []byte) (err error) {
 }
 
 func (s Second) MarshalJSON() ([]byte, error) {
-	return json.Marshal(s.UnixMilli())
+	return json.Marshal(s.Unix())
 }

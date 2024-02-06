@@ -45,5 +45,5 @@ func (n *Nanosecond) UnmarshalJSON(bytes []byte) (err error) {
 }
 
 func (n Nanosecond) MarshalJSON() ([]byte, error) {
-	return json.Marshal(n.UnixMilli())
+	return json.Marshal(n.UnixNano())
 }
