@@ -20,7 +20,7 @@ func TestParseSecond(t *testing.T) {
 		got, err := gox.ParseSecond(test.in)
 		if nil != err {
 			t.Errorf("第%d个测试未通过，原因：%v", index+1, err)
-		} else if test.expected != got.Time() {
+		} else if test.expected != got.Time {
 			t.Errorf("第%d个测试未通过，实际：%v，期望：%v", index+1, got, test.expected)
 		}
 	}

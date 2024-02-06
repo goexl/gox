@@ -13,14 +13,15 @@ var (
 )
 
 // Nanosecond 纳秒
-type Nanosecond time.Time
+type Nanosecond struct {
+	time.Time
+}
 
 // NewNanosecond 从时间创建毫秒
-func NewNanosecond(from time.Time) (nanosecond *Nanosecond) {
-	tmp := Nanosecond(from)
-	nanosecond = &tmp
-
-	return
+func NewNanosecond(from time.Time) *Nanosecond {
+	return &Nanosecond{
+		Time: from,
+	}
 }
 
 // ParseNanosecond 从字符串解析毫秒
@@ -31,20 +32,18 @@ func ParseNanosecond(from string) (nanosecond *Nanosecond, err error) {
 	return
 }
 
-func (n *Nanosecond) Time() time.Time {
-	return time.Time(*n)
-}
-
 func (n *Nanosecond) UnmarshalJSON(bytes []byte) (err error) {
 	if parsed, pie := strconv.ParseInt(string(bytes), 10, 64); nil != pie {
 		err = pie
 	} else {
-		*n = Nanosecond(time.Unix(0, parsed))
+		*n = Nanosecond{
+			Time: time.Unix(0, parsed),
+		}
 	}
 
 	return
 }
 
 func (n Nanosecond) MarshalJSON() ([]byte, error) {
-	return json.Marshal(time.Time(n).UnixMilli())
+	return json.Marshal(n.UnixMilli())
 }

@@ -13,14 +13,15 @@ var (
 )
 
 // Second 秒
-type Second time.Time
+type Second struct {
+	time.Time
+}
 
 // NewSecond 从时间创建秒
-func NewSecond(from time.Time) (second *Second) {
-	tmp := Second(from)
-	second = &tmp
-
-	return
+func NewSecond(from time.Time) *Second {
+	return &Second{
+		Time: from,
+	}
 }
 
 // ParseSecond 从字符串解析秒
@@ -31,20 +32,18 @@ func ParseSecond(from string) (second *Second, err error) {
 	return
 }
 
-func (s *Second) Time() time.Time {
-	return time.Time(*s)
-}
-
 func (s *Second) UnmarshalJSON(bytes []byte) (err error) {
 	if parsed, pie := strconv.ParseInt(string(bytes), 10, 64); nil != pie {
 		err = pie
 	} else {
-		*s = Second(time.Unix(parsed, 0))
+		*s = Second{
+			Time: time.Unix(parsed, 0),
+		}
 	}
 
 	return
 }
 
 func (s Second) MarshalJSON() ([]byte, error) {
-	return json.Marshal(time.Time(s).UnixMilli())
+	return json.Marshal(s.UnixMilli())
 }

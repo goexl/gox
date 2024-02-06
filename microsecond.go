@@ -13,14 +13,15 @@ var (
 )
 
 // Microsecond 微秒
-type Microsecond time.Time
+type Microsecond struct {
+	time.Time
+}
 
 // NewMicrosecond 从时间创建微秒
-func NewMicrosecond(from time.Time) (microsecond *Microsecond) {
-	tmp := Microsecond(from)
-	microsecond = &tmp
-
-	return
+func NewMicrosecond(from time.Time) *Microsecond {
+	return &Microsecond{
+		Time: from,
+	}
 }
 
 // ParseMicrosecond 从字符串解析微秒
@@ -31,20 +32,18 @@ func ParseMicrosecond(from string) (microsecond *Microsecond, err error) {
 	return
 }
 
-func (m *Microsecond) Time() time.Time {
-	return time.Time(*m)
-}
-
 func (m *Microsecond) UnmarshalJSON(bytes []byte) (err error) {
 	if parsed, pie := strconv.ParseInt(string(bytes), 10, 64); nil != pie {
 		err = pie
 	} else {
-		*m = Microsecond(time.UnixMicro(parsed))
+		*m = Microsecond{
+			Time: time.UnixMicro(parsed),
+		}
 	}
 
 	return
 }
 
 func (m Microsecond) MarshalJSON() ([]byte, error) {
-	return json.Marshal(time.Time(m).UnixMicro())
+	return json.Marshal(m.UnixMicro())
 }
