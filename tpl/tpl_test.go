@@ -19,11 +19,11 @@ type (
 )
 
 func TestString(t *testing.T) {
-	user := new(user)
-	user.Name = "storezhang"
+	usr := new(user)
+	usr.Name = "storezhang"
 	tests := []stringTest{
-		{input: `名字：{{ .Name }}`, data: user, expected: "名字：storezhang"},
-		{input: `欢迎{{ .Name }}，你好`, data: user, expected: "欢迎storezhang，你好"},
+		{input: `名字：{{ .Name }}`, data: usr, expected: "名字：storezhang"},
+		{input: `欢迎{{ .Name }}，你好`, data: usr, expected: "欢迎storezhang，你好"},
 	}
 
 	for index, test := range tests {
