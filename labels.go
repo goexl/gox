@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/goexl/gox/internal"
+	"github.com/goexl/gox/internal/constant"
 )
 
 // Labels 标签
@@ -21,17 +21,17 @@ func (l Labels) String() string {
 	}
 
 	builder.Grow(size)
-	builder.WriteRune(internal.JsonStart)
+	builder.WriteRune(constant.JsonStart)
 	slices.Sort(keys)
 	for index, _key := range keys {
 		if index > 0 {
-			builder.WriteRune(internal.Comm)
+			builder.WriteRune(constant.Comm)
 		}
 		builder.WriteString(_key)
-		builder.WriteRune(internal.Equal)
+		builder.WriteRune(constant.Equal)
 		builder.WriteString(strconv.Quote(l[_key]))
 	}
-	builder.WriteRune(internal.JsonEnd)
+	builder.WriteRune(constant.JsonEnd)
 
 	return builder.String()
 }

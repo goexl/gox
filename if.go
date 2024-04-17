@@ -1,5 +1,9 @@
 package gox
 
+import (
+	"github.com/goexl/gox/internal"
+)
+
 var (
 	_ = If[int]
 	_ = Iff[int]
@@ -17,7 +21,7 @@ func If[T any](condition bool, result T) (t T) {
 }
 
 // Iff 模块条件表达式，主要用法是减少大括号
-func Iff[T any](condition bool, result callback[T]) (t T) {
+func Iff[T any](condition bool, result internal.Callback[T]) (t T) {
 	if condition {
 		t = result()
 	}
@@ -42,12 +46,12 @@ func Ternary[T any](condition bool, first T, second T) (t T) {
 }
 
 // Ifx 模拟三元表达式，主要用法是减少大括号
-func Ifx[T any](condition bool, first callback[T], second callback[T]) (t T) {
+func Ifx[T any](condition bool, first internal.Callback[T], second internal.Callback[T]) (t T) {
 	return TernaryFunc(condition, first, second)
 }
 
 // TernaryFunc 模拟三元表达式，主要用法是减少大括号
-func TernaryFunc[T any](condition bool, first callback[T], second callback[T]) (t T) {
+func TernaryFunc[T any](condition bool, first internal.Callback[T], second internal.Callback[T]) (t T) {
 	if condition {
 		t = first()
 	} else {

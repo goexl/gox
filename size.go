@@ -4,6 +4,8 @@ import (
 	"strconv"
 	"strings"
 	"unsafe"
+
+	"github.com/goexl/gox/internal/constant"
 )
 
 const (
@@ -24,7 +26,7 @@ type Size int64
 // ParseSize 解析字节大小
 func ParseSize(from string) (size Size, err error) {
 	// 逐步解析各个容量
-	for _, volume := range strings.Split(from, space) {
+	for _, volume := range strings.Split(from, constant.Space) {
 		var unit, num string
 		length := len(volume)
 		check := volume[length-2]
@@ -38,7 +40,7 @@ func ParseSize(from string) (size Size, err error) {
 
 		// 计算数字大小
 		var capacity float64
-		if capacity, err = strconv.ParseFloat(num, float64Size); nil != err {
+		if capacity, err = strconv.ParseFloat(num, constant.Float64Size); nil != err {
 			return
 		}
 
@@ -84,14 +86,14 @@ func (s *Size) Formatter() *sizeFormatter {
 }
 
 func (s Size) MarshalJSON() (bytes []byte, err error) {
-	bytes = StringBuilder(quote, s.String(), quote).Bytes()
+	bytes = StringBuilder(constant.Quote, s.String(), constant.Quote).Bytes()
 
 	return
 }
 
 func (s *Size) UnmarshalJSON(bytes []byte) (err error) {
 	json := *(*string)(unsafe.Pointer(&bytes))
-	*s, err = ParseSize(strings.ReplaceAll(json, quote, empty))
+	*s, err = ParseSize(strings.ReplaceAll(json, constant.Quote, constant.Empty))
 
 	return
 }
