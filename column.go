@@ -18,3 +18,11 @@ func (c Column) Negative() string {
 func (c Column) Negation(value any) string {
 	return fmt.Sprintf("-`%s` - `%s`", c, ToString(value))
 }
+
+func (c Column) Asc() string {
+	return fmt.Sprintf("`%s` ASC", string(c))
+}
+
+func (c Column) Desc() string {
+	return fmt.Sprintf("`%s` DESC", string(c))
+}
