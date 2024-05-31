@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/goexl/gox/http"
+	"github.com/goexl/gox/http/internal/constant"
 	"github.com/goexl/gox/http/internal/param"
 )
 
@@ -26,12 +26,12 @@ func (d *Disposition) String() (disposition string) {
 	return
 }
 
-func (d *Disposition) Set(headers http.Header) {
-	headers.Set(http.HeaderContentDisposition, d.String())
+func (d *Disposition) Set(headers Header) {
+	headers.Set(constant.HeaderContentDisposition, d.String())
 }
 
-func (d *Disposition) Headers() (headers http.Header) {
-	headers = make(http.Header)
+func (d *Disposition) Headers() (headers Header) {
+	headers = make(Header)
 	d.Set(headers)
 
 	return

@@ -1,8 +1,8 @@
 package http
 
 import (
-	"net/http"
+	"github.com/goexl/gox/http/internal/core"
 )
 
 // Header 头
-type Header = http.Header
+type Header = core.Header

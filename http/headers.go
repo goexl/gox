@@ -1,5 +1,9 @@
 package http
 
+import (
+	"github.com/goexl/gox/http/internal/constant"
+)
+
 const (
 	// HeaderAcceptLanguage 可接受的语言
 	HeaderAcceptLanguage = "Accept-Language"
@@ -8,7 +12,7 @@ const (
 	// HeaderAuthorization 授权
 	HeaderAuthorization = "Authorization"
 	// HeaderContentDisposition 下载时的附件名指定
-	HeaderContentDisposition = "Content-Disposition"
+	HeaderContentDisposition = constant.HeaderContentDisposition
 )
 
 // 禁止IDE提示未使用
