@@ -6,7 +6,7 @@ import (
 	"io"
 
 	"github.com/goexl/gox/rand"
-	"github.com/goexl/gox/tpl/internal/core"
+	"github.com/goexl/gox/template/internal/core"
 )
 
 var _ core.Executor = (*Html)(nil)

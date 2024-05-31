@@ -31,7 +31,7 @@ func (b *Base) getFile(path string) (file *os.File, err error) {
 	if _, se := os.Stat(path); nil != se && os.IsNotExist(se) {
 		file, err = b.create(path)
 	} else {
-		file, err = os.OpenFile(path, os.O_WRONLY, os.ModePerm)
+		file, err = os.OpenFile(path, os.O_WRONLY|os.O_TRUNC|os.O_CREATE, os.ModePerm)
 	}
 
 	return

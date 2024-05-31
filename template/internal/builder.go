@@ -1,8 +1,8 @@
 package internal
 
 import (
-	"github.com/goexl/gox/tpl/internal/core"
-	"github.com/goexl/gox/tpl/internal/executor"
+	"github.com/goexl/gox/template/internal/core"
+	"github.com/goexl/gox/template/internal/executor"
 )
 
 type Builder struct {

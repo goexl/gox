@@ -1,9 +1,9 @@
-package tpl_test
+package template_test
 
 import (
 	"testing"
 
-	"github.com/goexl/gox/tpl"
+	"github.com/goexl/gox/template"
 )
 
 type (
@@ -27,7 +27,7 @@ func TestString(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		got, err := tpl.New(test.input).Text().String().Data(test.data).Build().ToString()
+		got, err := template.New(test.input).Text().String().Data(test.data).Build().ToString()
 		if nil != err {
 			t.Errorf("第%d个测试出错，原因：%v", index+1, err)
 		} else if got != test.expected {

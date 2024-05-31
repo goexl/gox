@@ -1,7 +1,7 @@
-package tpl
+package template
 
 import (
-	"github.com/goexl/gox/tpl/internal"
+	"github.com/goexl/gox/template/internal"
 )
 
 var _ = New

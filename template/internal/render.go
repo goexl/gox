@@ -1,7 +1,7 @@
 package internal
 
 import (
-	"github.com/goexl/gox/tpl/internal/core"
+	"github.com/goexl/gox/template/internal/core"
 )
 
 type Render struct {
