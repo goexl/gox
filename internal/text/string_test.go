@@ -1,13 +1,13 @@
-package gox_test
+package text_test
 
 import (
 	"reflect"
 	"testing"
 
-	"github.com/goexl/gox"
+	"github.com/goexl/gox/internal/text"
 )
 
-func TestStr(t *testing.T) {
+func TestString(t *testing.T) {
 	toStringTests := []struct {
 		in       []any
 		expected []string
@@ -21,7 +21,7 @@ func TestStr(t *testing.T) {
 	}
 
 	for _, test := range toStringTests {
-		actual := gox.ToStrings(test.in...)
+		actual := text.ToStrings(test.in...)
 		if !reflect.DeepEqual(actual, test.expected) {
 			t.Errorf("str(%v) = %v；期望：%v", test.in, actual, test.expected)
 		}

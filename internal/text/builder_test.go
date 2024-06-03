@@ -1,12 +1,12 @@
-package gox_test
+package text_test
 
 import (
 	"testing"
 
-	"github.com/goexl/gox"
+	"github.com/goexl/gox/internal/text"
 )
 
-func TestStringBuilder(t *testing.T) {
+func TestBuilder(t *testing.T) {
 	tests := []struct {
 		inputs   []string
 		expected string
@@ -17,7 +17,7 @@ func TestStringBuilder(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		sb := gox.StringBuilder()
+		sb := text.NewBuilder()
 		for _, input := range test.inputs {
 			sb.Append(input)
 		}

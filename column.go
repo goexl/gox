@@ -2,6 +2,8 @@ package gox
 
 import (
 	"fmt"
+
+	"github.com/goexl/gox/internal/text"
 )
 
 // Column 列
@@ -16,7 +18,7 @@ func (c Column) Negative() string {
 }
 
 func (c Column) Negation(value any) string {
-	return fmt.Sprintf("-`%s` - `%s`", c, ToString(value))
+	return fmt.Sprintf("-`%s` - `%s`", c, text.ToString(value))
 }
 
 func (c Column) Asc() string {
