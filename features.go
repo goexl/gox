@@ -13,18 +13,22 @@ func NewFeatures() *Features {
 	}
 }
 
-func (f *Features) Enable(feature Feature, features ...Feature) {
+func (f *Features) Enable(feature Feature, features ...Feature) *Features {
 	f.features |= 1 << feature
 	for _, _feature := range features {
 		f.features |= 1 << _feature
 	}
+
+	return f
 }
 
-func (f *Features) Disable(feature Feature, features ...Feature) {
+func (f *Features) Disable(feature Feature, features ...Feature) *Features {
 	f.features &^= 1 << feature
 	for _, _feature := range features {
 		f.features &^= 1 << _feature
 	}
+
+	return f
 }
 
 func (f *Features) Any(feature Feature, features ...Feature) (enabled bool) {
