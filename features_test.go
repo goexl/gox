@@ -15,8 +15,8 @@ const (
 
 func TestSwitchEnableAny(t *testing.T) {
 	tests := []struct {
-		in       []gox.Feature
 		enabled  []gox.Feature
+		checks   []gox.Feature
 		expected bool
 	}{
 		{[]gox.Feature{Feature1}, []gox.Feature{Feature1}, true},
@@ -28,8 +28,8 @@ func TestSwitchEnableAny(t *testing.T) {
 	}
 	for index, test := range tests {
 		features := gox.NewFeatures()
-		features.Enable(test.in[0], test.in[1:]...)
-		got := features.Any(test.enabled[0], test.enabled[1:]...)
+		features.Enable(test.enabled[0], test.enabled[1:]...)
+		got := features.Any(test.checks[0], test.checks[1:]...)
 		if test.expected != got {
 			t.Errorf("第%d个测试未通过，实际：%v，期望：%v", index+1, got, test.expected)
 		}
@@ -38,8 +38,8 @@ func TestSwitchEnableAny(t *testing.T) {
 
 func TestSwitchEnableAll(t *testing.T) {
 	tests := []struct {
-		in       []gox.Feature
 		enabled  []gox.Feature
+		checks   []gox.Feature
 		expected bool
 	}{
 		{[]gox.Feature{Feature1}, []gox.Feature{Feature1}, true},
@@ -51,8 +51,8 @@ func TestSwitchEnableAll(t *testing.T) {
 	}
 	for index, test := range tests {
 		features := gox.NewFeatures()
-		features.Enable(test.in[0], test.in[1:]...)
-		got := features.All(test.enabled[0], test.enabled[1:]...)
+		features.Enable(test.enabled[0], test.enabled[1:]...)
+		got := features.All(test.checks[0], test.checks[1:]...)
 		if test.expected != got {
 			t.Errorf("第%d个测试未通过，实际：%v，期望：%v", index+1, got, test.expected)
 		}
