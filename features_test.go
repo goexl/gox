@@ -13,7 +13,7 @@ const (
 	Feature4
 )
 
-func TestSwitchEnableAny(t *testing.T) {
+func TestFeaturesEnableAny(t *testing.T) {
 	tests := []struct {
 		enabled  []gox.Feature
 		checks   []gox.Feature
@@ -36,7 +36,7 @@ func TestSwitchEnableAny(t *testing.T) {
 	}
 }
 
-func TestSwitchEnableAll(t *testing.T) {
+func TestFeaturesEnableAll(t *testing.T) {
 	tests := []struct {
 		enabled  []gox.Feature
 		checks   []gox.Feature
