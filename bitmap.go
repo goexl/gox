@@ -1,5 +1,15 @@
 package gox
 
+import (
+	"encoding/hex"
+	"encoding/json"
+	"errors"
+	"reflect"
+	"strconv"
+	"strings"
+	"unsafe"
+)
+
 // Bitmap 位图，通过使用位运算来设置位的开关
 type Bitmap struct {
 	bits      []uint64
@@ -45,6 +55,72 @@ func (b *Bitmap) Contains(pos uint) (contains bool) {
 	}
 
 	return
+}
+
+func (b *Bitmap) MarshalJSON() ([]byte, error) {
+	builder := new(strings.Builder)
+	for index := len(b.bits) - 1; index >= 0; index-- {
+		b.writeHexDecimal(builder, b.bits[index], true)
+	}
+
+	return json.Marshal(builder.String())
+}
+
+func (b *Bitmap) UnmarshalJSON(data []byte) (err error) {
+	value := ""
+	if nil == data {
+		b.bits = make([]uint64, 0)
+	} else if me := json.Unmarshal(data, &value); nil != me {
+		err = me
+	} else if fhe := b.FromHex(value); nil != fhe {
+		err = fhe
+	}
+
+	return
+}
+
+func (b *Bitmap) FromHex(value string) (err error) {
+	if bytes, dse := hex.DecodeString(value); nil != dse {
+		err = dse
+	} else if 0 != len(bytes) {
+		for left, right := 0, len(bytes)-1; left < right; left, right = left+1, right-1 {
+			bytes[left], bytes[right] = bytes[right], bytes[left]
+		}
+
+		for len(bytes)%8 != 0 {
+			bytes = append(bytes, 0)
+		}
+		err = b.FromBytes(bytes)
+	}
+
+	return
+}
+
+func (b *Bitmap) FromBytes(bytes []byte) (err error) {
+	if 0 != len(bytes)%8 {
+		err = errors.New("数组长度必须是8的倍数")
+	} else {
+		hdr := (*reflect.SliceHeader)(unsafe.Pointer(&b.bits))
+		hdr.Len = len(bytes) >> 3
+		hdr.Cap = hdr.Len
+		hdr.Data = uintptr(unsafe.Pointer(&(bytes)[0]))
+	}
+
+	return
+}
+
+func (b *Bitmap) writeHexDecimal(builder *strings.Builder, value uint64, pad bool) {
+	maxLen := 16
+	hexadecimal := strings.ToUpper(strconv.FormatUint(value, 16))
+	hexLen := len(hexadecimal)
+	if !pad || hexLen == maxLen {
+		builder.WriteString(hexadecimal)
+	} else {
+		for index := hexLen; index < maxLen; index++ {
+			builder.WriteString("0")
+		}
+		builder.WriteString(hexadecimal)
+	}
 }
 
 func (b *Bitmap) grow(at int) {
