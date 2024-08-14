@@ -25,33 +25,43 @@ func NewBitmap() *Bitmap {
 	}
 }
 
-func (b *Bitmap) Set(pos uint) *Bitmap {
-	blkAt := int(pos >> 6)
+func (b *Bitmap) Set(pos uint, positions ...uint) *Bitmap {
+	blockAt := int(pos >> 6)
 	bitAt := int(pos % 64)
-	if size := len(b.bits); blkAt >= size {
-		b.grow(blkAt)
+	if size := len(b.bits); blockAt >= size {
+		b.grow(blockAt)
 	}
-	b.bits[blkAt] |= 1 << bitAt
+	b.bits[blockAt] |= 1 << bitAt
+
+	// 设置其它位置
+	for _, position := range positions {
+		b.Set(position)
+	}
 
 	return b
 }
 
-func (b *Bitmap) Unset(pos uint) *Bitmap {
-	if blkAt := int(pos >> 6); blkAt < len(b.bits) {
+func (b *Bitmap) Unset(pos uint, positions ...uint) *Bitmap {
+	if blockAt := int(pos >> 6); blockAt < len(b.bits) {
 		bitAt := int(pos % 64)
-		b.bits[blkAt] &^= 1 << bitAt
+		b.bits[blockAt] &^= 1 << bitAt
+	}
+
+	// 取消其它位置
+	for _, position := range positions {
+		b.Unset(position)
 	}
 
 	return b
 }
 
 func (b *Bitmap) Contains(pos uint) (contains bool) {
-	blkAt := int(pos >> 6)
-	if size := len(b.bits); blkAt >= size {
+	blockAt := int(pos >> 6)
+	if size := len(b.bits); blockAt >= size {
 		contains = false
 	} else {
 		bitAt := int(pos % 64)
-		contains = (b.bits[blkAt] & (1 << bitAt)) > 0
+		contains = (b.bits[blockAt] & (1 << bitAt)) > 0
 	}
 
 	return
