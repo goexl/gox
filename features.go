@@ -60,3 +60,11 @@ func (f *Features) All(feature Feature, features ...Feature) (enabled bool) {
 
 	return
 }
+
+func (f *Features) MarshalJSON() ([]byte, error) {
+	return f.bitmap.MarshalJSON()
+}
+
+func (f *Features) UnmarshalJSON(data []byte) error {
+	return f.bitmap.UnmarshalJSON(data)
+}
