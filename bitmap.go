@@ -25,46 +25,68 @@ func NewBitmap() *Bitmap {
 	}
 }
 
-func (b *Bitmap) Set(pos uint, positions ...uint) *Bitmap {
-	blockAt := int(pos >> 6)
-	bitAt := int(pos % 64)
+func (b *Bitmap) Set(position uint, positions ...uint) *Bitmap {
+	blockAt := int(position >> 6)
+	bitAt := int(position % 64)
 	if size := len(b.bits); blockAt >= size {
 		b.grow(blockAt)
 	}
 	b.bits[blockAt] |= 1 << bitAt
 
 	// 设置其它位置
-	for _, position := range positions {
-		b.Set(position)
+	for _, pos := range positions {
+		b.Set(pos)
 	}
 
 	return b
 }
 
-func (b *Bitmap) Unset(pos uint, positions ...uint) *Bitmap {
-	if blockAt := int(pos >> 6); blockAt < len(b.bits) {
-		bitAt := int(pos % 64)
+func (b *Bitmap) Unset(position uint, positions ...uint) *Bitmap {
+	if blockAt := int(position >> 6); blockAt < len(b.bits) {
+		bitAt := int(position % 64)
 		b.bits[blockAt] &^= 1 << bitAt
 	}
 
 	// 取消其它位置
-	for _, position := range positions {
-		b.Unset(position)
+	for _, pos := range positions {
+		b.Unset(pos)
 	}
 
 	return b
 }
 
-func (b *Bitmap) Contains(pos uint) (contains bool) {
-	blockAt := int(pos >> 6)
-	if size := len(b.bits); blockAt >= size {
-		contains = false
-	} else {
-		bitAt := int(pos % 64)
-		contains = (b.bits[blockAt] & (1 << bitAt)) > 0
+func (b *Bitmap) Any(position uint, positions ...uint) (contains bool) {
+	all := make([]uint, 0, len(positions)+1)
+	all = append(all, position)
+	all = append(all, positions...)
+
+	for _, pos := range all {
+		contains = b.contains(pos)
+		if contains {
+			return
+		}
 	}
 
 	return
+}
+
+func (b *Bitmap) All(position uint, positions ...uint) (contains bool) {
+	all := make([]uint, 0, len(positions)+1)
+	all = append(all, position)
+	all = append(all, positions...)
+
+	for _, pos := range all {
+		contains = b.contains(pos)
+		if !contains {
+			return
+		}
+	}
+
+	return
+}
+
+func (b *Bitmap) Contains(position uint) bool {
+	return b.contains(position)
 }
 
 func (b *Bitmap) MarshalJSON() ([]byte, error) {
@@ -114,6 +136,18 @@ func (b *Bitmap) FromBytes(bytes []byte) (err error) {
 		hdr.Len = len(bytes) >> 3
 		hdr.Cap = hdr.Len
 		hdr.Data = uintptr(unsafe.Pointer(&(bytes)[0]))
+	}
+
+	return
+}
+
+func (b *Bitmap) contains(pos uint) (contains bool) {
+	blockAt := int(pos >> 6)
+	if size := len(b.bits); blockAt >= size {
+		contains = false
+	} else {
+		bitAt := int(pos % 64)
+		contains = (b.bits[blockAt] & (1 << bitAt)) > 0
 	}
 
 	return
