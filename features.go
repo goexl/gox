@@ -3,7 +3,7 @@ package gox
 // Features 一个通用的开关
 type Features struct {
 	bitmap *Bitmap
-	_      CannotCopy
+	_      Pointerized
 }
 
 // NewFeatures 创建开关

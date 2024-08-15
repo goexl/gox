@@ -14,7 +14,7 @@ import (
 type Bitmap struct {
 	bits      []uint64
 	threshold int
-	_         CannotCopy
+	_         Pointerized
 }
 
 // NewBitmap 创建位图
