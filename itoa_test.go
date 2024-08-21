@@ -1,6 +1,7 @@
 package gox_test
 
 import (
+	"strconv"
 	"testing"
 
 	"github.com/goexl/gox"
@@ -8,20 +9,41 @@ import (
 
 func TestFormatInt(t *testing.T) {
 	tests := []struct {
-		original int64
-		base     int
+		in       int64
+		base     uint8
 		expected string
 	}{
-		{original: 1, base: 76, expected: "1"},
-		{original: 2, base: 76, expected: "2"},
-		{original: 3, base: 76, expected: "3"},
-		{original: 4, base: 76, expected: "4"},
-		{original: 5, base: 76, expected: "5"},
-		{original: 6, base: 76, expected: "6"},
+		{in: 1, base: 76, expected: "1"},
+		{in: 2, base: 76, expected: "2"},
+		{in: 3, base: 76, expected: "3"},
+		{in: 4, base: 76, expected: "4"},
+		{in: 5, base: 76, expected: "5"},
+		{in: 6, base: 76, expected: "6"},
 	}
 
 	for _, test := range tests {
-		got := gox.FormatInt(test.original, test.base)
+		got := gox.FormatInt(test.in, test.base, strconv.FormatInt)
+		if got != test.expected {
+			t.Fatalf("期望：%v，实际：%v", test.expected, got)
+		}
+	}
+}
+func TestFormatUint(t *testing.T) {
+	tests := []struct {
+		in       uint64
+		base     uint8
+		expected string
+	}{
+		{in: 1, base: 76, expected: "1"},
+		{in: 2, base: 76, expected: "2"},
+		{in: 3, base: 76, expected: "3"},
+		{in: 4, base: 76, expected: "4"},
+		{in: 5, base: 76, expected: "5"},
+		{in: 6, base: 76, expected: "6"},
+	}
+
+	for _, test := range tests {
+		got := gox.FormatUint(test.in, test.base, strconv.FormatUint)
 		if got != test.expected {
 			t.Fatalf("期望：%v，实际：%v", test.expected, got)
 		}
@@ -30,20 +52,20 @@ func TestFormatInt(t *testing.T) {
 
 func TestAtoi(t *testing.T) {
 	tests := []struct {
-		original string
+		in       string
 		base     int
 		expected int64
 	}{
-		{original: "1", base: 76, expected: 1},
-		{original: "2", base: 76, expected: 2},
-		{original: "3", base: 76, expected: 3},
-		{original: "4", base: 76, expected: 4},
-		{original: "5", base: 76, expected: 5},
-		{original: "6", base: 76, expected: 6},
+		{in: "1", base: 76, expected: 1},
+		{in: "2", base: 76, expected: 2},
+		{in: "3", base: 76, expected: 3},
+		{in: "4", base: 76, expected: 4},
+		{in: "5", base: 76, expected: 5},
+		{in: "6", base: 76, expected: 6},
 	}
 
 	for _, test := range tests {
-		got := gox.Atoi(test.original, test.base)
+		got := gox.Atoi[int64](test.in, test.base)
 		if got != test.expected {
 			t.Fatalf("期望：%v，实际：%v", test.expected, got)
 		}
