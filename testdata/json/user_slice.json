@@ -1,0 +1,30 @@
+{
+    "user": {
+        "name": "storezhang",
+        "age": 39
+    },
+    "users": [
+        {
+            "name": "yusiming",
+            "age": 29
+        },
+        {
+            "name": "zhangzongliang",
+            "age": 49
+        }
+    ],
+    "user_ptr": {
+        "name": "store",
+        "age": 19
+    },
+    "users_ptr": [
+        {
+            "name": "zhang",
+            "age": 29
+        },
+        {
+            "name": "yu",
+            "age": 18
+        }
+    ]
+}

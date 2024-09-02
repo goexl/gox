@@ -1,11 +1,20 @@
 package gox_test
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/goexl/gox"
 )
+
+type UserSlice struct {
+	User     gox.Slice[User]  `json:"user,omitempty"`
+	Users    gox.Slice[User]  `json:"users,omitempty"`
+	UserPtr  gox.Slice[*User] `json:"user_ptr,omitempty"`
+	UsersPtr gox.Slice[*User] `json:"users_ptr,omitempty"`
+}
 
 func receiveSlice[T any](data gox.Slice[T]) {
 	fmt.Println(data)
@@ -18,4 +27,17 @@ func receiveIntSlice(data []int) {
 func TestNewSlice(t *testing.T) {
 	receiveSlice(gox.NewSlice(1))
 	receiveIntSlice(gox.NewSlice(2))
+}
+
+func TestSliceJSON(t *testing.T) {
+	slice := new(UserSlice)
+	if bytes, rfe := os.ReadFile("testdata/json/user_slice.json"); nil != rfe {
+		t.Errorf("读取文件内容出错，%v", rfe)
+	} else if ue := json.Unmarshal(bytes, slice); nil != ue {
+		t.Errorf("反序列化JSON出错，%v", ue)
+	} else if 1 != slice.User.Length() {
+		t.Error("User字段反序列化后不是只有一个元素")
+	} else if "storezhang" != slice.User[0].Name && 39 != slice.User[0].Age {
+		t.Error("User字段反序列化后字段值不正确")
+	}
 }
