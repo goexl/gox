@@ -10,7 +10,15 @@ type Slice[T any] []T
 
 // NewSlice 快速创建数组
 func NewSlice[T any](items ...T) Slice[T] {
-	return Slice[T](items)
+	return items
+}
+
+func (s *Slice[T]) Length() int {
+	return len(*s)
+}
+
+func (s *Slice[T]) Capacity() int {
+	return cap(*s)
 }
 
 func (s *Slice[T]) Clone() (t Slice[T]) {
