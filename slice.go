@@ -8,6 +8,11 @@ import (
 // Slice 切片，既可以兼容单个值也可以兼容数组
 type Slice[T any] []T
 
+// NewSlice 快速创建数组
+func NewSlice[T any](items ...T) Slice[T] {
+	return Slice[T](items)
+}
+
 func (s *Slice[T]) Clone() (t Slice[T]) {
 	t = make(Slice[T], len(*s))
 	copy(t, *s)
