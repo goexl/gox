@@ -3,6 +3,8 @@ package gox
 import (
 	"encoding/json"
 	"encoding/xml"
+
+	"github.com/goexl/gox/internal/constant"
 )
 
 // Slice 切片，既可以兼容单个值也可以兼容数组
@@ -30,10 +32,17 @@ func (s *Slice[T]) Clone() (t Slice[T]) {
 
 func (s *Slice[T]) UnmarshalJSON(bytes []byte) (err error) {
 	t := new(T)
-	if ue := json.Unmarshal(bytes, t); nil != ue {
-		err = json.Unmarshal(bytes, s)
-	} else {
+	ts := make([]T, 0)
+	start := bytes[0]
+	if constant.JsonArrayStart == start {
+		err = json.Unmarshal(bytes, &ts)
+	} else if constant.JsonObjectStart == start {
+		err = json.Unmarshal(bytes, t)
+	}
+	if constant.JsonObjectStart == start && nil == err {
 		*s = []T{*t}
+	} else if constant.JsonArrayStart == start && nil == err {
+		*s = ts
 	}
 
 	return

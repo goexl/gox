@@ -21,7 +21,7 @@ func (l Labels) String() string {
 	}
 
 	builder.Grow(size)
-	builder.WriteRune(constant.JsonStart)
+	builder.WriteRune(constant.JsonObjectStart)
 	slices.Sort(keys)
 	for index, _key := range keys {
 		if index > 0 {
@@ -31,7 +31,7 @@ func (l Labels) String() string {
 		builder.WriteRune(constant.Equal)
 		builder.WriteString(strconv.Quote(l[_key]))
 	}
-	builder.WriteRune(constant.JsonEnd)
+	builder.WriteRune(constant.JsonObjectEnd)
 
 	return builder.String()
 }

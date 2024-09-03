@@ -1,8 +1,9 @@
 package constant
 
 const (
-	JsonStart = '{'
-	JsonEnd   = '}'
-	Equal     = '='
-	Comm      = ','
+	JsonObjectStart = '{'
+	JsonObjectEnd   = '}'
+	JsonArrayStart  = '['
+	Equal           = '='
+	Comm            = ','
 )

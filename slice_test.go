@@ -39,5 +39,13 @@ func TestSliceJSON(t *testing.T) {
 		t.Error("User字段反序列化后不是只有一个元素")
 	} else if "storezhang" != slice.User[0].Name && 39 != slice.User[0].Age {
 		t.Error("User字段反序列化后字段值不正确")
+	} else if 1 != slice.UserPtr.Length() {
+		t.Error("User指针字段反序列化后不是只有一个元素")
+	} else if "store" != slice.UserPtr[0].Name && 19 != slice.UserPtr[0].Age {
+		t.Error("User指针字段反序列化后字段值不正确")
+	} else if 2 != slice.Users.Length() {
+		t.Error("Users字段反序列化后字段长度正确")
+	} else if 3 != slice.UsersPtr.Length() {
+		t.Error("Users指针字段反序列化后字段长度正确")
 	}
 }
