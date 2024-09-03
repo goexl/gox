@@ -1,0 +1,32 @@
+<data>
+    <user>
+        <name>storezhang</name>
+        <age>39</age>
+    </user>
+    <users>
+        <name>yusiming</name>
+        <age>29</age>
+    </users>
+    <users>
+        <name>zhangzongliang</name>
+        <age>49</age>
+    </users>
+    <user_ptr>
+        <name>store</name>
+        <age>19</age>
+    </user_ptr>
+    <users_ptr>
+        <item>
+            <name>zhang</name>
+            <age>29</age>
+        </item>
+        <item>
+            <name>yu</name>
+            <age>18</age>
+        </item>
+        <item>
+            <name>test</name>
+            <age>21</age>
+        </item>
+    </users_ptr>
+</data>

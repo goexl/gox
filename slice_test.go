@@ -2,6 +2,7 @@ package gox_test
 
 import (
 	"encoding/json"
+	"encoding/xml"
 	"fmt"
 	"os"
 	"testing"
@@ -10,10 +11,10 @@ import (
 )
 
 type UserSlice struct {
-	User     gox.Slice[User]  `json:"user,omitempty"`
-	Users    gox.Slice[User]  `json:"users,omitempty"`
-	UserPtr  gox.Slice[*User] `json:"user_ptr,omitempty"`
-	UsersPtr gox.Slice[*User] `json:"users_ptr,omitempty"`
+	User     gox.Slice[User]  `json:"user,omitempty" xml:"user,omitempty"`
+	Users    gox.Slice[User]  `json:"users,omitempty" xml:"users,omitempty"`
+	UserPtr  gox.Slice[*User] `json:"user_ptr,omitempty" xml:"user_ptr,omitempty"`
+	UsersPtr gox.Slice[*User] `json:"users_ptr,omitempty" xml:"users_ptr,omitempty"`
 }
 
 func receiveSlice[T any](data gox.Slice[T]) {
@@ -35,6 +36,17 @@ func TestSliceJSON(t *testing.T) {
 		t.Errorf("读取文件内容出错，%v", rfe)
 	} else if ue := json.Unmarshal(bytes, slice); nil != ue {
 		t.Errorf("反序列化JSON出错，%v", ue)
+	} else {
+		checkUserSlice(t, slice)
+	}
+}
+
+func TestSliceXML(t *testing.T) {
+	slice := new(UserSlice)
+	if bytes, rfe := os.ReadFile("testdata/xml/user_slice.xml"); nil != rfe {
+		t.Errorf("读取文件内容出错，%v", rfe)
+	} else if ue := xml.Unmarshal(bytes, slice); nil != ue {
+		t.Errorf("反序列化XML出错，%v", ue)
 	} else {
 		checkUserSlice(t, slice)
 	}
