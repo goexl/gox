@@ -35,7 +35,13 @@ func TestSliceJSON(t *testing.T) {
 		t.Errorf("读取文件内容出错，%v", rfe)
 	} else if ue := json.Unmarshal(bytes, slice); nil != ue {
 		t.Errorf("反序列化JSON出错，%v", ue)
-	} else if 1 != slice.User.Length() {
+	} else {
+		checkUserSlice(t, slice)
+	}
+}
+
+func checkUserSlice(t *testing.T, slice *UserSlice) {
+	if 1 != slice.User.Length() {
 		t.Error("User字段反序列化后不是只有一个元素")
 	} else if "storezhang" != slice.User[0].Name && 39 != slice.User[0].Age {
 		t.Error("User字段反序列化后字段值不正确")
