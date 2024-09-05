@@ -28,7 +28,7 @@ func FormatInt[T constraint.Int](num T, base uint8, callback callback.FormatInt[
 	return final.String()
 }
 
-func FormatUint[T constraint.Uint | constraint.Uint](num T, base uint8, callback callback.FormatUint[T]) string {
+func FormatUint[T constraint.Uint](num T, base uint8, callback callback.FormatUint[T]) string {
 	final := new(strings.Builder)
 	for 0 != num {
 		var current string

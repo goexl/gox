@@ -3,11 +3,13 @@ package gox
 import (
 	"encoding/hex"
 	"encoding/json"
-	"errors"
+	"fmt"
 	"reflect"
 	"strconv"
 	"strings"
 	"unsafe"
+
+	"github.com/goexl/gox/internal/exception"
 )
 
 // Bitmap 位图，通过使用位运算来设置位的开关
@@ -130,7 +132,7 @@ func (b *Bitmap) FromHex(value string) (err error) {
 
 func (b *Bitmap) FromBytes(bytes []byte) (err error) {
 	if 0 != len(bytes)%8 {
-		err = errors.New("数组长度必须是8的倍数")
+		err = fmt.Errorf("长度错误%w： %d", exception.ErrorLengthNotMultiple, 8)
 	} else {
 		hdr := (*reflect.SliceHeader)(unsafe.Pointer(&b.bits))
 		hdr.Len = len(bytes) >> 3
@@ -179,22 +181,6 @@ func (b *Bitmap) grow(at int) {
 		b.bits = make([]uint64, at+1, b.resize(cap(old), at+1))
 		copy(b.bits, old)
 	}
-}
-
-func (b *Bitmap) size(original int, now int) (size int) {
-	if now < b.threshold {
-		now |= now >> 1
-		now |= now >> 2
-		now |= now >> 4
-		now |= now >> 8
-		now |= now >> 16
-		now++
-		size = now
-	} else {
-		size = b.resize(original, now)
-	}
-
-	return
 }
 
 func (b *Bitmap) resize(original int, now int) (resize int) {

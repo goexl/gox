@@ -39,7 +39,7 @@ func Diff[T any](first *[]T, second *[]T) (diff []T) {
 			diff = append(diff, value)
 		}
 	}
-	set = nil
+	set = make(map[any]bool)
 
 	return
 }
