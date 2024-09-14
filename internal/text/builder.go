@@ -28,13 +28,13 @@ func (b *Builder) Bytes() []byte {
 }
 
 func (b *Builder) Append(item any) *Builder {
-	switch val := item.(type) {
+	switch typed := item.(type) {
 	case []byte:
-		b.buffer.Write(val)
+		b.buffer.Write(typed)
 	case rune:
-		b.buffer.WriteRune(val)
+		b.buffer.WriteRune(typed)
 	case string:
-		b.buffer.WriteString(val)
+		b.buffer.WriteString(typed)
 	default:
 		b.buffer.WriteString(ToString(item))
 	}

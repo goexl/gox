@@ -25,10 +25,10 @@ func (l Labels) String() string {
 	slices.Sort(keys)
 	for index, _key := range keys {
 		if index > 0 {
-			builder.WriteRune(constant.Comm)
+			builder.WriteRune(constant.RuneComm)
 		}
 		builder.WriteString(_key)
-		builder.WriteRune(constant.Equal)
+		builder.WriteRune(constant.RuneEqual)
 		builder.WriteString(strconv.Quote(l[_key]))
 	}
 	builder.WriteRune(constant.JsonObjectEnd)

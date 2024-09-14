@@ -48,8 +48,8 @@ func FormatUint[T constraint.Uint](num T, base uint8, callback callback.FormatUi
 // Atoi 增强版进制转换，支持任意进制，最大76进制
 func Atoi[T constraint.Int | constraint.Uint](num string, base int) T {
 	final := 0.0
-	length := len(strings.Split(num, constant.Empty)) - 1
-	for _, value := range strings.Split(num, constant.Empty) {
+	length := len(strings.Split(num, constant.StringEmpty)) - 1
+	for _, value := range strings.Split(num, constant.StringEmpty) {
 		tmp := float64(number.FindKey(value))
 		if -1 != tmp {
 			final = final + tmp*math.Pow(float64(base), float64(length))

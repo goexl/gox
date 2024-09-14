@@ -16,8 +16,8 @@ func TestCamel(t *testing.T) {
 		{"a-b", "AB"},
 	}
 	for index, test := range tests {
-		_case := gox.Case(test.in)
-		if got := _case.Camel(gox.CasePositionHead).String(); test.expected != got {
+		camel := gox.String(test.in).Switch().Camel().Build()
+		if got := camel.Case(); test.expected != got {
 			t.Errorf("第%d个测试未通过，实际：%v，期望：%v", index+1, got, test.expected)
 		}
 	}

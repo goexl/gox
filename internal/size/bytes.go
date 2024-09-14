@@ -15,7 +15,7 @@ type Bytes int64
 // ParseBytes 解析字节大小
 func ParseBytes(from string) (bytes Bytes, err error) {
 	// 逐步解析各个容量
-	for _, volume := range strings.Split(from, constant.Space) {
+	for _, volume := range strings.Split(from, constant.StringSpace) {
 		var unit, num string
 		length := len(volume)
 		check := volume[length-2]
@@ -75,14 +75,14 @@ func (b *Bytes) Formatter() *BytesFormatter {
 }
 
 func (b Bytes) MarshalJSON() (bytes []byte, err error) {
-	bytes = text.NewBuilder(constant.Quote, b.String(), constant.Quote).Bytes()
+	bytes = text.NewBuilder(constant.StringQuote, b.String(), constant.StringQuote).Bytes()
 
 	return
 }
 
 func (b *Bytes) UnmarshalJSON(bytes []byte) (err error) {
 	json := *(*string)(unsafe.Pointer(&bytes))
-	*b, err = ParseBytes(strings.ReplaceAll(json, constant.Quote, constant.Empty))
+	*b, err = ParseBytes(strings.ReplaceAll(json, constant.StringQuote, constant.StringEmpty))
 
 	return
 }

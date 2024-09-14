@@ -4,6 +4,9 @@ const (
 	JsonObjectStart = '{'
 	JsonObjectEnd   = '}'
 	JsonArrayStart  = '['
-	Equal           = '='
-	Comm            = ','
+	RuneEqual       = '='
+	RuneComm        = ','
+	RuneSpace       = ' '
+	RuneStrike      = '-'
+	RuneUnderscore  = '_'
 )
