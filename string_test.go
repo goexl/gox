@@ -33,8 +33,8 @@ func TestSplit(t *testing.T) {
 		{"a-b", []string{"a", "b"}},
 	}
 	for index, test := range tests {
-		camel := gox.String(test.in).Switch().Camel().Build()
-		if got := camel.Case(); test.expected != got {
+		camel := gox.String(test.in).Split().Build()
+		if got := camel.Apply(); test.expected != got {
 			t.Errorf("第%d个测试未通过，实际：%v，期望：%v", index+1, got, test.expected)
 		}
 	}

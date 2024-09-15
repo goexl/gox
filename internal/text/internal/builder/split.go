@@ -3,6 +3,7 @@ package builder
 import (
 	"unicode"
 
+	"github.com/goexl/gox/internal/text/internal/core"
 	"github.com/goexl/gox/internal/text/internal/param"
 )
 
@@ -23,4 +24,6 @@ func (s *Split) Letter() (split *Split) {
 	return
 }
 
-func (s *Split) Build()
+func (s *Split) Build() *core.Split {
+	return core.NewSplit(s.params)
+}
