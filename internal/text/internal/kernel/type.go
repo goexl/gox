@@ -6,6 +6,8 @@ const (
 	TypeUnderscore
 	TypeUppercase
 	TypeStrike
+
+	TypeNonalpha
 )
 
 type Type uint8

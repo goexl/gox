@@ -29,6 +29,8 @@ func (s *Switch) Case() (to string) {
 		to = s.lowercase()
 	case kernel.TypeUppercase:
 		to = s.uppercase()
+	case kernel.TypeStrike:
+		to = s.strike()
 	default:
 		to = s.underscore()
 	}

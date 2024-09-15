@@ -17,3 +17,7 @@ func NewString(from string) *String {
 func (s String) Switch() *builder.Switch {
 	return builder.NewSwitch(s.from)
 }
+
+func (s String) Split() *builder.Split {
+	return builder.NewSplit(s.from)
+}
