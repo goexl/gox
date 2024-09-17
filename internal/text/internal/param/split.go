@@ -15,6 +15,6 @@ type Split struct {
 func NewSplit(from string) *Split {
 	return &Split{
 		From:     from,
-		Callback: unicode.IsPunct,
+		Callback: unicode.IsSymbol,
 	}
 }

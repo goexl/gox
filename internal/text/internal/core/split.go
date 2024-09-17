@@ -25,19 +25,23 @@ func (s *Split) Apply() (words []string) {
 }
 
 func (s *Split) withRune() (words []string) {
-	words = make([]string, 16)
+	words = make([]string, 0, 16)
 	builder := new(strings.Builder)
 	latest := ' '
 	from := []rune(s.params.From)
 	callback := s.params.Callback
-	for index := 0; index < len(from); index++ {
+	length := len(from)
+	for index := 0; index < length; index++ {
 		latest = from[index]
-		next := from[index+1]
 		if !callback(latest) {
 			builder.WriteRune(latest)
-		} else if callback(latest) && !callback(next) {
+		} else if length-1 > index && callback(latest) && !callback(from[index+1]) {
 			words = append(words, builder.String())
 			builder.Reset()
+		}
+
+		if length-1 == index {
+			words = append(words, builder.String())
 		}
 	}
 
