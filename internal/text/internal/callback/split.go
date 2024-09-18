@@ -1,3 +1,3 @@
 package callback
 
-type Split func(rune, rune) bool
+type Split func(string) []string

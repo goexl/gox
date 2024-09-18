@@ -5,6 +5,7 @@ import (
 	"unicode"
 
 	"github.com/goexl/gox/internal/constant"
+	"github.com/goexl/gox/internal/text/internal/internal/token"
 	"github.com/goexl/gox/internal/text/internal/kernel"
 	"github.com/goexl/gox/internal/text/internal/param"
 )
@@ -51,7 +52,7 @@ func (s *Switch) strike() string {
 // 驼峰
 func (s *Switch) camel() string {
 	buffer := new(strings.Builder)
-	words := s.split(s.params.From)
+	words := token.Named(s.params.From)
 	for index, word := range words {
 		switch {
 		case 0 == index && kernel.PositionHead == s.params.Position:
@@ -107,7 +108,7 @@ func (s *Switch) uppercase() (to string) {
 
 func (s *Switch) convert(replace rune) string {
 	buffer := new(strings.Builder)
-	words := s.split(s.params.From)
+	words := token.Named(s.params.From)
 	for index, word := range words {
 		switch {
 		case 0 == index && kernel.PositionHead == s.params.Position:
@@ -124,19 +125,4 @@ func (s *Switch) convert(replace rune) string {
 	}
 
 	return buffer.String()[:buffer.Len()-2]
-}
-
-func (s *Switch) split(from string) (to []string) {
-	to = make([]string, 0, len(from)/2)
-	if strings.ContainsRune(from, constant.RuneSpace) {
-		to = append(to, strings.Split(from, constant.StringSpace)...)
-	}
-	if strings.ContainsRune(from, constant.RuneStrike) {
-		to = append(to, strings.Split(from, constant.StringStrike)...)
-	}
-	if strings.ContainsRune(from, constant.RuneUnderscore) {
-		to = append(to, strings.Split(from, constant.StringUnderscore)...)
-	}
-
-	return
 }

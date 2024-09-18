@@ -30,12 +30,13 @@ func TestSplit(t *testing.T) {
 		expected []string
 	}{
 		{"a b", []string{"a", "b"}},
-		{"你好,世界", []string{"你好", "世界"}},
+		{"你好，世界", []string{"你好，世界"}},
 		{"a-b", []string{"a", "b"}},
 		{"a_b", []string{"a", "b"}},
+		{"helloWorld", []string{"hello", "World"}},
 	}
 	for index, test := range tests {
-		split := gox.String(test.in).Split().Connection().Build()
+		split := gox.String(test.in).Split().Named().Build()
 		if got := split.Apply(); !reflect.DeepEqual(test.expected, got) {
 			t.Errorf("第%d个测试未通过，实际：%v，期望：%v", index+1, got, test.expected)
 		}

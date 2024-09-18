@@ -1,11 +1,10 @@
 package builder
 
 import (
-	"unicode"
+	"strings"
 
-	"github.com/goexl/gox/internal/constant"
-	"github.com/goexl/gox/internal/text/internal/callback"
 	"github.com/goexl/gox/internal/text/internal/core"
+	"github.com/goexl/gox/internal/text/internal/internal/token"
 	"github.com/goexl/gox/internal/text/internal/param"
 )
 
@@ -19,21 +18,17 @@ func NewSplit(from string) *Split {
 	}
 }
 
-func (s *Split) Letter() (split *Split) {
-	s.params.Callback = unicode.IsLetter
+func (s *Split) Named() (split *Split) {
+	s.params.Callback = token.Named
 	split = s
 
 	return
 }
 
-func (s *Split) Connection() (split *Split) {
-	s.params.Callback = s.any(
-		constant.RuneStrike,
-		constant.RuneUnderscore,
-		constant.RuneComm,
-		constant.RuneDot,
-		constant.RuneSpace,
-	)
+func (s *Split) Separator(separator string) (split *Split) {
+	s.params.Callback = func(from string) []string {
+		return strings.Split(from, separator)
+	}
 	split = s
 
 	return
@@ -41,14 +36,4 @@ func (s *Split) Connection() (split *Split) {
 
 func (s *Split) Build() *core.Split {
 	return core.NewSplit(s.params)
-}
-
-func (*Split) any(runes ...rune) callback.Split {
-	return func(check rune) (checked bool) {
-		for _, rune := range runes {
-
-		}
-
-		return
-	}
 }
