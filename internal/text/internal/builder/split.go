@@ -18,13 +18,15 @@ func NewSplit(from string) *Split {
 	}
 }
 
-func (s *Split) Named() (split *Split) {
-	s.params.Callback = token.Named
+// Naming 按命名规范分隔
+func (s *Split) Naming() (split *Split) {
+	s.params.Callback = token.Naming
 	split = s
 
 	return
 }
 
+// Separator 按分隔符分隔
 func (s *Split) Separator(separator string) (split *Split) {
 	s.params.Callback = func(from string) []string {
 		return strings.Split(from, separator)

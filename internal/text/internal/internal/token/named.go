@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func Named(from string) (to []string) {
+func Naming(from string) (to []string) {
 	// 用正则表达式处理下划线和中划线
 	re := regexp.MustCompile(`[-_]+`)
 	processed := re.ReplaceAllString(from, " ")

@@ -52,7 +52,7 @@ func (s *Switch) strike() string {
 // 驼峰
 func (s *Switch) camel() string {
 	buffer := new(strings.Builder)
-	words := token.Named(s.params.From)
+	words := token.Naming(s.params.From)
 	for index, word := range words {
 		switch {
 		case 0 == index && kernel.PositionHead == s.params.Position:
@@ -108,7 +108,7 @@ func (s *Switch) uppercase() (to string) {
 
 func (s *Switch) convert(replace rune) string {
 	buffer := new(strings.Builder)
-	words := token.Named(s.params.From)
+	words := token.Naming(s.params.From)
 	for index, word := range words {
 		switch {
 		case 0 == index && kernel.PositionHead == s.params.Position:

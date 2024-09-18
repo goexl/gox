@@ -13,6 +13,6 @@ type Split struct {
 func NewSplit(from string) *Split {
 	return &Split{
 		From:     from,
-		Callback: token.Named,
+		Callback: token.Naming,
 	}
 }
