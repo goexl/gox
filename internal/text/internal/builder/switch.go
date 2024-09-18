@@ -37,6 +37,13 @@ func (s *Switch) Underscore() (swh *Switch) {
 	return
 }
 
+func (s *Switch) Strike() (swh *Switch) {
+	s.params.Type = kernel.TypeStrike
+	swh = s
+
+	return
+}
+
 func (s *Switch) Uppercase() (swh *Switch) {
 	s.params.Type = kernel.TypeUppercase
 	swh = s
@@ -60,6 +67,13 @@ func (s *Switch) Tail() (swh *Switch) {
 
 func (s *Switch) All() (swh *Switch) {
 	s.params.Position = kernel.PositionAll
+	swh = s
+
+	return
+}
+
+func (s *Switch) None() (swh *Switch) {
+	s.params.Position = kernel.PositionNone
 	swh = s
 
 	return

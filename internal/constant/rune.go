@@ -6,8 +6,6 @@ const (
 	JsonArrayStart  = '['
 	RuneEqual       = '='
 	RuneComm        = ','
-	RuneSpace       = ' '
 	RuneStrike      = '-'
 	RuneUnderscore  = '_'
-	RuneDot         = '.'
 )
