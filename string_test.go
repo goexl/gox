@@ -15,7 +15,7 @@ func TestCamel(t *testing.T) {
 		{"a b", "aB"},
 		{"a_b", "aB"},
 		{"a-b", "aB"},
-		{"Db", "Db"},
+		{"Db", "db"},
 	}
 	for index, test := range tests {
 		camel := gox.String(test.in).Switch().Camel().Build()
