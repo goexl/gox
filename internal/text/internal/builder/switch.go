@@ -2,6 +2,7 @@ package builder
 
 import (
 	"github.com/goexl/gox/internal/text/internal/core"
+	"github.com/goexl/gox/internal/text/internal/internal/builder"
 	"github.com/goexl/gox/internal/text/internal/kernel"
 	"github.com/goexl/gox/internal/text/internal/param"
 )
@@ -51,40 +52,16 @@ func (s *Switch) Uppercase() (swh *Switch) {
 	return
 }
 
-func (s *Switch) Head() (swh *Switch) {
-	s.params.Position = kernel.PositionHead
-	swh = s
-
-	return
-}
-
-func (s *Switch) Tail() (swh *Switch) {
-	s.params.Position = kernel.PositionTail
-	swh = s
-
-	return
-}
-
-func (s *Switch) All() (swh *Switch) {
-	s.params.Position = kernel.PositionAll
-	swh = s
-
-	return
-}
-
-func (s *Switch) None() (swh *Switch) {
-	s.params.Position = kernel.PositionNone
-	swh = s
-
-	return
-}
-
 func (s *Switch) Caption() (swh *Switch) {
 	s.params.Type = kernel.TypeUppercase
 	s.params.Position = kernel.PositionHead
 	swh = s
 
 	return
+}
+
+func (s *Switch) Upper() *builder.Upper[Switch] {
+	return builder.NewUpper(s, s.params.Upper)
 }
 
 func (s *Switch) Build() *core.Switch {

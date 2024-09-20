@@ -57,9 +57,7 @@ func (s *Switch) camel() string {
 		switch {
 		case 0 == index && kernel.PositionHead == s.params.Position:
 			buffer.WriteRune(unicode.ToUpper(rune(word[0])))
-		case len(words) == index && kernel.PositionTail == s.params.Position:
-			buffer.WriteRune(unicode.ToUpper(rune(word[0])))
-		case kernel.PositionNone == s.params.Position:
+		case 0 == index && kernel.PositionNone == s.params.Position:
 			buffer.WriteRune(rune(word[0]))
 		default:
 			buffer.WriteRune(unicode.ToUpper(rune(word[0])))
@@ -124,5 +122,5 @@ func (s *Switch) convert(replace rune) string {
 		buffer.WriteRune(replace)
 	}
 
-	return buffer.String()[:buffer.Len()-2]
+	return buffer.String()[:buffer.Len()-1]
 }

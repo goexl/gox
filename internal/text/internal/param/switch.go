@@ -5,15 +5,17 @@ import (
 )
 
 type Switch struct {
-	From     string
-	Position kernel.Position
-	Type     kernel.Type
+	*Upper
+
+	From string
+	Type kernel.Type
 }
 
 func NewSwitch(from string) *Switch {
 	return &Switch{
-		From:     from,
-		Position: kernel.PositionHead,
-		Type:     kernel.TypeUnderscore,
+		Upper: NewUpper(),
+
+		From: from,
+		Type: kernel.TypeUnderscore,
 	}
 }
