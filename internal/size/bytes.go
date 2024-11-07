@@ -54,20 +54,16 @@ func ParseBytes(from string) (bytes Bytes, err error) {
 	return
 }
 
-func (b *Bytes) String() string {
+func (b Bytes) String() string {
 	return b.Formatter().Format()
 }
 
-func (b *Bytes) Bit() int64 {
-	return int64(*b) * 8
+func (b Bytes) Bit() int64 {
+	return int64(b) * 8
 }
 
-func (b *Bytes) Byte() int64 {
-	return int64(*b)
-}
-
-func (b *Bytes) Bit32() int32 {
-	return int32(*b) * 8
+func (b Bytes) Byte() int64 {
+	return int64(b)
 }
 
 func (b *Bytes) Formatter() *BytesFormatter {

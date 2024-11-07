@@ -56,47 +56,54 @@ func (b *BytesFormatter) Separator(separator rune) *BytesFormatter {
 }
 
 func (b *BytesFormatter) Format() string {
-	sb := new(strings.Builder)
+	builder := new(strings.Builder)
+	writed := false
 	for {
 		if *b.size < b.unit {
 			break
 		}
 
+		writed = true
 		switch {
 		case *b.size >= BytesEB:
 			unit := *b.size / BytesEB
 			*b.size -= unit * BytesEB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('e')
+			builder.WriteString(strconv.FormatInt(int64(unit), 10))
+			builder.WriteRune('e')
 		case *b.size >= BytesPB:
 			unit := *b.size / BytesPB
 			*b.size -= unit * BytesPB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('p')
+			builder.WriteString(strconv.FormatInt(int64(unit), 10))
+			builder.WriteRune('p')
 		case *b.size >= BytesTB:
 			unit := *b.size / BytesTB
 			*b.size -= unit * BytesTB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('t')
+			builder.WriteString(strconv.FormatInt(int64(unit), 10))
+			builder.WriteRune('t')
 		case *b.size >= BytesGB:
 			unit := *b.size / BytesGB
 			*b.size -= unit * BytesGB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('g')
+			builder.WriteString(strconv.FormatInt(int64(unit), 10))
+			builder.WriteRune('g')
 		case *b.size >= BytesMB:
 			unit := *b.size / BytesMB
 			*b.size -= unit * BytesMB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('m')
+			builder.WriteString(strconv.FormatInt(int64(unit), 10))
+			builder.WriteRune('m')
 		case *b.size >= BytesKB:
 			unit := *b.size / BytesKB
 			*b.size -= unit * BytesKB
-			sb.WriteString(strconv.Itoa(int(unit)))
-			sb.WriteRune('k')
+			builder.WriteString(strconv.FormatInt(int64(unit), 10))
+			builder.WriteRune('k')
 		}
 
-		sb.WriteRune(b.separator)
+		builder.WriteRune(b.separator)
+	}
+	if !writed {
+		builder.WriteString(strconv.FormatInt(int64(*b.size), 10))
+		builder.WriteRune('b')
+		builder.WriteRune(b.separator)
 	}
 
-	return sb.String()[:sb.Len()-1] // 去掉最后一个分隔符
+	return builder.String()[:builder.Len()-1] // 去掉最后一个分隔符
 }
